@@ -30,17 +30,8 @@ Teknolojiler ve Kütüphaneler
 
 1. Python 3.8
 2. Celery 5
-3. Flower [Opsiyonel]
-4. Sentry [Opsiyonel]
+3. omnisdk
+4. channel_app
+5. Flower [Opsiyonel]
+6. Sentry [Opsiyonel]
 
-İçerik
-======
-
-.. toctree::
-   :maxdepth: 2
-
-   setup/index
-   project/index
-   architecture/index
-   terminology
-   flows
