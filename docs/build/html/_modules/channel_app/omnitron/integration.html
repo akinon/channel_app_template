@@ -1,0 +1,368 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>channel_app.omnitron.integration &mdash; Channel App Template 0.1.0 belgelendirmesi</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Dizin"
+              href="../../../genindex.html"/>
+        <link rel="search" title="Ara" href="../../../search.html"/>
+    <link rel="top" title="Channel App Template 0.1.0 belgelendirmesi" href="../../../index.html"/>
+        <link rel="up" title="Modül kodu" href="../../index.html"/> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Channel App Template
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../setup/index.html">Kurulum ve Kullanım</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../project/index.html">Geliştirme Adımları</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture/index.html">Mimari</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../terminology.html">Terminoloji</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../flows.html">Akışlar</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Channel App Template</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Modül kodu</a> &raquo;</li>
+        
+      <li>channel_app.omnitron.integration</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>channel_app.omnitron.integration öğesinin kaynak kodu</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">omnisdk.omnitron.client</span> <span class="kn">import</span> <span class="n">OmnitronApiClient</span>
+
+<span class="kn">from</span> <span class="nn">channel_app.core.integration</span> <span class="kn">import</span> <span class="n">BaseIntegration</span>
+<span class="kn">from</span> <span class="nn">channel_app.omnitron.batch_request</span> <span class="kn">import</span> <span class="n">ClientBatchRequest</span>
+<span class="kn">from</span> <span class="nn">channel_app.omnitron.commands.batch_requests</span> <span class="kn">import</span> <span class="n">GetBatchRequests</span><span class="p">,</span> \
+    <span class="n">BatchRequestUpdate</span>
+<span class="kn">from</span> <span class="nn">channel_app.omnitron.commands.error_reports</span> <span class="kn">import</span> \
+    <span class="n">CreateAddressErrorReports</span><span class="p">,</span> \
+    <span class="n">CreateErrorReports</span>
+<span class="kn">from</span> <span class="nn">channel_app.omnitron.commands.integration_actions</span> <span class="kn">import</span> \
+    <span class="n">CreateIntegrationActions</span><span class="p">,</span> \
+    <span class="n">GetIntegrationActionsWithObjectId</span><span class="p">,</span> <span class="n">GetIntegrationActionsWithRemoteId</span><span class="p">,</span> \
+    <span class="n">UpdateIntegrationActions</span><span class="p">,</span> \
+    <span class="n">GetIntegrationActions</span><span class="p">,</span> <span class="n">GetObjectsFromIntegrationAction</span>
+<span class="kn">from</span> <span class="nn">channel_app.omnitron.commands.orders.addresses</span> <span class="kn">import</span> <span class="n">GetOrCreateAddress</span>
+<span class="kn">from</span> <span class="nn">channel_app.omnitron.commands.orders.cargo_companies</span> <span class="kn">import</span> <span class="n">GetCargoCompany</span>
+<span class="kn">from</span> <span class="nn">channel_app.omnitron.commands.orders.customers</span> <span class="kn">import</span> <span class="n">GetOrCreateCustomer</span>
+<span class="kn">from</span> <span class="nn">channel_app.omnitron.commands.orders.orders</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">CreateOrders</span><span class="p">,</span>
+    <span class="n">CreateOrderShippingInfo</span><span class="p">,</span>
+    <span class="n">GetOrders</span><span class="p">,</span>
+    <span class="n">ProcessOrderBatchRequests</span><span class="p">,</span>
+    <span class="n">CreateOrderCancel</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">channel_app.omnitron.commands.product_prices</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">GetUpdatedProductPrices</span><span class="p">,</span> <span class="n">ProcessPriceBatchRequests</span><span class="p">,</span>
+    <span class="n">GetInsertedProductPrices</span><span class="p">,</span> <span class="n">GetInsertedProductPricesFromExtraPriceList</span><span class="p">,</span>
+    <span class="n">GetUpdatedProductPricesFromExtraPriceList</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">channel_app.omnitron.commands.product_stocks</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">GetUpdatedProductStocks</span><span class="p">,</span> <span class="n">ProcessStockBatchRequests</span><span class="p">,</span>
+    <span class="n">GetInsertedProductStocks</span><span class="p">,</span> <span class="n">GetUpdatedProductStocksFromExtraStockList</span><span class="p">,</span>
+    <span class="n">GetInsertedProductStocksFromExtraStockList</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">channel_app.omnitron.commands.products</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">GetInsertedProducts</span><span class="p">,</span>
+    <span class="n">GetUpdatedProducts</span><span class="p">,</span>
+    <span class="n">ProcessProductBatchRequests</span><span class="p">,</span>
+    <span class="n">GetDeletedProducts</span><span class="p">,</span>
+    <span class="n">ProcessDeletedProductBatchRequests</span><span class="p">,</span>
+    <span class="n">GetMappedProducts</span><span class="p">,</span>
+    <span class="n">GetProductPrices</span><span class="p">,</span>
+    <span class="n">GetProductStocks</span><span class="p">,</span>
+    <span class="n">GetInsertedOrUpdatedProducts</span><span class="p">,</span>
+    <span class="n">GetProductCategoryNodes</span><span class="p">,</span> <span class="n">GetProductObjects</span><span class="p">,</span> <span class="n">GetProductsFromBatchrequest</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">channel_app.omnitron.commands.setup</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">CreateOrUpdateCategoryTreeAndNodes</span><span class="p">,</span> <span class="n">CreateOrUpdateCategoryAttributes</span><span class="p">,</span>
+    <span class="n">GetCategoryIds</span><span class="p">,</span> <span class="n">CreateOrUpdateChannelAttributeSet</span><span class="p">,</span>
+    <span class="n">GetOrCreateChannelAttributeSetConfig</span><span class="p">,</span> <span class="n">CreateOrUpdateChannelAttribute</span><span class="p">,</span>
+    <span class="n">CreateOrUpdateChannelAttributeConfig</span><span class="p">,</span> <span class="n">CreateOrUpdateChannelAttributeValue</span><span class="p">,</span>
+    <span class="n">GetOrCreateChannelAttributeValueConfig</span><span class="p">,</span>
+    <span class="n">AsyncCreateOrUpdateCategoryAttributes</span><span class="p">,</span> <span class="n">GetOrCreateChannelAttributeSchema</span><span class="p">,</span>
+    <span class="n">UpdateChannelConfSchema</span><span class="p">,</span> <span class="n">GetChannelAttributeSetConfigs</span><span class="p">,</span>
+    <span class="n">GetChannelAttributeSets</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="OmnitronIntegration"><a class="viewcode-back" href="../../../architecture/index.html#channel_app.omnitron.integration.OmnitronIntegration">[belgeler]</a><span class="k">class</span> <span class="nc">OmnitronIntegration</span><span class="p">(</span><span class="n">BaseIntegration</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Communicates with the Omnitron Api services through the commands defined. It manages</span>
+<span class="sd">    OmnitronApiClient object on enter and exit methods.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">actions</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;get_inserted_products&quot;</span><span class="p">:</span> <span class="n">GetInsertedProducts</span><span class="p">,</span>
+        <span class="s2">&quot;get_updated_products&quot;</span><span class="p">:</span> <span class="n">GetUpdatedProducts</span><span class="p">,</span>
+        <span class="s2">&quot;get_inserted_or_updated_products&quot;</span><span class="p">:</span> <span class="n">GetInsertedOrUpdatedProducts</span><span class="p">,</span>
+        <span class="s2">&quot;get_deleted_products&quot;</span><span class="p">:</span> <span class="n">GetDeletedProducts</span><span class="p">,</span>
+        <span class="s2">&quot;get_mapped_products&quot;</span><span class="p">:</span> <span class="n">GetMappedProducts</span><span class="p">,</span>
+        <span class="s2">&quot;get_product_prices&quot;</span><span class="p">:</span> <span class="n">GetProductPrices</span><span class="p">,</span>
+        <span class="s2">&quot;get_product_stocks&quot;</span><span class="p">:</span> <span class="n">GetProductStocks</span><span class="p">,</span>
+        <span class="s2">&quot;get_product_categories&quot;</span><span class="p">:</span> <span class="n">GetProductCategoryNodes</span><span class="p">,</span>
+        <span class="s2">&quot;get_batch_requests&quot;</span><span class="p">:</span> <span class="n">GetBatchRequests</span><span class="p">,</span>
+        <span class="s2">&quot;get_updated_stocks&quot;</span><span class="p">:</span> <span class="n">GetUpdatedProductStocks</span><span class="p">,</span>
+        <span class="s2">&quot;get_inserted_stocks&quot;</span><span class="p">:</span> <span class="n">GetInsertedProductStocks</span><span class="p">,</span>
+        <span class="s2">&quot;get_updated_stocks_from_extra_stock_list&quot;</span><span class="p">:</span> <span class="n">GetUpdatedProductStocksFromExtraStockList</span><span class="p">,</span>
+        <span class="s2">&quot;get_inserted_stocks_from_extra_stock_list&quot;</span><span class="p">:</span> <span class="n">GetInsertedProductStocksFromExtraStockList</span><span class="p">,</span>
+        <span class="s2">&quot;get_updated_prices&quot;</span><span class="p">:</span> <span class="n">GetUpdatedProductPrices</span><span class="p">,</span>
+        <span class="s2">&quot;get_inserted_prices&quot;</span><span class="p">:</span> <span class="n">GetInsertedProductPrices</span><span class="p">,</span>
+        <span class="s2">&quot;get_inserted_prices_from_extra_price_list&quot;</span><span class="p">:</span> <span class="n">GetInsertedProductPricesFromExtraPriceList</span><span class="p">,</span>
+        <span class="s2">&quot;get_updated_prices_from_extra_price_list&quot;</span><span class="p">:</span> <span class="n">GetUpdatedProductPricesFromExtraPriceList</span><span class="p">,</span>
+        <span class="s2">&quot;process_product_batch_requests&quot;</span><span class="p">:</span> <span class="n">ProcessProductBatchRequests</span><span class="p">,</span>
+        <span class="s2">&quot;process_stock_batch_requests&quot;</span><span class="p">:</span> <span class="n">ProcessStockBatchRequests</span><span class="p">,</span>
+        <span class="s2">&quot;process_price_batch_requests&quot;</span><span class="p">:</span> <span class="n">ProcessPriceBatchRequests</span><span class="p">,</span>
+        <span class="s2">&quot;process_order_batch_requests&quot;</span><span class="p">:</span> <span class="n">ProcessOrderBatchRequests</span><span class="p">,</span>
+        <span class="s2">&quot;process_delete_product_batch_requests&quot;</span><span class="p">:</span> <span class="n">ProcessDeletedProductBatchRequests</span><span class="p">,</span>
+        <span class="s2">&quot;get_or_create_customer&quot;</span><span class="p">:</span> <span class="n">GetOrCreateCustomer</span><span class="p">,</span>
+        <span class="s2">&quot;get_or_create_address&quot;</span><span class="p">:</span> <span class="n">GetOrCreateAddress</span><span class="p">,</span>
+        <span class="s2">&quot;get_cargo_company&quot;</span><span class="p">:</span> <span class="n">GetCargoCompany</span><span class="p">,</span>
+        <span class="s2">&quot;create_order&quot;</span><span class="p">:</span> <span class="n">CreateOrders</span><span class="p">,</span>
+        <span class="s2">&quot;get_orders&quot;</span><span class="p">:</span> <span class="n">GetOrders</span><span class="p">,</span>
+        <span class="s2">&quot;create_order_shipping_info&quot;</span><span class="p">:</span> <span class="n">CreateOrderShippingInfo</span><span class="p">,</span>
+        <span class="s2">&quot;create_or_update_category_tree_and_nodes&quot;</span><span class="p">:</span> <span class="n">CreateOrUpdateCategoryTreeAndNodes</span><span class="p">,</span>
+        <span class="s2">&quot;create_or_update_category_attributes&quot;</span><span class="p">:</span> <span class="n">CreateOrUpdateCategoryAttributes</span><span class="p">,</span>
+        <span class="s2">&quot;create_or_update_category_attributes_async&quot;</span><span class="p">:</span> <span class="n">AsyncCreateOrUpdateCategoryAttributes</span><span class="p">,</span>
+        <span class="s2">&quot;create_address_error_report&quot;</span><span class="p">:</span> <span class="n">CreateAddressErrorReports</span><span class="p">,</span>
+        <span class="s2">&quot;create_error_report&quot;</span><span class="p">:</span> <span class="n">CreateErrorReports</span><span class="p">,</span>
+        <span class="s2">&quot;get_integration_with_object_id&quot;</span><span class="p">:</span> <span class="n">GetIntegrationActionsWithObjectId</span><span class="p">,</span>
+        <span class="s2">&quot;get_integration_with_remote_id&quot;</span><span class="p">:</span> <span class="n">GetIntegrationActionsWithRemoteId</span><span class="p">,</span>
+        <span class="s2">&quot;get_integrations&quot;</span><span class="p">:</span> <span class="n">GetIntegrationActions</span><span class="p">,</span>
+        <span class="s2">&quot;get_content_objects_from_integrations&quot;</span><span class="p">:</span> <span class="n">GetObjectsFromIntegrationAction</span><span class="p">,</span>
+        <span class="s2">&quot;create_integration&quot;</span><span class="p">:</span> <span class="n">CreateIntegrationActions</span><span class="p">,</span>
+        <span class="s2">&quot;update_integration&quot;</span><span class="p">:</span> <span class="n">UpdateIntegrationActions</span><span class="p">,</span>
+        <span class="s2">&quot;get_category_ids&quot;</span><span class="p">:</span> <span class="n">GetCategoryIds</span><span class="p">,</span>
+        <span class="s2">&quot;create_or_update_channel_attribute_set&quot;</span><span class="p">:</span> <span class="n">CreateOrUpdateChannelAttributeSet</span><span class="p">,</span>
+        <span class="s2">&quot;get_or_create_channel_attribute_set_config&quot;</span><span class="p">:</span> <span class="n">GetOrCreateChannelAttributeSetConfig</span><span class="p">,</span>
+        <span class="s2">&quot;create_or_update_channel_attribute&quot;</span><span class="p">:</span> <span class="n">CreateOrUpdateChannelAttribute</span><span class="p">,</span>
+        <span class="s2">&quot;get_or_create_channel_attribute_schema&quot;</span><span class="p">:</span> <span class="n">GetOrCreateChannelAttributeSchema</span><span class="p">,</span>
+        <span class="s2">&quot;create_or_update_channel_attribute_config&quot;</span><span class="p">:</span> <span class="n">CreateOrUpdateChannelAttributeConfig</span><span class="p">,</span>
+        <span class="s2">&quot;get_channel_attribute_set_configs&quot;</span><span class="p">:</span> <span class="n">GetChannelAttributeSetConfigs</span><span class="p">,</span>
+        <span class="s2">&quot;get_channel_attribute_set&quot;</span><span class="p">:</span> <span class="n">GetChannelAttributeSets</span><span class="p">,</span>
+        <span class="s2">&quot;create_or_update_channel_attribute_value&quot;</span><span class="p">:</span> <span class="n">CreateOrUpdateChannelAttributeValue</span><span class="p">,</span>
+        <span class="s2">&quot;get_or_create_channel_attribute_value_config&quot;</span><span class="p">:</span> <span class="n">GetOrCreateChannelAttributeValueConfig</span><span class="p">,</span>
+        <span class="s2">&quot;batch_request_update&quot;</span><span class="p">:</span> <span class="n">BatchRequestUpdate</span><span class="p">,</span>
+        <span class="s2">&quot;create_order_cancel&quot;</span><span class="p">:</span> <span class="n">CreateOrderCancel</span><span class="p">,</span>
+        <span class="s2">&quot;update_channel_conf_schema&quot;</span><span class="p">:</span> <span class="n">UpdateChannelConfSchema</span><span class="p">,</span>
+        <span class="s2">&quot;get_product_objects&quot;</span><span class="p">:</span> <span class="n">GetProductObjects</span><span class="p">,</span>
+        <span class="s2">&quot;get_product_from_batch_request&quot;</span><span class="p">:</span> <span class="n">GetProductsFromBatchrequest</span><span class="p">,</span>
+        <span class="c1"># &quot;fetch_cancellation_plan&quot;: FetchCancellationPlan</span>
+    <span class="p">}</span>
+
+<div class="viewcode-block" id="OmnitronIntegration.__init__"><a class="viewcode-back" href="../../../architecture/index.html#channel_app.omnitron.integration.OmnitronIntegration.__init__">[belgeler]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">create_batch</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">content_type</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Some environment parameters are stored in the integration object for convenience.</span>
+
+<span class="sd">        :param create_batch: Flag to decide whether a batch request to be created</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="kn">from</span> <span class="nn">channel_app.core</span> <span class="kn">import</span> <span class="n">settings</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">create_batch</span> <span class="o">=</span> <span class="n">create_batch</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">content_type</span> <span class="o">=</span> <span class="n">content_type</span>
+        <span class="k">if</span> <span class="n">create_batch</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">content_type</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;ContentType not defined&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">channel_id</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">OMNITRON_CHANNEL_ID</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">catalog_id</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">OMNITRON_CATALOG_ID</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">base_url</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">OMNITRON_URL</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">username</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">OMNITRON_USER</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">password</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">OMNITRON_PASSWORD</span></div>
+        <span class="c1"># TODO initialize api in init and check whether it is already initialized on enter method</span>
+
+    <span class="k">def</span> <span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">api</span> <span class="o">=</span> <span class="n">OmnitronApiClient</span><span class="p">(</span><span class="n">base_url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">base_url</span><span class="p">,</span>
+                                     <span class="n">username</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">username</span><span class="p">,</span>
+                                     <span class="n">password</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">password</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_batch</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">batch_request</span> <span class="o">=</span> <span class="n">ClientBatchRequest</span><span class="p">(</span>
+                <span class="n">channel_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">channel_id</span><span class="p">)</span><span class="o">.</span><span class="n">create</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">batch_request</span><span class="o">.</span><span class="n">content_type</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">content_type</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+    <span class="k">def</span> <span class="fm">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exc_type</span><span class="p">,</span> <span class="n">exc_val</span><span class="p">,</span> <span class="n">exc_tb</span><span class="p">):</span>
+        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">api</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2022, Eyüp Tuğrul, Mustafa Yetiş, Sabri Özgür.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> and ❤️  using a custom <a href="https://github.com/LinxiFan/Sphinx-theme">theme</a> based on <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/documentation_options.js"></script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

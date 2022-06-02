@@ -1,0 +1,524 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Ürün Verisi &mdash; Channel App Template 0.1.0 belgelendirmesi</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Dizin"
+              href="../genindex.html"/>
+        <link rel="search" title="Ara" href="../search.html"/>
+    <link rel="top" title="Channel App Template 0.1.0 belgelendirmesi" href="../index.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Channel App Template
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../setup/index.html">Kurulum ve Kullanım</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Geliştirme Adımları</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture/index.html">Mimari</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../terminology.html">Terminoloji</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../flows.html">Akışlar</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Channel App Template</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Ürün Verisi</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/project/channel.products.detail.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="urun-verisi">
+<h1>Ürün Verisi<a class="headerlink" href="#urun-verisi" title="Bu başlık için kalıcı bağlantı">¶</a></h1>
+<section id="product-simple-data">
+<h2>Product Simple Data<a class="headerlink" href="#product-simple-data" title="Bu başlık için kalıcı bağlantı">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;pk&quot;</span><span class="p">:</span> <span class="mi">12227</span><span class="p">,</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Kırmızı Tişört&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;base_code&quot;</span><span class="p">:</span> <span class="s2">&quot;1KBATC0231&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;sku&quot;</span><span class="p">:</span> <span class="s2">&quot;1KBATC0231001&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;product_type&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;is_active&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+    <span class="s2">&quot;parent&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+    <span class="s2">&quot;attributes&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;boyut&quot;</span><span class="p">:</span> <span class="s2">&quot;34X34&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;renk&quot;</span><span class="p">:</span> <span class="s2">&quot;001&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;uretim_yeri&quot;</span><span class="p">:</span> <span class="s2">&quot;Türkiye&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;materyal&quot;</span><span class="p">:</span> <span class="s2">&quot;%100 POLYESTER&quot;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;productimage_set&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;pk&quot;</span><span class="p">:</span> <span class="mi">20044</span><span class="p">,</span>
+            <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;active&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;image&quot;</span><span class="p">:</span> <span class="s2">&quot;http://localhost:8001/media/products/2021/10/17/12227/1bfe74b4-175e-4c1a-80f2-b355feae498c.jpg&quot;</span>
+        <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;attribute_set&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s2">&quot;productization_date&quot;</span><span class="p">:</span> <span class="s2">&quot;2017-01-23T16:40:58.578504Z&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="urunde-mapping-verisi">
+<h2>Üründe Mapping Verisi<a class="headerlink" href="#urunde-mapping-verisi" title="Bu başlık için kalıcı bağlantı">¶</a></h2>
+<p>Ürün datasının içerisine Akinon üzerinde satış kanalının özellikleri için
+yapılmış eşleşme(mapping) servisinden geçirilmiş sonucunun eklenmiş halidir.</p>
+<p><cite>mapped_attributes</cite> özellik ismi ile ürün datasında yer alır ve firmanın ihtiyaç duyacağı özellik eşleştirme
+sonuçları yer almaktadır.</p>
+<div class="line-block">
+<div class="line"><cite>mapped_attribute_values</cite> kısmında özelliğin omnitron id’si ile birlikte</div>
+</div>
+<p>satış kanalındaki özel kodu(remote_id) ve diğer özellik bilgierine ulaşılabilir.</p>
+<div class="line-block">
+<div class="line"><cite>attribute_set_id</cite> ve <cite>attribute_set_name</cite> kısmı omnitronda yer alan satış kanalındaki bu ürünün</div>
+</div>
+<p>hangi özellik setine denk geldiğinin bilgisidir.</p>
+<div class="line-block">
+<div class="line"><cite>attribute_set_remote_id</cite> kısmı özellik setinin satış kanalındaki temsil eden eşsiz kodudur.</div>
+<div class="line"><br /></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;pk&quot;</span><span class="p">:</span> <span class="mi">12227</span><span class="p">,</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Kırmızı Tişört&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;base_code&quot;</span><span class="p">:</span> <span class="s2">&quot;1KBATC0231&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;sku&quot;</span><span class="p">:</span> <span class="s2">&quot;1KBATC0231001&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;product_type&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;is_active&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+    <span class="s2">&quot;parent&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+    <span class="s2">&quot;attributes&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;boyut&quot;</span><span class="p">:</span> <span class="s2">&quot;34X34&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;renk&quot;</span><span class="p">:</span> <span class="s2">&quot;001&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;uretim_yeri&quot;</span><span class="p">:</span> <span class="s2">&quot;Türkiye&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;materyal&quot;</span><span class="p">:</span> <span class="s2">&quot;%100 POLYESTER&quot;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;productimage_set&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;pk&quot;</span><span class="p">:</span> <span class="mi">20044</span><span class="p">,</span>
+            <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;active&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;image&quot;</span><span class="p">:</span> <span class="s2">&quot;http://localhost:8001/media/products/2021/10/17/12227/1bfe74b4-175e-4c1a-80f2-b355feae498c.jpg&quot;</span>
+        <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;attribute_set&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s2">&quot;productization_date&quot;</span><span class="p">:</span> <span class="s2">&quot;2017-01-23T16:40:58.578504Z&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;mapped_attributes&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;pk&quot;</span><span class="p">:</span> <span class="mi">370</span><span class="p">,</span>
+        <span class="s2">&quot;mapped_attributes&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="s2">&quot;34 - 34&quot;</span>
+            <span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;red&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="s2">&quot;std&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;desc&quot;</span><span class="p">:</span> <span class="s2">&quot;%100 POLYESTER&quot;</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;attribute_set_id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">&quot;attribute_set_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Giyim&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;attribute_set_remote_id&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+        <span class="s2">&quot;mapped_attribute_values&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;123&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;attribute_name&quot;</span><span class="p">:</span> <span class="s2">&quot;size&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="s2">&quot;34 - 34&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;34 - 34&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;attribute_remote_id&quot;</span><span class="p">:</span> <span class="mi">22</span><span class="p">,</span>
+                <span class="s2">&quot;is_required&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+                <span class="s2">&quot;is_variant&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+                <span class="s2">&quot;is_custom&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+                <span class="s2">&quot;is_meta&quot;</span><span class="p">:</span> <span class="n">false</span>
+            <span class="p">},</span>
+            <span class="s2">&quot;223&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;attribute_name&quot;</span><span class="p">:</span> <span class="s2">&quot;color&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="s2">&quot;RED&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;red&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;attribute_remote_id&quot;</span><span class="p">:</span> <span class="mi">23</span><span class="p">,</span>
+                <span class="s2">&quot;is_required&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+                <span class="s2">&quot;is_variant&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+                <span class="s2">&quot;is_custom&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+                <span class="s2">&quot;is_meta&quot;</span><span class="p">:</span> <span class="n">false</span>
+            <span class="p">},</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="urunde-stok-verisi">
+<h2>Üründe Stok Verisi<a class="headerlink" href="#urunde-stok-verisi" title="Bu başlık için kalıcı bağlantı">¶</a></h2>
+<p>Ürün datasının içerisine stok bilgisinin eklenmiş halidir.</p>
+<p>productstock ismi ile ürün datasında yer alan verinin içerisinde;</p>
+<div class="line-block">
+<div class="line"><cite>stock</cite> kısmında satılabilir stok miktarı vardır.</div>
+<div class="line"><br /></div>
+<div class="line"><cite>stock_list</cite> kısmında akinondaki stok listesinin ID bilgisi vardır</div>
+<div class="line"><br /></div>
+<div class="line"><cite>unit_type</cite> kısmında miktar bilgisinin birimi vardır.</div>
+<div class="line"><br /></div>
+<div class="line"><cite>sold_quantity_unreported</cite> kısımında akinondaki rezerve stok miktarı vardır.</div>
+<div class="line"><br /></div>
+<div class="line"><cite>modified_date</cite> son güncelleme tarihi vardır.</div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;pk&quot;</span><span class="p">:</span> <span class="mi">12227</span><span class="p">,</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Kırmızı Tişört&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;base_code&quot;</span><span class="p">:</span> <span class="s2">&quot;1KBATC0231&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;sku&quot;</span><span class="p">:</span> <span class="s2">&quot;1KBATC0231001&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;product_type&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;is_active&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+    <span class="s2">&quot;parent&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+    <span class="s2">&quot;attributes&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;boyut&quot;</span><span class="p">:</span> <span class="s2">&quot;34X34&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;renk&quot;</span><span class="p">:</span> <span class="s2">&quot;001&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;uretim_yeri&quot;</span><span class="p">:</span> <span class="s2">&quot;Türkiye&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;materyal&quot;</span><span class="p">:</span> <span class="s2">&quot;%100 POLYESTER&quot;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;productimage_set&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;pk&quot;</span><span class="p">:</span> <span class="mi">20044</span><span class="p">,</span>
+            <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;active&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;image&quot;</span><span class="p">:</span> <span class="s2">&quot;http://localhost:8001/media/products/2021/10/17/12227/1bfe74b4-175e-4c1a-80f2-b355feae498c.jpg&quot;</span>
+        <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;attribute_set&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s2">&quot;productization_date&quot;</span><span class="p">:</span> <span class="s2">&quot;2017-01-23T16:40:58.578504Z&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;productstock&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;pk&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="s2">&quot;product&quot;</span><span class="p">:</span> <span class="mi">2250</span><span class="p">,</span>
+            <span class="s2">&quot;stock&quot;</span><span class="p">:</span> <span class="mi">46</span><span class="p">,</span>
+            <span class="s2">&quot;stock_list&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="s2">&quot;unit_type&quot;</span><span class="p">:</span> <span class="s2">&quot;qty&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;extra_field&quot;</span><span class="p">:{},</span>
+            <span class="s2">&quot;sold_quantity_unreported&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+            <span class="s2">&quot;modified_date&quot;</span><span class="p">:</span> <span class="s2">&quot;2017-01-23T13:37:31.947171Z&quot;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="urunde-fiyat-verisi">
+<h2>Üründe Fiyat Verisi<a class="headerlink" href="#urunde-fiyat-verisi" title="Bu başlık için kalıcı bağlantı">¶</a></h2>
+<p>Ürün datasının içerisine price bilgisinin eklenmiş halidir.</p>
+<p>productprice ismi ile ürün datasında yer alan verinin içerisinde;</p>
+<div class="line-block">
+<div class="line"><cite>price</cite> satış fiyatı vardır</div>
+<div class="line"><br /></div>
+<div class="line"><cite>price_list</cite> kısmında akinondaki fiyat listesinin ID bilgisi vardır</div>
+<div class="line"><br /></div>
+<div class="line"><cite>currency_type</cite> kısmında fiyat bilgisinin birimi vardır.</div>
+<div class="line"><br /></div>
+<div class="line"><cite>tax_rate</cite> kısımında vergi oranı vardır.</div>
+<div class="line"><br /></div>
+<div class="line"><cite>retail_price</cite> kısmında ürünün mağaza fiyatı vardır.</div>
+<div class="line"><br /></div>
+<div class="line"><cite>discount_percentage</cite> kısmında ürünün üzerindeki indirim bilgisi vardır.</div>
+<div class="line"><br /></div>
+<div class="line"><cite>modified_date</cite> son güncelleme tarihi vardır.</div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;pk&quot;</span><span class="p">:</span> <span class="mi">12227</span><span class="p">,</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Kırmızı Tişört&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;base_code&quot;</span><span class="p">:</span> <span class="s2">&quot;1KBATC0231&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;sku&quot;</span><span class="p">:</span> <span class="s2">&quot;1KBATC0231001&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;product_type&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;is_active&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+    <span class="s2">&quot;parent&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+    <span class="s2">&quot;attributes&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;boyut&quot;</span><span class="p">:</span> <span class="s2">&quot;34X34&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;renk&quot;</span><span class="p">:</span> <span class="s2">&quot;001&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;uretim_yeri&quot;</span><span class="p">:</span> <span class="s2">&quot;Türkiye&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;materyal&quot;</span><span class="p">:</span> <span class="s2">&quot;%100 POLYESTER&quot;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;productimage_set&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;pk&quot;</span><span class="p">:</span> <span class="mi">20044</span><span class="p">,</span>
+            <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;active&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;image&quot;</span><span class="p">:</span> <span class="s2">&quot;http://localhost:8001/media/products/2021/10/17/12227/1bfe74b4-175e-4c1a-80f2-b355feae498c.jpg&quot;</span>
+        <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;attribute_set&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s2">&quot;productization_date&quot;</span><span class="p">:</span> <span class="s2">&quot;2017-01-23T16:40:58.578504Z&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;productprice&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;pk&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="s2">&quot;product&quot;</span><span class="p">:</span> <span class="mi">913</span><span class="p">,</span>
+        <span class="s2">&quot;price&quot;</span><span class="p">:</span> <span class="s2">&quot;62.44&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;price_list&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">&quot;currency_type&quot;</span><span class="p">:</span> <span class="s2">&quot;try&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;tax_rate&quot;</span><span class="p">:</span> <span class="s2">&quot;8.00&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;retail_price&quot;</span><span class="p">:</span> <span class="s2">&quot;249.75&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;extra_field&quot;</span><span class="p">:</span> <span class="p">{},</span>
+        <span class="s2">&quot;discount_percentage&quot;</span><span class="p">:</span> <span class="s2">&quot;75.00&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;modified_date&quot;</span><span class="p">:</span> <span class="s2">&quot;2017-01-23T18:29:23.716095Z&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="urunde-kategori-verisi">
+<h2>Üründe Kategori Verisi<a class="headerlink" href="#urunde-kategori-verisi" title="Bu başlık için kalıcı bağlantı">¶</a></h2>
+<p>Ürün datasının içerisine kategori bilgilerini eklenmiş halidir.</p>
+<p>category_nodes ile ürün datasında yer alan kategori verisinin içinde;</p>
+<div class="line-block">
+<div class="line">name alanı kategorinin adıdır.</div>
+<div class="line"><br /></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;pk&quot;</span><span class="p">:</span> <span class="mi">12227</span><span class="p">,</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Kırmızı Tişört&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;base_code&quot;</span><span class="p">:</span> <span class="s2">&quot;1KBATC0231&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;sku&quot;</span><span class="p">:</span> <span class="s2">&quot;1KBATC0231001&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;product_type&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;is_active&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+    <span class="s2">&quot;parent&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+    <span class="s2">&quot;attributes&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;boyut&quot;</span><span class="p">:</span> <span class="s2">&quot;34X34&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;renk&quot;</span><span class="p">:</span> <span class="s2">&quot;001&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;uretim_yeri&quot;</span><span class="p">:</span> <span class="s2">&quot;Türkiye&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;materyal&quot;</span><span class="p">:</span> <span class="s2">&quot;%100 POLYESTER&quot;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;productimage_set&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;pk&quot;</span><span class="p">:</span> <span class="mi">20044</span><span class="p">,</span>
+            <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;active&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;image&quot;</span><span class="p">:</span> <span class="s2">&quot;http://localhost:8001/media/products/2021/10/17/12227/1bfe74b4-175e-4c1a-80f2-b355feae498c.jpg&quot;</span>
+        <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;attribute_set&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s2">&quot;productization_date&quot;</span><span class="p">:</span> <span class="s2">&quot;2017-01-23T16:40:58.578504Z&quot;</span>
+    <span class="s2">&quot;category_nodes&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;pk&quot;</span><span class="p">:</span> <span class="mi">255</span><span class="p">,</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Shop&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;order&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="s2">&quot;numchild&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+            <span class="s2">&quot;depth&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="s2">&quot;sort_option&quot;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+            <span class="s2">&quot;uuid&quot;</span><span class="p">:</span> <span class="s2">&quot;cf461e84-1f19-497b-8fb8-555805e58221&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;path&quot;</span><span class="p">:</span> <span class="s2">&quot;0001&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;created_date&quot;</span><span class="p">:</span> <span class="s2">&quot;2021-10-06T13:48:07.643569Z&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;modified_date&quot;</span><span class="p">:</span> <span class="s2">&quot;2021-11-01T13:54:52.526750Z&quot;</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="senkron-veya-asenkron-satis-kanali-surec">
+<h2>Senkron veya Asenkron Satış Kanalı Süreç<a class="headerlink" href="#senkron-veya-asenkron-satis-kanali-surec" title="Bu başlık için kalıcı bağlantı">¶</a></h2>
+<p>is_sync parameteresi, çalışacak olan ürün sürecinin senkron veya asenkron olup
+olmadığı ile ilgilidir.</p>
+<p>Eğer insert, update veya delete gibi işlemler satış kanalına
+gönderildiği anda hemen işleniyorsa ve sonucu response içerisinde dönüyorsa bu
+<em>senkron</em> bir işlemdir.
+Senkron işlemlerde ürün ile ilgili olan commandların
+ProductBatchRequestResponseDto formatında veri dönmesi gerekir
+. <a class="reference internal" href="channel.core.data.html#urun-olusturma-guncelleme-islem-sonuc-uretme"><span class="std std-ref">Ürün Oluşturma/Güncelleme İşlem Sonuç Üretme</span></a></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">:</span> <span class="nb">any</span>
+<span class="n">report</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">ErrorReportDto</span><span class="p">]</span>
+<span class="n">response_data</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">ProductBatchRequestResponseDto</span><span class="p">]</span>
+<span class="k">return</span> <span class="n">response_data</span><span class="p">,</span> <span class="n">report</span><span class="p">,</span> <span class="n">data</span>
+</pre></div>
+</div>
+<p>Eğer süreçler asenkron olarak işleniyorsa ilgili satış kanalından daha sonra
+kontrol edilmek üzere bir kod dönmesi gerekir (remote_batch_request_id).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">remote_batch_id</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;remote_batch_request_id&quot;</span><span class="p">)</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">batch_request</span><span class="o">.</span><span class="n">remote_batch_id</span> <span class="o">=</span> <span class="n">remote_batch_id</span>
+<span class="k">return</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">report</span><span class="p">,</span> <span class="n">data</span>
+</pre></div>
+</div>
+<p>Eğer bir süreç asenkron ama satış kanalında ön kontrolü varsa ve bazı kayıtları
+işlemek üzere işleme alıp bazıları ile ilgili hemen sonucunu paylaşıyorsa,
+asenkron olsa dahi sorun olan kayıtların hatalarının neler olduğunu
+işaretlemek gerekir. Bu sorunlar hata raporlarında görünür.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">failed_object_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+    <span class="p">(</span><span class="n">price</span><span class="p">,</span> <span class="n">ContentType</span><span class="o">.</span><span class="n">product_stock</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+     <span class="s2">&quot;Product has not been sent&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2022, Eyüp Tuğrul, Mustafa Yetiş, Sabri Özgür.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> and ❤️  using a custom <a href="https://github.com/LinxiFan/Sphinx-theme">theme</a> based on <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/documentation_options.js"></script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

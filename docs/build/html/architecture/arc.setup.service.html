@@ -1,0 +1,256 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Kurulum Servisi &mdash; Channel App Template 0.1.0 belgelendirmesi</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Dizin"
+              href="../genindex.html"/>
+        <link rel="search" title="Ara" href="../search.html"/>
+    <link rel="top" title="Channel App Template 0.1.0 belgelendirmesi" href="../index.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Channel App Template
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../setup/index.html">Kurulum ve Kullanım</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../project/index.html">Geliştirme Adımları</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Mimari</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../terminology.html">Terminoloji</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../flows.html">Akışlar</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Channel App Template</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Kurulum Servisi</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/architecture/arc.setup.service.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="kurulum-servisi">
+<h1>Kurulum Servisi<a class="headerlink" href="#kurulum-servisi" title="Bu başlık için kalıcı bağlantı">¶</a></h1>
+<p>Kurulum servisi üzerinde satış kanalının barındırdığı konfigrasyonlar ve
+iletilmesi gereken kategori gibi ürünlerin satışa hazır hale gelmesini sağlayan
+fonksiyonları üzerinde barındırır. Bu aksiyonları gerçekleştirmek için
+OmnitronIntegration ve ChannelIntegration entegrasyolanrından yardım alır.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="SetupService">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SetupService</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">object</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SetupService" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="SetupService.create_or_update_category_tree_and_nodes">
+<span class="sig-name descname"><span class="pre">create_or_update_category_tree_and_nodes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_success_log</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SetupService.create_or_update_category_tree_and_nodes" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
+<dd><p>Bu fonksiyon öncelikle Satış Kanalına bağlanır ve satış kanalında mevcut olan
+kategorileri çeker. Bu işlem sırasında bir hata ile karşılaşılır ise <em>error_report</em> oluşturulur.
+Son olarak çektiği kategorileri <em>create_or_update_category_tree_and_nodes</em>
+komutu ile Akinon’a iletir.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SetupService.create_or_update_category_attributes">
+<span class="sig-name descname"><span class="pre">create_or_update_category_attributes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_success_log</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SetupService.create_or_update_category_attributes" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
+<dd><p>Bu fonksiyon öncelikle Satış Kanalına bağlanır ve satış kanalında mevcut olan
+kategorileri ID’lerini çeker. Gelen kategori IDleri üzerinden döngü ile
+kategori özelliklerini çekip <em>create_or_update_category_attributes</em> komutu ile
+Akinon’a iletir. Bu işlem sırasında bir hata ile karşılaşılır ise <em>error_report</em> oluşturulur.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SetupService.update_channel_conf_schema">
+<span class="sig-name descname"><span class="pre">update_channel_conf_schema</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SetupService.update_channel_conf_schema" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
+<dd><p>Bu fonksiyon öncelikle Satış Kanalına bağlanır ve şema bilgisini çeker.
+Sonrasında Akinon’a <em>update_channel_conf_schema</em>  komutu aracılığıyla iletilir.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2022, Eyüp Tuğrul, Mustafa Yetiş, Sabri Özgür.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> and ❤️  using a custom <a href="https://github.com/LinxiFan/Sphinx-theme">theme</a> based on <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/documentation_options.js"></script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

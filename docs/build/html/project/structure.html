@@ -1,0 +1,479 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Klasör Yapısı &mdash; Channel App Template 0.1.0 belgelendirmesi</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Dizin"
+              href="../genindex.html"/>
+        <link rel="search" title="Ara" href="../search.html"/>
+    <link rel="top" title="Channel App Template 0.1.0 belgelendirmesi" href="../index.html"/>
+        <link rel="up" title="Geliştirme Adımları" href="index.html"/>
+        <link rel="next" title="Mimari" href="../architecture/index.html"/>
+        <link rel="prev" title="Geliştirme Adımları" href="index.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Channel App Template
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../setup/index.html">Kurulum ve Kullanım</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Geliştirme Adımları</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Klasör Yapısı</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#satis-kanalinin-kodlanmasi">Satış Kanalının Kodlanması</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#akinon-a-yeni-komut-eklemek">Akinon’a Yeni Komut Eklemek</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture/index.html">Mimari</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../terminology.html">Terminoloji</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../flows.html">Akışlar</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Channel App Template</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Geliştirme Adımları</a> &raquo;</li>
+        
+      <li>Klasör Yapısı</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/project/structure.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="klasor-yapisi">
+<h1>Klasör Yapısı<a class="headerlink" href="#klasor-yapisi" title="Bu başlık için kalıcı bağlantı">¶</a></h1>
+<p>Kopyalacağınız proje ile ilgili klasör ve dosya yapısı aşağıdaki gibidir.
+ChannelTemplateApp projesini kullanan firmaların yeni satış kanalı geliştirmek için
+<cite>channel</cite> klasörü altındaki ilgili sınıfları geliştirmeleri beklenmektedir.</p>
+<blockquote>
+<div><div class="line-block">
+<div class="line">channel_app_template</div>
+<div class="line">├── akinon</div>
+<div class="line-block">
+<div class="line">└── integration.py</div>
+</div>
+<div class="line">├── channel</div>
+<div class="line-block">
+<div class="line">└── integration.py</div>
+<div class="line">└── commands.py</div>
+<div class="line-block">
+<div class="line">└── setup.py</div>
+<div class="line">└── products.py</div>
+<div class="line">└── product_prices.py</div>
+<div class="line">└── product_stocks.py</div>
+<div class="line">└── orders</div>
+<div class="line-block">
+<div class="line">└── orders.py</div>
+</div>
+</div>
+</div>
+<div class="line">├── app</div>
+<div class="line-block">
+<div class="line">└── tasks.py</div>
+</div>
+<div class="line">└── celery_app</div>
+<div class="line-block">
+<div class="line">└── celery.py</div>
+<div class="line">└── celery_schedule_conf.py</div>
+<div class="line">└── celeryconfig.py</div>
+<div class="line"><br /></div>
+</div>
+</div>
+</div></blockquote>
+<div class="admonition attention">
+<p class="admonition-title">Dikkat</p>
+<p>Geliştirmeye başlamadan önce aşağıdaki ayarları yapmak gerekiyor.</p>
+<ol class="arabic simple">
+<li><p><strong>setup.py</strong> dosyasına yer alan  proje adı, versiyon bilgisi, uygulamanın
+depolandığı (bitbucket, github vb…) reponun url’i, uygulamanın tanımı,
+uygulamanın yazar veya yazarları, python versiyon zorunluluğu ve kurulu
+olması gereken paketlerin listesi gibi bilgilerin girilmesi gerekiyor.</p></li>
+<li><p><strong>channel_app_template/celery_app/celery_schedule_conf.py</strong> içerisinde yer alan
+<strong>CELERYBEAT_SCHEDULE</strong> objesi içerisinde çalışmasını istediğiniz süreçler bulunmaktadır.
+Akinon ile yapılacak satış kanalı entegrasyonunda kullanılacak süreçler ön tanımlı
+olarak yazılmış ve yorum satırına alınmıştır. Düzenli aralıklar ile çalışmasını
+gereken süreçleri yorum satırından kaldırıp, ne sıklık ile çalışması gerektiğini
+yazabilirsiniz.</p></li>
+</ol>
+</div>
+<dl class="py class">
+<dt class="sig sig-object py" id="channel_app.channel.integration.ChannelIntegration">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">channel_app.channel.integration.</span></span><span class="sig-name descname"><span class="pre">ChannelIntegration</span></span><a class="headerlink" href="#channel_app.channel.integration.ChannelIntegration" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
+<dd><blockquote>
+<div><p>Actions özelliğinde yer alan komutlar aracılığı ile Satış Kanalının
+servisleri haberleşir. Her komut üzerinde <em>get_data</em>, <em>validated_data</em>,</p>
+</div></blockquote>
+<p><em>transform_data</em>, <em>send_request</em> ve <em>normalize_response</em> fonksiyonlarını
+barındırmak zorundadır</p>
+<blockquote>
+<div><dl class="py attribute">
+<dt class="sig sig-object py" id="channel_app.channel.integration.ChannelIntegration.channel">
+<span class="sig-name descname"><span class="pre">channel</span></span><a class="headerlink" href="#channel_app.channel.integration.ChannelIntegration.channel" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
+<dd><p>Satış kanalı objesidir. <a class="reference external" href="https://developers.akinon.com/docs/guide/omni/channels/introduction">Detaylı Bilgi</a>
+Örnek channel objesi.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+       <span class="s2">&quot;pk&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+       <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;test1:1_Channel&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;channel_type&quot;</span><span class="p">:</span> <span class="s2">&quot;sales_channel&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;catalog&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+       <span class="s2">&quot;modified_date&quot;</span><span class="p">:</span> <span class="s2">&quot;2022-04-01T11:35:56.485644Z&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;created_date&quot;</span><span class="p">:</span> <span class="s2">&quot;2022-02-18T14:17:35.169367Z&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;category_tree&quot;</span><span class="p">:</span> <span class="mi">24</span><span class="p">,</span>
+       <span class="s2">&quot;is_active&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+       <span class="s2">&quot;conf&quot;</span><span class="p">:</span>
+       <span class="p">{</span>
+           <span class="s2">&quot;FAILED_INTEGRATION&quot;</span><span class="p">:</span>
+           <span class="p">{</span>
+               <span class="s2">&quot;DEFAULT&quot;</span><span class="p">:</span>
+               <span class="p">{</span>
+                   <span class="s2">&quot;EXPIRATION_DATE&quot;</span><span class="p">:</span> <span class="mi">213</span><span class="p">,</span>
+                   <span class="s2">&quot;RETRY_INTERVAL&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                   <span class="s2">&quot;MAX_RETRY_COUNT&quot;</span><span class="p">:</span> <span class="mi">3</span>
+               <span class="p">}</span>
+           <span class="p">},</span>
+           <span class="s2">&quot;base_url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://vendor-api-staging.saleschannel.com/&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;client_id&quot;</span><span class="p">:</span> <span class="s2">&quot;69b5c9c1-20e1-4c62-89f9-7186bde1b13f&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;ATTRIBUTE_SET_STRATEGY&quot;</span><span class="p">:</span> <span class="s2">&quot;CategoryNode&quot;</span>
+       <span class="p">},</span>
+       <span class="s2">&quot;schema&quot;</span><span class="p">:</span> <span class="kc">None</span>
+<span class="p">}</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">channel</span><span class="o">.</span><span class="n">pk</span>
+<span class="mi">1</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
+<span class="n">test1</span><span class="p">:</span><span class="mi">1</span><span class="n">_Channel</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">conf</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;base_url&quot;</span><span class="p">)</span>
+<span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">vendor</span><span class="o">-</span><span class="n">api</span><span class="o">-</span><span class="n">staging</span><span class="o">.</span><span class="n">saleschannel</span><span class="o">.</span><span class="n">com</span><span class="o">/</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="channel_app.channel.integration.ChannelIntegration.catalog">
+<span class="sig-name descname"><span class="pre">catalog</span></span><a class="headerlink" href="#channel_app.channel.integration.ChannelIntegration.catalog" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
+<dd><p>Katalog objesidir. <a class="reference external" href="https://developers.akinon.com/docs/guide/omni/catalogue/introduction">Detaylı Bilgi</a>.
+Örnek katalog objesi</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;pk&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;test1:1_Catalog&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;stock_list&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="s2">&quot;price_list&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="s2">&quot;category_tree&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="s2">&quot;modified_date&quot;</span><span class="p">:</span> <span class="s2">&quot;2022-02-18T14:17:35.159703Z&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;created_date&quot;</span><span class="p">:</span> <span class="s2">&quot;2022-02-18T14:17:35.159683Z&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;priority_list&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="s2">&quot;extra_stock_lists&quot;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="s2">&quot;extra_price_lists&quot;</span><span class="p">:</span> <span class="p">[]</span>
+<span class="p">}</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">catalog</span><span class="o">.</span><span class="n">pk</span>
+<span class="mi">1</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="channel_app.channel.integration.ChannelIntegration.create_session">
+<span class="sig-name descname"><span class="pre">create_session</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#channel_app.channel.integration.ChannelIntegration.create_session" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
+<dd><p>Session nesnesi, belirli parametreleri istekler arasında kalıcı hale
+getirmenize olanak tanır. Ayrıca, Session ile yapılan tüm isteklerde
+tanımlama bilgilerini(Çerezleri) taşır. Bu nedenle, aynı ana bilgisayara
+birden fazla istekte bulunuyorsanız, temeldeki TCP bağlantısı yeniden
+kullanılacak ve bu da önemli bir performans artışına neden olacaktır.
+Daha detaylı bilgi için <a class="reference external" href="https://docs.python-requests.org/en/latest/user/advanced/#session-objects">Session Objects</a></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="channel_app.channel.integration.ChannelIntegration.session">
+<span class="sig-name descname"><span class="pre">session</span></span><a class="headerlink" href="#channel_app.channel.integration.ChannelIntegration.session" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
+<dd><p>Satış kanalının servislerine istek atılırken kullanılacak objedir.
+Session objesi komutlar içerisinde ki <em>send_request</em> fonksiyonu içerisinde
+kullanılabilir.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;google.com&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="channel_app.channel.integration.ChannelIntegration.do_action">
+<span class="sig-name descname"><span class="pre">do_action</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Any</span></span></span><a class="headerlink" href="#channel_app.channel.integration.ChannelIntegration.do_action" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
+<dd><p>Servisler aracılığı ile tetiklenir.
+Çağırabilmek için öncesinde bir entegrasyon nesnesi yaratılmış olmalıdır.
+Parametre olarak verilen key çalışacak olan komutu temsil eder. Bu komut
+ilgili entegrasyonun <em>actions</em> özelliği içerisinde olmalıdır. <em>kwargs</em> olarak
+verilen parametreler doğrudan Komut nesnesi oluşturmak için kullanılır.
+Son olarak ilgili komutun <em>run</em> fonksiyonunu çağırarak komutun çalışmasını
+sağlar.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">OmnitronIntegration</span><span class="p">(</span><span class="n">content_type</span><span class="o">=</span><span class="n">ContentType</span><span class="o">.</span><span class="n">category_tree</span><span class="o">.</span><span class="n">value</span><span class="p">)</span> <span class="k">as</span> <span class="n">omnitron_integration</span><span class="p">:</span>
+   <span class="n">channel_integration</span> <span class="o">=</span> <span class="n">ChannelIntegration</span><span class="p">()</span>
+   <span class="n">category_tree</span><span class="p">,</span> <span class="n">report</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">channel_integration</span><span class="o">.</span><span class="n">do_action</span><span class="p">(</span>
+       <span class="n">key</span><span class="o">=</span><span class="s1">&#39;get_category_tree_and_nodes&#39;</span><span class="p">,</span>
+       <span class="n">batch_request</span><span class="o">=</span><span class="n">omnitron_integration</span><span class="o">.</span><span class="n">batch_request</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div></blockquote>
+</dd></dl>
+
+</section>
+<section id="satis-kanalinin-kodlanmasi">
+<h1>Satış Kanalının Kodlanması<a class="headerlink" href="#satis-kanalinin-kodlanmasi" title="Bu başlık için kalıcı bağlantı">¶</a></h1>
+<p>Bu klasör içerisinde uygulamanın yazılma amacı olan satış kanalının kodlamasının
+yapılacağı yerdir.</p>
+<p>Entegre olunacak satış kanalı için kodlanlamasını istediğimiz commandların listesi
+aşağıdaki gibidir.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 48%" />
+<col style="width: 52%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Module</p></th>
+<th class="head"><p>Açıklama</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="channel.setup.html"><span class="doc">Setup</span></a></p></td>
+<td><p>Kurulum aşamasına ait komutlar</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="channel.products.html"><span class="doc">Products</span></a></p></td>
+<td><p>Ürün ile ilgili komutlar</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="channel.product_prices.html"><span class="doc">Product Price</span></a></p></td>
+<td><p>Fiyat ile ilgili komutlar</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="channel.product_stocks.html"><span class="doc">Product Stock</span></a></p></td>
+<td><p>Stok ile ilgili komutlar</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="channel.orders.html"><span class="doc">Orders</span></a></p></td>
+<td><p>Sipariş ile ilgili komutlar</p></td>
+</tr>
+</tbody>
+</table>
+<section id="akinon-a-yeni-komut-eklemek">
+<h2>Akinon’a Yeni Komut Eklemek<a class="headerlink" href="#akinon-a-yeni-komut-eklemek" title="Bu başlık için kalıcı bağlantı">¶</a></h2>
+<p>Uygulama içerisindeki akinon klasör içerisinde Akinon’nun omnitron ürününe ait ihtiyaç duyduğu
+servisler ile haberleşen süreçler kodlanmıştır. Geliştirmenin yapılacağı satış
+kanalı için omnitron servislerinde veya süreçlerinde bir eksiklik duyulması halinde
+buradaki geliştirmeye hazır yapıdan faydalanılır.</p>
+<p>Mevcut süreçlerin ve servislerin ihtiyacı karşılamaması durumunda
+<code class="xref py py-class docutils literal notranslate"><span class="pre">channel_app_template.akinon.integration.OmnitronIntegration</span></code>
+kısmına yeni yazmış olduğunuz command’larınızı aşağıdaki adımları takip ederek
+ekleyebilirsiniz.</p>
+<ol class="arabic simple">
+<li><p>Komut oluşturmak</p></li>
+</ol>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>Komut oluşturmak için yaratacağınız <em>class</em> <em>OmnitronCommandInterface</em> i miras almalıdır.</p></li>
+<li><p>Komutun istek atacağı uç nokta için <em>OmnitronApiEndpoint</em> i miras alan bir <em>class</em> oluşturmak ve yaratılan komutun <em>endpoint</em> özelliğine atamak gerekmektedir.</p></li>
+<li><p>Opsiyonel olarak yarattığınız <em>OmnitronApiEndpoint</em> üzerinden birden farklı istek atmak isterseniz yaratılan komuta <em>path</em> özelliğini girip gerekli özelleştirme yapılabilir.</p></li>
+<li><p>Opsiyonel olarak komutun bir seferde işleyeceği veri sayısını belirtmek için <em>BATCH_SIZE</em> isminde bir özellik tanımlayıp gerekli özelleştirme yapılabilir.</p></li>
+<li><p>Komutun işleyeceği veri tipini tutmak ve olası bir hata durumunda daha detaylı log oluşturmak için <em>content_type</em> özelliği kullanılır. Atanabilecek content_type lara bakmak için <em>channel_app.omnitron.constants.ContentType</em> kontrol edebilirsiniz.</p></li>
+</ol>
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li><p>Oluşturduğumuz komutu <em>OmnitronIntegration</em> içerisinde ki <em>new_actions</em> özelliğine atayacağımız bir key(isim) ile birlikte eklenmeli.</p></li>
+<li><p>Komutu çağırmak için <a class="reference internal" href="#channel_app.channel.integration.ChannelIntegration.do_action" title="channel_app.channel.integration.ChannelIntegration.do_action"><code class="xref py py-class docutils literal notranslate"><span class="pre">channel_app.channel.integration.ChannelIntegration.do_action</span></code></a> örneğinden faydalanılabilir.</p></li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../architecture/index.html" class="btn btn-neutral float-right" title="Mimari" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="Geliştirme Adımları" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2022, Eyüp Tuğrul, Mustafa Yetiş, Sabri Özgür.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> and ❤️  using a custom <a href="https://github.com/LinxiFan/Sphinx-theme">theme</a> based on <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/documentation_options.js"></script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

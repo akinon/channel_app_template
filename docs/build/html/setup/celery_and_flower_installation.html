@@ -1,0 +1,323 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Celery ve Flower Kurulumu &mdash; Channel App Template 0.1.0 belgelendirmesi</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Dizin"
+              href="../genindex.html"/>
+        <link rel="search" title="Ara" href="../search.html"/>
+    <link rel="top" title="Channel App Template 0.1.0 belgelendirmesi" href="../index.html"/>
+        <link rel="up" title="Kurulum ve Kullanım" href="index.html"/>
+        <link rel="next" title="Geliştirme Adımları" href="../project/index.html"/>
+        <link rel="prev" title="Projenin Kopyalanması ve Zorunlulukların Kurulması" href="clone_repository.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Channel App Template
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Kurulum ve Kullanım</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="python_installation.html">Python Kurulumu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clone_repository.html">Projenin Kopyalanması ve Zorunlulukların Kurulması</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Celery ve Flower Kurulumu</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#flower-uzerinden-task-tetiklemek">Flower Üzerinden Task Tetiklemek</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../project/index.html">Geliştirme Adımları</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture/index.html">Mimari</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../terminology.html">Terminoloji</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../flows.html">Akışlar</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Channel App Template</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Kurulum ve Kullanım</a> &raquo;</li>
+        
+      <li>Celery ve Flower Kurulumu</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/setup/celery_and_flower_installation.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="celery-ve-flower-kurulumu">
+<h1>Celery ve Flower Kurulumu<a class="headerlink" href="#celery-ve-flower-kurulumu" title="Bu başlık için kalıcı bağlantı">¶</a></h1>
+<p>Celery, dağıtık mesaj geçişine dayanan açık kaynaklı, bir asenkron görev
+kuyruğu veya iş kuyruğudur. Genellikle gerçek zamanlı görev işleme üzerine
+yoğunlaşsa ve kullanılsa dahi zamanlanmış görevleri de yönetebilir. Detaylı
+bilgi için (<a class="reference external" href="https://docs.celeryq.dev/en/master/">Celery</a>)</p>
+<ul class="simple">
+<li><p>Celery işçi processleri de çalıştıralım.
+Kullanıcı bilgileri ve bazı ortam değişkenleri sizin ortamınız için farklı değerlerde olacaktır.
+MAIN_APP_URL: Protokol bilgisi hariç Omnitron url’i
+OMNITRON_CHANNEL_ID: Uygulamanın bağlanacağı satış kanalı id değeri.
+OMNITRON_CATALOG_ID: Bağlı satış kanalının katalog id değeri.</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Topluca export (öncesinde .env dosyasını oluşturmak gerekiyor)</span>
+<span class="nb">export</span> <span class="k">$(</span>grep -v <span class="s1">&#39;^#&#39;</span> .env <span class="p">|</span> xargs<span class="k">)</span>
+
+<span class="c1"># Tek tek export</span>
+<span class="nb">export</span> <span class="nv">MAIN_APP_URL</span><span class="o">=</span>localhost:8000
+<span class="nb">export</span> <span class="nv">OMNITRON_USERNAME</span><span class="o">=</span>admin
+<span class="nb">export</span> <span class="nv">OMNITRON_PASSWORD</span><span class="o">=</span>password
+<span class="nb">export</span> <span class="nv">OMNITRON_CHANNEL_ID</span><span class="o">=</span><span class="m">1</span>
+<span class="nb">export</span> <span class="nv">OMNITRON_CATALOG_ID</span><span class="o">=</span><span class="m">1</span>
+<span class="nb">export</span> <span class="nv">BROKER_HOST</span><span class="o">=</span><span class="m">127</span>.0.0.1
+<span class="nb">export</span> <span class="nv">BROKER_PORT</span><span class="o">=</span><span class="m">6379</span>
+<span class="nb">export</span> <span class="nv">BROKER_DATABASE_INDEX</span><span class="o">=</span><span class="m">4</span>
+
+celery -A channel_app.celery_app worker -l info
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Redis sunucusu varsayılan olarak kurulum sonrası özellikle kapatılmadıkça ayakta oluyor.
+Ping komutuyla test edip <cite>redis-server</cite> ile kaldırabilirsiniz.</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>redis-cli ping
+redis-server
+</pre></div>
+</div>
+<p>Flower celery ile ilgili yapılan işlemleri görüntülemek ve yönetmek için kullanılan
+web tabanlı bir araçtır. Eğer yönetilecek düzenli çalışan joblarınız yoksa veya
+alternatif bir araç kullanıyorsanız kurulumu zorunlu değildir.</p>
+<ul class="simple">
+<li><p>Flower kurmak için bazı ortam değişkenlerini <cite>export</cite> etmemiz gerekiyor.
+Her seferinde tek tek export yapmak yerine, bu değerleri <cite>.env</cite> dosyasına KEY=VALUE şeklinde kaydedip topluca
+export edecek komutu da çağırabilirsiniz.</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Topluca export (öncesinde .env dosyasını oluşturmak gerekiyor)</span>
+<span class="nb">export</span> <span class="k">$(</span>grep -v <span class="s1">&#39;^#&#39;</span> .env <span class="p">|</span> xargs<span class="k">)</span>
+
+<span class="c1"># Tek tek export</span>
+<span class="nb">export</span> <span class="nv">BROKER_HOST</span><span class="o">=</span><span class="m">127</span>.0.0.1
+<span class="nb">export</span> <span class="nv">BROKER_DATABASE_INDEX</span><span class="o">=</span><span class="m">4</span>
+<span class="nb">export</span> <span class="nv">BROKER_PORT</span><span class="o">=</span><span class="m">6379</span>
+
+celery -A channel_app_template.celery_app flower --address<span class="o">=</span><span class="m">127</span>.0.0.1 --port<span class="o">=</span><span class="m">8008</span>
+</pre></div>
+</div>
+<section id="flower-uzerinden-task-tetiklemek">
+<h2>Flower Üzerinden Task Tetiklemek<a class="headerlink" href="#flower-uzerinden-task-tetiklemek" title="Bu başlık için kalıcı bağlantı">¶</a></h2>
+<p>Flower ayni zamanda ön tanımlı olan taskları tetiklemeyi sağlar.
+Taskları tetiklemek için aşağıdaki örnek <strong>curl</strong> isteği aşağıdaki gibidir.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl --request POST <span class="se">\</span>
+  --url https://&lt;omnitron-url&gt;.lb.akinoncloud.com/api/task/apply/channel_app_template.app.tasks.&lt;task_name&gt; <span class="se">\</span>
+  --header <span class="s1">&#39;authorization: Basic &lt;auth token&gt;&#39;</span> <span class="se">\</span>
+  --header <span class="s1">&#39;content-type: application/json&#39;</span> <span class="se">\</span>
+  --data <span class="s1">&#39;{\n&quot;args&quot;:[]\n}&#39;</span>
+</pre></div>
+</div>
+<p>İstek başarılı olur ise 200 status kodu ile aşağıdaki cevabı döner.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HTTP</span><span class="o">/</span><span class="mf">1.1</span> <span class="mi">200</span> <span class="n">OK</span>
+<span class="n">Content</span><span class="o">-</span><span class="n">Length</span><span class="p">:</span> <span class="mi">71</span>
+<span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="p">:</span> <span class="n">application</span><span class="o">/</span><span class="n">json</span><span class="p">;</span> <span class="n">charset</span><span class="o">=</span><span class="n">UTF</span><span class="o">-</span><span class="mi">8</span>
+<span class="p">{</span>
+  <span class="s2">&quot;state&quot;</span><span class="p">:</span> <span class="s2">&quot;SUCCESS&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;task-id&quot;</span><span class="p">:</span> <span class="s2">&quot;c60be250-fe52-48df-befb-ac66174076e6&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;result&quot;</span><span class="p">:</span> <span class="mi">3</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Dönen cevap içerisindeki <strong>task-id</strong> parametresi ile flower paneli üzerinden
+tetiklenen taskın durumu sorgulanabilir.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../project/index.html" class="btn btn-neutral float-right" title="Geliştirme Adımları" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="clone_repository.html" class="btn btn-neutral" title="Projenin Kopyalanması ve Zorunlulukların Kurulması" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2022, Eyüp Tuğrul, Mustafa Yetiş, Sabri Özgür.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> and ❤️  using a custom <a href="https://github.com/LinxiFan/Sphinx-theme">theme</a> based on <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/documentation_options.js"></script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

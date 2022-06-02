@@ -1,0 +1,447 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>channel_app.core.data &mdash; Channel App Template 0.1.0 belgelendirmesi</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Dizin"
+              href="../../../genindex.html"/>
+        <link rel="search" title="Ara" href="../../../search.html"/>
+    <link rel="top" title="Channel App Template 0.1.0 belgelendirmesi" href="../../../index.html"/>
+        <link rel="up" title="Modül kodu" href="../../index.html"/> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Channel App Template
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../setup/index.html">Kurulum ve Kullanım</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../project/index.html">Geliştirme Adımları</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture/index.html">Mimari</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../terminology.html">Terminoloji</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../flows.html">Akışlar</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Channel App Template</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Modül kodu</a> &raquo;</li>
+        
+      <li>channel_app.core.data</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>channel_app.core.data öğesinin kaynak kodu</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
+<span class="kn">from</span> <span class="nn">decimal</span> <span class="kn">import</span> <span class="n">Decimal</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span>
+
+<span class="kn">from</span> <span class="nn">channel_app.omnitron.constants</span> <span class="kn">import</span> <span class="n">ResponseStatus</span><span class="p">,</span> \
+    <span class="n">ChannelConfSchemaDataTypes</span>
+
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">CategoryNodeDto</span><span class="p">:</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">children</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="s1">&#39;CategoryNodeDto&#39;</span><span class="p">]</span>
+    <span class="n">remote_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="n">parent</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="s1">&#39;CategoryNodeDto&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">CategoryTreeDto</span><span class="p">:</span>
+    <span class="n">root</span><span class="p">:</span> <span class="n">CategoryNodeDto</span>
+
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">CategoryAttributeValueDto</span><span class="p">:</span>
+    <span class="n">remote_id</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">CategoryAttributeDto</span><span class="p">:</span>
+    <span class="n">remote_id</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">required</span><span class="p">:</span> <span class="nb">bool</span>
+    <span class="n">variant</span><span class="p">:</span> <span class="nb">bool</span>
+    <span class="n">allow_custom_value</span><span class="p">:</span> <span class="nb">bool</span>
+    <span class="n">values</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">CategoryAttributeValueDto</span><span class="p">]</span>
+
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">CategoryDto</span><span class="p">:</span>
+    <span class="n">remote_id</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">attributes</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">CategoryAttributeDto</span><span class="p">]</span>
+
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">ChannelConfSchemaField</span><span class="p">:</span>
+    <span class="n">required</span><span class="p">:</span> <span class="nb">bool</span>
+    <span class="n">data_type</span><span class="p">:</span> <span class="n">ChannelConfSchemaDataTypes</span>
+    <span class="n">key</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">label</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">schema</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">ErrorReportDto</span><span class="p">:</span>
+    <span class="n">action_content_type</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">action_object_id</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">modified_date</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">raw_request</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">raw_response</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">error_code</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;custom&quot;</span>
+    <span class="n">error_description</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;custom&quot;</span>
+    <span class="n">is_ok</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">target_content_type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="n">target_object_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">BatchRequestObjectsDto</span><span class="p">:</span>
+    <span class="n">pk</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">version_date</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">content_type</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">failed_reason_type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="n">remote_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
+
+<span class="k">class</span> <span class="nc">BatchRequestDto</span><span class="p">:</span>
+    <span class="n">channel</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">local_batch_id</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">content_type</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">pk</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">remote_batch_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="n">status</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="n">objects</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">BatchRequestObjectsDto</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span>
+
+
+<div class="viewcode-block" id="ProductBatchRequestResponseDto"><a class="viewcode-back" href="../../../project/channel.core.data.html#channel_app.core.data.ProductBatchRequestResponseDto">[belgeler]</a><span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">ProductBatchRequestResponseDto</span><span class="p">:</span>
+    <span class="n">status</span><span class="p">:</span> <span class="n">ResponseStatus</span>
+    <span class="n">sku</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">remote_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="n">message</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span></div>
+
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">BatchRequestResponseDto</span><span class="p">:</span>
+    <span class="n">status</span><span class="p">:</span> <span class="n">ResponseStatus</span>
+    <span class="n">remote_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="n">sku</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="n">message</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">OrderBatchRequestResponseDto</span><span class="p">:</span>
+    <span class="n">status</span><span class="p">:</span> <span class="n">ResponseStatus</span>
+    <span class="n">remote_id</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">number</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">message</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">OmnitronOrderDto</span><span class="p">:</span>
+    <span class="n">remote_id</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">number</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">channel</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">customer</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">shipping_address</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">billing_address</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">currency</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">amount</span><span class="p">:</span> <span class="n">Decimal</span>
+    <span class="n">shipping_amount</span><span class="p">:</span> <span class="n">Decimal</span>
+    <span class="n">shipping_tax_rate</span><span class="p">:</span> <span class="n">Decimal</span>
+    <span class="n">extra_field</span><span class="p">:</span> <span class="nb">dict</span>
+    <span class="n">cargo_company</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">created_at</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span>
+    <span class="n">delivery_type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">discount_amount</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Decimal</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;0.0&quot;</span>
+    <span class="n">net_shipping_amount</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Decimal</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;0.0&quot;</span>
+    <span class="n">tracking_number</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">carrier_shipping_code</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">remote_addr</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">has_gift_box</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">gift_box_note</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">client_type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">language_code</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">notes</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">delivery_range</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">shipping_option_slug</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">status</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">OrderItemDto</span><span class="p">:</span>
+    <span class="n">remote_id</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">product</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">price_currency</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">price</span><span class="p">:</span> <span class="n">Decimal</span>
+    <span class="n">tax_rate</span><span class="p">:</span> <span class="n">Decimal</span>
+    <span class="n">extra_field</span><span class="p">:</span> <span class="nb">dict</span>
+    <span class="n">status</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">price_list</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">stock_list</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">tracking_number</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">carrier_shipping_code</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">discount_amount</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Decimal</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="n">retail_price</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Decimal</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="n">attributes</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">attributes_kwargs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">parent</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">delivered_date</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">estimated_delivery_date</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+
+
+<span class="c1"># dataclass used for omnitron.commands.orders.orders.CreateOrders</span>
+<span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">OmnitronCreateOrderDto</span><span class="p">:</span>
+    <span class="n">order</span><span class="p">:</span> <span class="n">OmnitronOrderDto</span>
+    <span class="n">order_item</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">OrderItemDto</span><span class="p">]</span>
+
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">CancelOrderDto</span><span class="p">:</span>
+    <span class="n">order</span><span class="p">:</span> <span class="nb">str</span>  <span class="c1"># remote order number</span>
+    <span class="n">cancel_items</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>  <span class="c1"># order_item_remote_id list</span>
+    <span class="n">reasons</span><span class="p">:</span> <span class="nb">dict</span>  <span class="c1"># order_item_remote_id : reason code</span>
+    <span class="n">is_cargo_refund</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>  <span class="c1"># default False</span>
+    <span class="n">refund_invoice_number</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">CustomerDto</span><span class="p">:</span>
+    <span class="n">email</span><span class="p">:</span> <span class="nb">str</span>  <span class="c1"># &quot;john.doe@akinon.com&quot;</span>
+    <span class="n">first_name</span><span class="p">:</span> <span class="nb">str</span>  <span class="c1"># &quot;John&quot;</span>
+    <span class="n">last_name</span><span class="p">:</span> <span class="nb">str</span>  <span class="c1"># &quot;Doe&quot;</span>
+    <span class="n">channel_code</span><span class="p">:</span> <span class="nb">str</span>  <span class="c1"># will be unique</span>
+    <span class="n">extra_field</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">phone_number</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># &quot;05556667788&quot;</span>
+    <span class="n">is_active</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">AddressDto</span><span class="p">:</span>
+    <span class="n">email</span><span class="p">:</span> <span class="nb">str</span>  <span class="c1"># &quot;john.doe@akinon.com&quot;</span>
+    <span class="n">phone_number</span><span class="p">:</span> <span class="nb">str</span>  <span class="c1"># &quot;05556667788&quot;</span>
+    <span class="n">first_name</span><span class="p">:</span> <span class="nb">str</span>  <span class="c1"># &quot;John&quot;</span>
+    <span class="n">last_name</span><span class="p">:</span> <span class="nb">str</span>  <span class="c1"># &quot;Doe&quot;</span>
+    <span class="n">country</span><span class="p">:</span> <span class="nb">str</span>  <span class="c1"># 1</span>
+    <span class="n">city</span><span class="p">:</span> <span class="nb">str</span>  <span class="c1"># 80</span>
+    <span class="n">line</span><span class="p">:</span> <span class="nb">str</span>  <span class="c1"># &quot;Hemen sahil kenarı&quot;</span>
+    <span class="n">title</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># &quot;COMM-876&quot;</span>
+    <span class="n">township</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># 933</span>
+    <span class="n">district</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># 71387</span>
+    <span class="n">postcode</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># &quot;&quot;</span>
+    <span class="n">notes</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># null</span>
+    <span class="n">company_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># &quot;&quot;</span>
+    <span class="n">tax_office</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># &quot;&quot;</span>
+    <span class="n">tax_no</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># &quot;&quot;</span>
+    <span class="n">e_bill_taxpayer</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">remote_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># null</span>
+    <span class="n">identity_number</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># null</span>
+    <span class="n">extra_field</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># {}</span>
+    <span class="n">is_active</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># true</span>
+
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">ChannelOrderDto</span><span class="p">(</span><span class="n">OmnitronOrderDto</span><span class="p">):</span>
+    <span class="n">customer</span> <span class="o">=</span> <span class="n">CustomerDto</span>
+    <span class="n">shipping_address</span> <span class="o">=</span> <span class="n">AddressDto</span>
+    <span class="n">billing_address</span> <span class="o">=</span> <span class="n">AddressDto</span>
+    <span class="n">cargo_company</span> <span class="o">=</span> <span class="nb">str</span>
+
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">ChannelCreateOrderDto</span><span class="p">:</span>
+    <span class="n">order</span><span class="p">:</span> <span class="n">ChannelOrderDto</span>
+    <span class="n">order_item</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">OrderItemDto</span><span class="p">]</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2022, Eyüp Tuğrul, Mustafa Yetiş, Sabri Özgür.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> and ❤️  using a custom <a href="https://github.com/LinxiFan/Sphinx-theme">theme</a> based on <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/documentation_options.js"></script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

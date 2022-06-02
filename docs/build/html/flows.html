@@ -1,0 +1,425 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Akışlar &mdash; Channel App Template 0.1.0 belgelendirmesi</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Dizin"
+              href="genindex.html"/>
+        <link rel="search" title="Ara" href="search.html"/>
+    <link rel="top" title="Channel App Template 0.1.0 belgelendirmesi" href="index.html"/>
+        <link rel="prev" title="Terminoloji" href="terminology.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Channel App Template
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="setup/index.html">Kurulum ve Kullanım</a></li>
+<li class="toctree-l1"><a class="reference internal" href="project/index.html">Geliştirme Adımları</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture/index.html">Mimari</a></li>
+<li class="toctree-l1"><a class="reference internal" href="terminology.html">Terminoloji</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Akışlar</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#batchrequest-modeli">BatchRequest Modeli</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#statuler">Statüler</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#senkron-akislar">Senkron Akışlar</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#adimlar">Adımlar</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#asenkron-akislar">Asenkron Akışlar</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Adımlar</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Channel App Template</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Akışlar</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/flows.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="akislar">
+<h1>Akışlar<a class="headerlink" href="#akislar" title="Bu başlık için kalıcı bağlantı">¶</a></h1>
+<p>Akışlar bir iş fonksiyonunun gerçekleşmesi için yapılacak adımları, çalıştırılacak komutları
+listeler.
+Omnitron ile Satış Kanalı entegrasyonuna ait komutlardan yapılacak işle alakalı olanları
+akışın gerektirdiği sıraya göre çalıştırır.</p>
+<p>Akışlarda komutların yanısıra, akışın herhangi bir noktasında hata alıp almadığımızı görebilmek
+ya da parçalara bölünebilir işleri birden fazla parçada yapıp birbiri ile ilişkisini kurabilmek için
+BatchRequest adında bir model tanımlandı.</p>
+<section id="batchrequest-modeli">
+<h2>BatchRequest Modeli<a class="headerlink" href="#batchrequest-modeli" title="Bu başlık için kalıcı bağlantı">¶</a></h2>
+<p>BatchRequest modeli, işlenen nesneleri yöneten, takip eden, anlamlı hatalar üreten ve de
+bir sürecin birden fazla parçada çalışmasına olanak sağlayan bir durum makinesi olarak çalışıyor.
+Örneğin bir ürün gönderme akışında 10 tane ürün gönderiliyor ve bunların bir tanesinde uygulama
+tarafındaki kodlama hatasından dolayı hata fırlatıldı.
+Bu durumda hata loglarına ulaşmak mümkünse dahi beraberinde gönderilemeyen ürünleri takip edemeyebiliriz.
+Ya da ürünleri gönderdik ama satış kanalı tarafındaki istek asenkron çalışıyor.
+Bu isteğin sonucunu beklemek Channel App tarafındaki taskın da beklemesini gerektireceği için
+sağlıklı bir karar olmaz.
+Asenkron çalışan istekleri gönderip anında dönen referans id değerlerini saklayabilecek ve işlemekte
+olduğumuz ürünler ile iliştirip sonradan kontroller yapabilecek bir yapı sunuyor.</p>
+<img alt="_images/batch_request_state_machine.png" src="_images/batch_request_state_machine.png" />
+<section id="statuler">
+<h3>Statüler<a class="headerlink" href="#statuler" title="Bu başlık için kalıcı bağlantı">¶</a></h3>
+<ol class="arabic simple">
+<li><dl class="simple">
+<dt>initialized</dt><dd><p>Başlangıç durumunu ifade eder. BatchRequest oluşturulduğunda hayatına bu durum üzerinden başlar.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>commit</dt><dd><p>Commit statüsüne geçildiğinde BatchRequest bir Omnitron modeline kilitlenir.
+Örneğin ürün gönderme akışı için bir BatchRequest oluşturup onu commit statüsüne aldığımızda,
+model tipi (content_type) “product” olarak belirlenir.
+Paralel olarak “product” tipinde başka bir BatchRequest’in commit statüsüne gelmesi engellenir.
+Bu şekilde aynı anda yalnızca bir ürün gönderme akışı çalışır.
+Bu statüye geçişte BatchRequest’te işlenecek nesneler bildirilir.
+Ayrıca tek seferde tüm nesnelerin bildirilmesine gerek duyulmaz.
+Bunun için commit statüsünde olan bir BatchRequest’e tekrar commit statüsüne geçirilerek nesne
+eklemesi yapılabilir.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>sent_to_remote</dt><dd><p>Satış kanalı entegrasyonunu kullanarak nesneleri ilettiğimizde sent_to_remote statüsüne çekilir.
+Eğer satış kanalının servisi asenkron çalışıyorsa ve toplu işlem için bir id değeri iletiyorsa,
+bu durum geçişinde id bilgisini de remote_batch_id alanıyla birlikte beslemek gerekir.
+Bu alan taskın sonuçlanıp sonuçlanmadığı bilgisini kontrol edip BatchRequest statüsünü ilerletmek
+amaçlı kullanılacaktır.
+Eğer bir id değeri dönmüyorsa, statüyü ilerletmek için yapılması gereken kontrolü başka metotlarla
+yapmak gerekir.
+Örneğin ürün gönderme akışında, ürünleri listeleyen servisi çağırıp onun çıktısını
+filtreleyerek kontrol edilebilir ya da bazı kendini bilmez API tasarımcılarının listeleme
+için bir servis sunmaması durumunda oluşturma isteği atıp hata almak gibi yeraltı metotlarına
+başvurmak da gerekebilir.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>ongoing</dt><dd><p>Bu statü, sent_to_remote statüsü ile aynı durumu ifade ediyor arada ufak bir nüans farkı var.
+O da sent_to_remote statüsünde olan BatchRequest nesneleri için işlemin sonuçlanıp sonuçlanmadığını
+kontrol ettiğimizde hala devam ettiği durumda ongoing statüsüne ilerletiyoruz.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>done</dt><dd><p>BatchRequest içerisindeki tüm nesnelerin işlendiğini ifade ediyor.
+Bu nesnelerin hepsi hata almış da olabilir.
+Buradaki <cite>done</cite> BatchRequest’in başarılı sonlanması anlamına geliyor.
+Ürünlerin kendi başlarına hata alması <cite>done</cite> statüsüne geçişe engel bir teşkil etmiyor.
+Statü geçişi sırasında, mevcut BatchRequest nesnesi içerisinde işlenen ürünler için geri bildirim
+verilmesi gerekiyor.
+Örneğin ürünler satış kanalında oluştuysa, satış kanalında bir id’ye sahip oldukları anlamına geliyor.
+Bu id’nin Omnitron tarafına beslenmesi gerekiyor ki sonradan yapılan güncellemelerde satış kanalına
+hangi id ile istek atılması gerektiği bilinsin.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>fail</dt><dd><p>Mevcut BatchRequest’te işlenen nesnelerin tamamı işlenmeden, işlemin durdurulmasına yol açacak bir
+hata olduysa ya da daha satış kanalına gönderme isteğine sıra gelmeden nesnelerin tamamında
+eksik bir nokta varsa bu statü ile işlem sonlanabilir.</p>
+</dd>
+</dl>
+</li>
+</ol>
+</section>
+</section>
+<section id="senkron-akislar">
+<h2>Senkron Akışlar<a class="headerlink" href="#senkron-akislar" title="Bu başlık için kalıcı bağlantı">¶</a></h2>
+<img alt="_images/sync.png" src="_images/sync.png" />
+<p>Satış Kanalı servisleri senkron olarak çalışıyorsa, atılan isteğe referans id’si dönmek yerine doğrudan
+asıl beklediğimiz sonuçla alakalı bir çıktı üretiyorsa, ortaya daha basit bir süreç çıkıyor.</p>
+<section id="adimlar">
+<h3>Adımlar<a class="headerlink" href="#adimlar" title="Bu başlık için kalıcı bağlantı">¶</a></h3>
+<ol class="arabic simple">
+<li><dl class="simple">
+<dt>BatchRequest kaydını oluştur.</dt><dd><p><cite>initialized</cite> statüsünde olarak oluşuyor.
+Bu aşamada BatchRequest, herhangi bir model tipine atanmaz.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Akış içerisinde işlenecek nesneler çekilir.</dt><dd><p>Bunlar ürün akışında ürünleri, stok akışında stokları temsil eder.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Akıştaki işlediğimiz nesneleri belirtmek için BatchRequest’i <cite>commit</cite> statüsüne geçiriyoruz.</dt><dd><p>Burada model tipi (content_type) olarak ana işlenen akış neyse onu koymalıyız.
+Örneğin ürünleri gönderiyorsak ve de ürün akışında stok, fiyat ve fotoğraf gibi modelleri de
+beslememiz gerekiyorsa, BatchRequest’in model tipi “product” olmalı.
+BatchRequest içerisinde gönderilen <cite>objects</cite> bloğunda ise her bir model kendi tipiyle
+(Evet, hem BatchRequest’in model tiplerini,  hem de içerisinde <cite>objects</cite> bloğunda
+gönderilen nesnelerin model tiplerini besliyoruz.) gönderiliyor.</p>
+</dd>
+</dl>
+</li>
+<li><p>Satış kanalına isteği gönderiyoruz ve sonucunu alıyoruz.</p></li>
+<li><dl class="simple">
+<dt>Satış kanalından gelen sonuca göre BatchRequest’i <cite>done</cite> ya da <cite>fail</cite> statülerine ilerletiyoruz.</dt><dd><p><cite>fail</cite> statüsü için <cite>objects</cite> bilgisini beslemeye gerek yok ancak nesnelerle ilgili tekil olarak
+hataları saklamak istiyorsak <cite>objects</cite> parametresini koymak gereklidir.</p>
+</dd>
+</dl>
+</li>
+</ol>
+</section>
+</section>
+<section id="asenkron-akislar">
+<h2>Asenkron Akışlar<a class="headerlink" href="#asenkron-akislar" title="Bu başlık için kalıcı bağlantı">¶</a></h2>
+<p>Satış Kanalı servisleri asenkron olarak çalışıyorsa, atılan isteğin gerçek sonucunu değil,
+sonucu kontrol etmek için bir referans id’si dönmesi beklenir.
+Bunun sebebi yapılacak işlemin uzun sürebilmesinden kaynaklıdır.
+Örneğin ürün gönderme akışında 1000 ürün işlediğini düşünürsek, senkron çalışacak şekilde
+tasarlandığında sağlıklı bir süreç oluşturması pek olası değil.
+Aynı zamanda onlarca yüzlerce farklı müşteri de ürün girişi yapıyor olabilir.
+Bunların sıralı olarak işlenmesi gerekiyor.
+İşlenen veriler de birbirini etkileyebileceği için paralel olarak işlem yapmak mümkün de olmayabilir.</p>
+<p>İlk üç adım senkron yapı ile aynı olduğu için 4. adımdan başlanarak anlatılacaktır.</p>
+<section id="id1">
+<h3>Adımlar<a class="headerlink" href="#id1" title="Bu başlık için kalıcı bağlantı">¶</a></h3>
+<ol class="arabic simple" start="4">
+<li><dl class="simple">
+<dt>Satış kanalına attığımız istekte, isteğin asıl sonucunu değil, asıl sonucu kontrol etmek için</dt><dd><p>gönderilen id değerini alıyoruz.
+Herhangi bir değer gönderilmezse satış kanalına kontrol için attığımız sorguyu (7. adım)
+farklı bir şekilde yapmamız gerekiyor.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>BatchRequest’in statüsünü <cite>sent_to_remote</cite> statüsüne güncelliyoruz ve 4. adımda bir referans id’si</dt><dd><p>geri döndüyse, güncelleme sırasında <cite>remote_batch_id</cite> alanına da o değeri besliyoruz.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Bu adımdan başlayarak akış yeni bir task üzerinden devam ediyor.</dt><dd><p>Önceki adımda süreç asenkron olduğu için statüyü ilerletip task’ı sonlandırmıştık.
+Belirli aralıklarla deneyerek sürecin tamamlandığını kontrol etmemiz gerekiyor.
+Başarılı ya da başarısız bir sonuç aldığımızda da gerekli güncellemeleri yapıp süreci sonlandırıyoruz.
+Statüsü <cite>sent_to_remote</cite> ya da <cite>ongoing</cite> olan BatchRequest nesnelerini sorguluyoruz.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>BatchRequest içerisindeki <cite>remote_batch_id</cite> değerini kullanarak akış içerisindeki nesnelerin</dt><dd><p>durumlarını sorguluyoruz.
+Eğer referans için bir id yoksa satış kanalının farklı servislerini kullanarak işlemin durumunu
+kontrol etmek gerekecektir.
+Bu aşamada BatchRequest nesnelerini çektikten sonra Omnitron tarafında BatchRequest’e bağlı
+olan nesneleri de sorgulayıp onların <cite>remote_id</cite> değerlerini kullanarak istek atmak gerekir.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Son aşama olarak da satış kanalındaki güncel bilgilerle Omnitron tarafındaki statüyü de</dt><dd><p>güncellememiz gerekiyor.
+Eğer işlem tamamlanmadıysa <cite>ongoing</cite> olarak güncelliyoruz ve bir sonraki denemede 6. adımdan başlayarak
+süreç yenileniyor.
+Eğer işlem tamamlandıysa ve satış kanalı, işlenen BatchRequest için genel bir hata döndüyse,
+statüyü <cite>fail</cite> olarak güncelliyoruz.</p>
+</dd>
+</dl>
+</li>
+</ol>
+<img alt="_images/async.png" src="_images/async.png" />
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="terminology.html" class="btn btn-neutral" title="Terminoloji" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2022, Eyüp Tuğrul, Mustafa Yetiş, Sabri Özgür.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> and ❤️  using a custom <a href="https://github.com/LinxiFan/Sphinx-theme">theme</a> based on <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/documentation_options.js"></script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

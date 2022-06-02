@@ -1,0 +1,304 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>channel_app.channel.integration &mdash; Channel App Template 0.1.0 belgelendirmesi</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Dizin"
+              href="../../../genindex.html"/>
+        <link rel="search" title="Ara" href="../../../search.html"/>
+    <link rel="top" title="Channel App Template 0.1.0 belgelendirmesi" href="../../../index.html"/>
+        <link rel="up" title="Modül kodu" href="../../index.html"/> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Channel App Template
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../setup/index.html">Kurulum ve Kullanım</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../project/index.html">Geliştirme Adımları</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture/index.html">Mimari</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../terminology.html">Terminoloji</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../flows.html">Akışlar</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Channel App Template</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Modül kodu</a> &raquo;</li>
+        
+      <li>channel_app.channel.integration</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>channel_app.channel.integration öğesinin kaynak kodu</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="kn">from</span> <span class="nn">channel_app.channel.commands.orders.orders</span> <span class="kn">import</span> <span class="n">GetOrders</span><span class="p">,</span> <span class="n">CheckOrders</span><span class="p">,</span> \
+    <span class="n">SendUpdatedOrders</span><span class="p">,</span> <span class="n">GetCancelledOrders</span>
+<span class="kn">from</span> <span class="nn">channel_app.channel.commands.product_prices</span> <span class="kn">import</span> <span class="p">(</span><span class="n">CheckPrices</span><span class="p">,</span>
+                                                         <span class="n">SendInsertedPrices</span><span class="p">,</span>
+                                                         <span class="n">SendUpdatedPrices</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">channel_app.channel.commands.product_stocks</span> <span class="kn">import</span> <span class="p">(</span><span class="n">SendUpdatedStocks</span><span class="p">,</span>
+                                                         <span class="n">CheckStocks</span><span class="p">,</span>
+                                                         <span class="n">SendInsertedStocks</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">channel_app.channel.commands.products</span> <span class="kn">import</span> <span class="p">(</span><span class="n">SendInsertedProducts</span><span class="p">,</span>
+                                                   <span class="n">CheckProducts</span><span class="p">,</span>
+                                                   <span class="n">CheckDeletedProducts</span><span class="p">,</span>
+                                                   <span class="n">SendUpdatedProducts</span><span class="p">,</span>
+                                                   <span class="n">SendDeletedProducts</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">channel_app.channel.commands.setup</span> <span class="kn">import</span> <span class="p">(</span><span class="n">GetCategoryTreeAndNodes</span><span class="p">,</span>
+                                                <span class="n">GetCategoryAttributes</span><span class="p">,</span>
+                                                <span class="n">GetChannelConfSchema</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">channel_app.core.integration</span> <span class="kn">import</span> <span class="n">BaseIntegration</span>
+
+
+<div class="viewcode-block" id="ChannelIntegration"><a class="viewcode-back" href="../../../architecture/index.html#channel_app.channel.integration.ChannelIntegration">[belgeler]</a><span class="k">class</span> <span class="nc">ChannelIntegration</span><span class="p">(</span><span class="n">BaseIntegration</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Communicates with the Channel Api services through the commands defined.</span>
+
+<span class="sd">    If an Api Client class is developed, initialization and deletion should be handled in</span>
+<span class="sd">    ChannelIntegration class so that commands have easier access to the api object.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">_sent_data</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">actions</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;send_inserted_products&quot;</span><span class="p">:</span> <span class="n">SendInsertedProducts</span><span class="p">,</span>
+        <span class="s2">&quot;send_updated_products&quot;</span><span class="p">:</span> <span class="n">SendUpdatedProducts</span><span class="p">,</span>
+        <span class="s2">&quot;send_deleted_products&quot;</span><span class="p">:</span> <span class="n">SendDeletedProducts</span><span class="p">,</span>
+        <span class="s2">&quot;check_products&quot;</span><span class="p">:</span> <span class="n">CheckProducts</span><span class="p">,</span>
+        <span class="s2">&quot;check_deleted_products&quot;</span><span class="p">:</span> <span class="n">CheckDeletedProducts</span><span class="p">,</span>
+        <span class="s2">&quot;send_updated_stocks&quot;</span><span class="p">:</span> <span class="n">SendUpdatedStocks</span><span class="p">,</span>
+        <span class="s2">&quot;send_inserted_stocks&quot;</span><span class="p">:</span> <span class="n">SendInsertedStocks</span><span class="p">,</span>
+        <span class="s2">&quot;send_updated_prices&quot;</span><span class="p">:</span> <span class="n">SendUpdatedPrices</span><span class="p">,</span>
+        <span class="s2">&quot;send_inserted_prices&quot;</span><span class="p">:</span> <span class="n">SendInsertedPrices</span><span class="p">,</span>
+        <span class="s2">&quot;check_stocks&quot;</span><span class="p">:</span> <span class="n">CheckStocks</span><span class="p">,</span>
+        <span class="s2">&quot;check_prices&quot;</span><span class="p">:</span> <span class="n">CheckPrices</span><span class="p">,</span>
+        <span class="s2">&quot;get_category_tree_and_nodes&quot;</span><span class="p">:</span> <span class="n">GetCategoryTreeAndNodes</span><span class="p">,</span>
+        <span class="s2">&quot;get_channel_conf_schema&quot;</span><span class="p">:</span> <span class="n">GetChannelConfSchema</span><span class="p">,</span>
+        <span class="s2">&quot;get_category_attributes&quot;</span><span class="p">:</span> <span class="n">GetCategoryAttributes</span><span class="p">,</span>
+        <span class="s2">&quot;get_orders&quot;</span><span class="p">:</span> <span class="n">GetOrders</span><span class="p">,</span>
+        <span class="s2">&quot;send_updated_orders&quot;</span><span class="p">:</span> <span class="n">SendUpdatedOrders</span><span class="p">,</span>
+        <span class="s2">&quot;check_orders&quot;</span><span class="p">:</span> <span class="n">CheckOrders</span><span class="p">,</span>
+        <span class="s2">&quot;get_cancelled_orders&quot;</span><span class="p">:</span> <span class="n">GetCancelledOrders</span>
+    <span class="p">}</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="kn">from</span> <span class="nn">channel_app.core</span> <span class="kn">import</span> <span class="n">settings</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">channel_id</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">OMNITRON_CHANNEL_ID</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">catalog_id</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">OMNITRON_CATALOG_ID</span>
+
+    <span class="k">def</span> <span class="nf">create_session</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="kn">from</span> <span class="nn">channel_app.core</span> <span class="kn">import</span> <span class="n">settings</span>
+
+        <span class="n">session</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+        <span class="n">connections</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">channel</span><span class="o">.</span><span class="n">conf</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+            <span class="s1">&#39;connection_pool_count&#39;</span><span class="p">,</span> <span class="n">settings</span><span class="o">.</span><span class="n">DEFAULT_CONNECTION_POOL_COUNT</span><span class="p">)</span>
+        <span class="n">max_size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">channel</span><span class="o">.</span><span class="n">conf</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+            <span class="s1">&#39;connection_pool_max_size&#39;</span><span class="p">,</span> <span class="n">settings</span><span class="o">.</span><span class="n">DEFAULT_CONNECTION_POOL_MAX_SIZE</span><span class="p">)</span>
+        <span class="n">retry</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">channel</span><span class="o">.</span><span class="n">conf</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+            <span class="s1">&#39;connection_pool_retry&#39;</span><span class="p">,</span> <span class="n">settings</span><span class="o">.</span><span class="n">DEFAULT_CONNECTION_POOL_RETRY</span><span class="p">)</span>
+
+        <span class="n">adapter</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">adapters</span><span class="o">.</span><span class="n">HTTPAdapter</span><span class="p">(</span><span class="n">pool_connections</span><span class="o">=</span><span class="n">connections</span><span class="p">,</span>
+                                                <span class="n">pool_maxsize</span><span class="o">=</span><span class="n">max_size</span><span class="p">,</span>
+                                                <span class="n">max_retries</span><span class="o">=</span><span class="n">retry</span><span class="p">)</span>
+        <span class="n">session</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s1">&#39;http://&#39;</span><span class="p">,</span> <span class="n">adapter</span><span class="p">)</span>
+        <span class="n">session</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s1">&#39;https://&#39;</span><span class="p">,</span> <span class="n">adapter</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">session</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">_session</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">__session</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;__session&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">__session</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">__session</span>
+
+        <span class="n">session</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_session</span><span class="p">()</span>
+        <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;__session&quot;</span><span class="p">,</span> <span class="n">session</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">session</span></div>
+
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2022, Eyüp Tuğrul, Mustafa Yetiş, Sabri Özgür.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> and ❤️  using a custom <a href="https://github.com/LinxiFan/Sphinx-theme">theme</a> based on <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/documentation_options.js"></script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

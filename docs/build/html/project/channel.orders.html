@@ -1,0 +1,483 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Orders &mdash; Channel App Template 0.1.0 belgelendirmesi</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Dizin"
+              href="../genindex.html"/>
+        <link rel="search" title="Ara" href="../search.html"/>
+    <link rel="top" title="Channel App Template 0.1.0 belgelendirmesi" href="../index.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Channel App Template
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../setup/index.html">Kurulum ve Kullanım</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Geliştirme Adımları</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture/index.html">Mimari</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../terminology.html">Terminoloji</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../flows.html">Akışlar</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Channel App Template</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Orders</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/project/channel.orders.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="orders">
+<h1>Orders<a class="headerlink" href="#orders" title="Bu başlık için kalıcı bağlantı">¶</a></h1>
+<p>Ürün entegrasyonu ile ilgili channel_app_template.app.tasks altında çalışan tasklar</p>
+<ol class="arabic simple">
+<li><p>fetch_orders</p></li>
+</ol>
+<blockquote>
+<div><p>Satış kanalı tarafından yeni oluşmuş siparişleri almak ve akinonda işlemek için
+<a class="reference internal" href="#channel.commands.orders.orders.GetOrders" title="channel.commands.orders.orders.GetOrders"><code class="xref py py-class docutils literal notranslate"><span class="pre">channel.commands.orders.orders.GetOrders</span></code></a> yer alan
+komut çalıştırılır ve Akinon’a istenilen formatta veri sağlar.
+Bu komut ile satış kanalına oluşmuş siparişler okunup Akinon uzerinde oluşturulması sağlanır.</p>
+<p>OrderService içerisinde yer alan fetch_and_create_order fonksiyonu ile süreç işletilir.</p>
+<p>Siparişleri satış kanalından almak ve istenlen formata çevirmek için aşağıda listesi verilen açıklamalara göre bu command hazırlanmalıdır.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="channel.commands.orders.orders.GetOrders">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetOrders</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">integration</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">objects</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_request</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/channel/commands/orders/orders.html#GetOrders"><span class="viewcode-link"><span class="pre">[kaynak]</span></span></a><a class="headerlink" href="#channel.commands.orders.orders.GetOrders" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="channel.commands.orders.orders.GetOrders.get_data">
+<span class="sig-name descname"><span class="pre">get_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/channel/commands/orders/orders.html#GetOrders.get_data"><span class="viewcode-link"><span class="pre">[kaynak]</span></span></a><a class="headerlink" href="#channel.commands.orders.orders.GetOrders.get_data" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
+<dd><p>Bu fonksiyonda satış kanalı üzerinde oluşmuş siparişlere ulaşmak için verilerin hazırladığı yerdir. Herhangi bir parametre almaz.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="channel.commands.orders.orders.GetOrders.validated_data">
+<span class="sig-name descname"><span class="pre">validated_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/channel/commands/orders/orders.html#GetOrders.validated_data"><span class="viewcode-link"><span class="pre">[kaynak]</span></span></a><a class="headerlink" href="#channel.commands.orders.orders.GetOrders.validated_data" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
+<dd><p>Parametre olarak get_data fonksiyonunun döndüğü cevabı alır. Eğer satış kanalından siparişleri okumak için hazırlanan veri üzerinde bir doğrulama yapılması gerekiyor ise kullanılır. Doğrulama yapılmayacak ise parametre olarak verilen data’nın döndürülmesi gerekir.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="channel.commands.orders.orders.GetOrders.transform_data">
+<span class="sig-name descname"><span class="pre">transform_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/channel/commands/orders/orders.html#GetOrders.transform_data"><span class="viewcode-link"><span class="pre">[kaynak]</span></span></a><a class="headerlink" href="#channel.commands.orders.orders.GetOrders.transform_data" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
+<dd><p>Parametre olarak validated_data fonksiyonunun döndürdüğü cevabı alır. Eğer satış kanalından sipariş okumadan önce veri üzerinde değişiklik yapılması gerekiyor ise kullanılır. Cevap olarak iletilmek istenen verinin son halini döndürür.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="channel.commands.orders.orders.GetOrders.send_request">
+<span class="sig-name descname"><span class="pre">send_request</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">transformed_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/channel/commands/orders/orders.html#GetOrders.send_request"><span class="viewcode-link"><span class="pre">[kaynak]</span></span></a><a class="headerlink" href="#channel.commands.orders.orders.GetOrders.send_request" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
+<dd><p>Parametre olarak transform_data fonksiyonunun döndürdüğü cevabı alır. Bu fonksiyon aldığı veriyi satış kanalının ilgili uç noktasına isteğin atılacağı yerdir. Cevap olarak response veya response ile gelen veriyi dönmesi gerekir.</p>
+<div class="admonition attention">
+<p class="admonition-title">Dikkat</p>
+<p>Bu kısımda dönülecek cevap normalize_response fonksiyonuna iletileceği için veri döndürürken veri tipleri konusunda dikkat etmek gerekmektedir.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="channel.commands.orders.orders.GetOrders.normalize_response">
+<span class="sig-name descname"><span class="pre">normalize_response</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validated_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformed_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">response</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/channel/commands/orders/orders.html#GetOrders.normalize_response"><span class="viewcode-link"><span class="pre">[kaynak]</span></span></a><a class="headerlink" href="#channel.commands.orders.orders.GetOrders.normalize_response" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
+<dd><p>Bu fonksiyon fetch_orders taskında satış kanalında oluşmuş siparişlerimizi okumak için hazırladığımız verileri ve satış kanalından gelen cevabı toplayıp Akinında siparişleri yaratmak için son haline getirdiğimiz yerdir. Bu fonksiyonun döneceği cevap doğrudan fetch_and_create_order fonksiyonundaki süreç ile işlenir.</p>
+<div class="admonition attention">
+<p class="admonition-title">Dikkat</p>
+<p>Bu kısımda dönülecek cevap 3 parçadan oluşmalıdır. BU METHOD GENERATOR tipinde donmelidir.</p>
+<div class="line-block">
+<div class="line"><strong>response_data</strong>: Satış kanalından dönen verinin işlenmiş halidir. Tipi string veya liste olabilir. Dönen cevapda kullanılacak bir veri yok ise boş string dönülmesi yeterlidir. Dönen response kullanılacak ise dönen veri liste tipinde ve içerisindeki elemanların tipi ChannelCreateOrderDto olmak zorundadır.</div>
+<div class="line"><strong>report</strong>: Satış kanalından dönen cevabı işlerken oluşturduğumuz hata raporlarıdır.</div>
+<div class="line"><strong>data</strong>: None</div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># örnek generator</span>
+<span class="k">yield</span> <span class="n">response_data</span><span class="p">,</span> <span class="n">report</span><span class="p">,</span> <span class="kc">None</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li><p>update_orders</p></li>
+</ol>
+<blockquote>
+<div><p>Akinon’dan satış kanalı tarafına güncellenmesi gereken <strong>siparişleri</strong> alır ve bu verileri
+<a class="reference internal" href="#channel.commands.orders.orders.SendUpdatedOrders" title="channel.commands.orders.orders.SendUpdatedOrders"><code class="xref py py-class docutils literal notranslate"><span class="pre">channel.commands.orders.orders.SendUpdatedOrders</span></code></a>’da yer alan
+komut’a gönderir. Bu komut ile satış kanalına güncellenmiş sipariş bilgilerini iletir.</p>
+<p>OrderService içerisinde yer alan update_orders fonksiyonuna ait süreçte kullanılacak olan bu command ile
+Akinon’da durumu güncellenmiş sipariş bilgileri bu command ile satış kanalına gönderilebillir.</p>
+<div class="admonition attention">
+<p class="admonition-title">Dikkat</p>
+<p>Sipariş Servisi içerisinde yer alan update_orders fonksiyonuna ait parametreler</p>
+<div class="line-block">
+<div class="line"><strong>is_sync</strong>        : Sipariş üzerindeki güncelleme satış kanalına yollandığında durumu hemen mi ediniliyor <a class="reference internal" href="channel.products.detail.html#senkron-veya-asenkron-satis-kanali-surec"><span class="std std-ref">Senkron veya Asenkron Satış Kanalı Süreç</span></a>
+yoksa asenkron bir şekilde mi ediniliyor olduğudur.</div>
+</div>
+</div>
+<dl class="py class">
+<dt class="sig sig-object py" id="channel.commands.orders.orders.SendUpdatedOrders">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SendUpdatedOrders</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">integration</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">objects</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_request</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/channel/commands/orders/orders.html#SendUpdatedOrders"><span class="viewcode-link"><span class="pre">[kaynak]</span></span></a><a class="headerlink" href="#channel.commands.orders.orders.SendUpdatedOrders" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="channel.commands.orders.orders.SendUpdatedOrders.get_data">
+<span class="sig-name descname"><span class="pre">get_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/channel/commands/orders/orders.html#SendUpdatedOrders.get_data"><span class="viewcode-link"><span class="pre">[kaynak]</span></span></a><a class="headerlink" href="#channel.commands.orders.orders.SendUpdatedOrders.get_data" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
+<dd><p>Bu fonksiyon siparişlerin güncellenme bilgisini omnitron’dan satış kanalına iletmek için atılacak istekte gönderilecek veri hazırlanır. Response olarak liste içerinde Order döndürülmesi gerekir.
+objects datası içinde sipariş listesi mevcuttur.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="channel.commands.orders.orders.SendUpdatedOrders.validated_data">
+<span class="sig-name descname"><span class="pre">validated_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/channel/commands/orders/orders.html#SendUpdatedOrders.validated_data"><span class="viewcode-link"><span class="pre">[kaynak]</span></span></a><a class="headerlink" href="#channel.commands.orders.orders.SendUpdatedOrders.validated_data" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
+<dd><p>Parametre olarak get_data fonksiyonunun döndüğü cevabı alır. Eğer satış kanalına gönderilecek güncellenmiş siparişler verisi üzerinde bir değrulama yapılması gerekiyor ise kullanılır. Doğrulama yapılmayacak ise parametre olarak verilen data’nın döndürülmesi gerekir.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="channel.commands.orders.orders.SendUpdatedOrders.transform_data">
+<span class="sig-name descname"><span class="pre">transform_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/channel/commands/orders/orders.html#SendUpdatedOrders.transform_data"><span class="viewcode-link"><span class="pre">[kaynak]</span></span></a><a class="headerlink" href="#channel.commands.orders.orders.SendUpdatedOrders.transform_data" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
+<dd><p>Parametre olarak validated_data fonksiyonunun döndürdüğü cevabı alır. Eğer satış kanalına veri göndermeden önce veri üzerinde değişiklik yapılması gerekiyor ise kullanılır. Cevap olarak iletilmek istenen verinin son halini döndürür.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="channel.commands.orders.orders.SendUpdatedOrders.send_request">
+<span class="sig-name descname"><span class="pre">send_request</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">transformed_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/channel/commands/orders/orders.html#SendUpdatedOrders.send_request"><span class="viewcode-link"><span class="pre">[kaynak]</span></span></a><a class="headerlink" href="#channel.commands.orders.orders.SendUpdatedOrders.send_request" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
+<dd><p>Parametre olarak transform_data fonksiyonunun döndürdüğü cevabı alır. Bu fonksiyon aldığı veriyi satış kanalının ilgili uç noktasına isteğin atılacağı yerdir. Cevap olarak response veya response ile gelen veriyi dönmesi gerekir.</p>
+<div class="admonition attention">
+<p class="admonition-title">Dikkat</p>
+<p>Bu kısımda dönülecek cevap normalize_response fonksiyonuna iletileceği için veri döndürürken veri tipleri konusunda dikkat etmek gerekmektedir.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="channel.commands.orders.orders.SendUpdatedOrders.normalize_response">
+<span class="sig-name descname"><span class="pre">normalize_response</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validated_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformed_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">response</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/channel/commands/orders/orders.html#SendUpdatedOrders.normalize_response"><span class="viewcode-link"><span class="pre">[kaynak]</span></span></a><a class="headerlink" href="#channel.commands.orders.orders.SendUpdatedOrders.normalize_response" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
+<dd><p>Bu fonksiyon update_orders taskında güncellenmiş siparişlerimizi satış kanalına iletmek için kullanmış olduğumuz verileri ve satış kanalından aldığımız cevabı toplayıp son haline getirdiğimiz yerdir. Bu fonksiyonun döneceği cevap doğrudan update_orders fonksiyonunda kullanılacaktır.</p>
+<p>Bu methoda süreç asenkron ise satış kanalından dönen remote_batch_id batch_request’e işlenmelidir.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">remote_batch_id</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;remote_batch_request_id&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="bp">self</span><span class="o">.</span><span class="n">batch_request</span><span class="o">.</span><span class="n">remote_batch_id</span> <span class="o">=</span> <span class="n">remote_batch_id</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">return</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">report</span><span class="p">,</span> <span class="n">data</span>
+</pre></div>
+</div>
+<div class="admonition attention">
+<p class="admonition-title">Dikkat</p>
+<p>Bu kısımda dönülecek cevap 3 parçadan oluşmalıdır.</p>
+<div class="line-block">
+<div class="line"><strong>response_data</strong>: Satış kanalından dönen verinin işlenmiş halidir. Tipi string veya liste olabilir. Dönen cevapda kullanılacak bir veri yok ise boş string dönülmesi yeterlidir. Dönen response kullanılacak ise dönen veri liste tipinde ve içerisindeki elemanların tipi OrderBatchRequestResponseDto olmak zorundadır.</div>
+<div class="line"><strong>report</strong>: Satış kanalından dönen cevabı işlerken oluşturduğumuz hata raporlarıdır.</div>
+<div class="line"><strong>data</strong>: Fonksiyonumuzun aldığı ilk parametre, get_data fonksiyonundan aldığımız cevap.</div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># örnek return</span>
+<span class="k">return</span> <span class="n">response_data</span><span class="p">,</span> <span class="n">report</span><span class="p">,</span> <span class="n">data</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div></blockquote>
+<ol class="arabic simple" start="3">
+<li><p>check_orders</p></li>
+</ol>
+<blockquote>
+<div><p>Akinon’da satış kanalı tarafına asenkron olarak iletilen Order güncellemelerinin BatchRequestlerini alır ve bu verileri
+<a class="reference internal" href="#channel.commands.orders.orders.CheckOrders" title="channel.commands.orders.orders.CheckOrders"><code class="xref py py-class docutils literal notranslate"><span class="pre">channel.commands.orders.orders.CheckOrders</span></code></a>’da yer alan
+komut’a gönderir. Bu komut ile satış kanalından güncelleme isteği atılmuş order’in güncel durum bilgisi satış kanalından okunur.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="channel.commands.orders.orders.CheckOrders">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">CheckOrders</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">integration</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">objects</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_request</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/channel/commands/orders/orders.html#CheckOrders"><span class="viewcode-link"><span class="pre">[kaynak]</span></span></a><a class="headerlink" href="#channel.commands.orders.orders.CheckOrders" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="channel.commands.orders.orders.CheckOrders.get_data">
+<span class="sig-name descname"><span class="pre">get_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/channel/commands/orders/orders.html#CheckOrders.get_data"><span class="viewcode-link"><span class="pre">[kaynak]</span></span></a><a class="headerlink" href="#channel.commands.orders.orders.CheckOrders.get_data" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
+<dd><p>Bu fonksiyon güncelleme isteği satış kanalına iletilmiş orderların bilgisini Akinon’dan satış kanalı üzerinden durumunu sorgulamak için atılacak istekte gönderilecek veri hazırlanır. Response olarak liste içerinde BatchRequest döndürülmesi gerekir.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="channel.commands.orders.orders.CheckOrders.validated_data">
+<span class="sig-name descname"><span class="pre">validated_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/channel/commands/orders/orders.html#CheckOrders.validated_data"><span class="viewcode-link"><span class="pre">[kaynak]</span></span></a><a class="headerlink" href="#channel.commands.orders.orders.CheckOrders.validated_data" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
+<dd><p>Parametre olarak get_data fonksiyonunun döndüğü cevabı alır. Eğer satış kanalından sorgulanacak order güncellemesi isteği verisi üzerinde bir değrulama yapılması gerekiyor ise kullanılır. Doğrulama yapılmayacak ise parametre olarak verilen data’nın döndürülmesi gerekir.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="channel.commands.orders.orders.CheckOrders.transform_data">
+<span class="sig-name descname"><span class="pre">transform_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/channel/commands/orders/orders.html#CheckOrders.transform_data"><span class="viewcode-link"><span class="pre">[kaynak]</span></span></a><a class="headerlink" href="#channel.commands.orders.orders.CheckOrders.transform_data" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
+<dd><p>Parametre olarak validated_data fonksiyonunun döndürdüğü cevabı alır. Eğer satış kanalına veri göndermeden önce veri üzerinde değişiklik yapılması gerekiyor ise kullanılır. Cevap olarak iletilmek istenen verinin son halini döndürür.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="channel.commands.orders.orders.CheckOrders.send_request">
+<span class="sig-name descname"><span class="pre">send_request</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">transformed_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/channel/commands/orders/orders.html#CheckOrders.send_request"><span class="viewcode-link"><span class="pre">[kaynak]</span></span></a><a class="headerlink" href="#channel.commands.orders.orders.CheckOrders.send_request" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
+<dd><p>Parametre olarak transform_data fonksiyonunun döndürdüğü cevabı alır. Bu fonksiyon aldığı veriyi satış kanalının ilgili uç noktasına isteğin atılacağı yerdir. Cevap olarak response veya response ile gelen veriyi dönmesi gerekir.</p>
+<div class="admonition attention">
+<p class="admonition-title">Dikkat</p>
+<p>Bu kısımda dönülecek cevap normalize_response fonksiyonuna iletileceği için veri döndürürken veri tipleri konusunda dikkat etmek gerekmektedir.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="channel.commands.orders.orders.CheckOrders.normalize_response">
+<span class="sig-name descname"><span class="pre">normalize_response</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validated_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformed_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">response</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/channel/commands/orders/orders.html#CheckOrders.normalize_response"><span class="viewcode-link"><span class="pre">[kaynak]</span></span></a><a class="headerlink" href="#channel.commands.orders.orders.CheckOrders.normalize_response" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
+<dd><p>Bu fonksiyon check_orders taskında daha önce güncellenmiş orderlarımızın durum sorgularını satış kanalına iletmek için kullanmış olduğumuz verileri ve satış kanalından dönen cevabı toplayıp son haline getirdiğimiz yerdir. Bu fonksiyonun döneceği cevap doğrudan get_order_batch_requests fonksiyonunda kullanılacaktır.</p>
+<div class="admonition attention">
+<p class="admonition-title">Dikkat</p>
+<p>Bu kısımda dönülecek cevap 3 parçadan oluşmalıdır.</p>
+<div class="line-block">
+<div class="line"><strong>response_data</strong>: Satış kanalından dönen verinin işlenmiş halidir. Tipi string veya liste olabilir. Dönen cevapda kullanılacak bir veri yok ise boş string dönülmesi yeterlidir. Dönen response kullanılacak ise dönen veri liste tipinde ve içerisindeki elemanların tipi OrderBatchRequestResponseDto olmak zorundadır.</div>
+<div class="line"><strong>report</strong>: Satış kanalından dönen cevabı işlerken oluşturduğumuz hata raporlarıdır.</div>
+<div class="line"><strong>data</strong>: Fonksiyonumuzun aldığı ilk parametre, get_data fonksiyonundan aldığımız cevap.</div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># örnek return</span>
+<span class="k">return</span> <span class="n">response_data</span><span class="p">,</span> <span class="n">report</span><span class="p">,</span> <span class="n">data</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div></blockquote>
+<ol class="arabic simple" start="4">
+<li><p>fetch_and_create_cancel</p></li>
+</ol>
+<blockquote>
+<div><p>Satış kanalı tarafında yeni oluşmuş iptal sipariş kayıtları <a class="reference internal" href="#channel.commands.orders.orders.GetCancelledOrders" title="channel.commands.orders.orders.GetCancelledOrders"><code class="xref py py-class docutils literal notranslate"><span class="pre">channel.commands.orders.orders.GetCancelledOrders</span></code></a> komutu aracılığı ile alınır ve akinon’da gönderilir. OrderService içerisinde yer alan fetch_and_create_cancel fonksiyonu ile kullanılır.</p>
+<p>Aşağıda listesi verilen parametre değerleri ile Sipariş İptal Verisi çekilip istenilen formata getirilir.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="channel.commands.orders.orders.GetCancelledOrders">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetCancelledOrders</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">integration</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">objects</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_request</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/channel/commands/orders/orders.html#GetCancelledOrders"><span class="viewcode-link"><span class="pre">[kaynak]</span></span></a><a class="headerlink" href="#channel.commands.orders.orders.GetCancelledOrders" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="channel.commands.orders.orders.GetCancelledOrders.get_data">
+<span class="sig-name descname"><span class="pre">get_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/channel/commands/orders/orders.html#GetCancelledOrders.get_data"><span class="viewcode-link"><span class="pre">[kaynak]</span></span></a><a class="headerlink" href="#channel.commands.orders.orders.GetCancelledOrders.get_data" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
+<dd><p>Bu fonksiyonda satış kanalı üzerinde oluşmuş siparişleri Akinona yazmak için satış kanalına atılacak istekte gönderilecek veri hazırlanır.
+Parametre almaz.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="channel.commands.orders.orders.GetCancelledOrders.validated_data">
+<span class="sig-name descname"><span class="pre">validated_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/channel/commands/orders/orders.html#GetCancelledOrders.validated_data"><span class="viewcode-link"><span class="pre">[kaynak]</span></span></a><a class="headerlink" href="#channel.commands.orders.orders.GetCancelledOrders.validated_data" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
+<dd><p>Parametre olarak get_data fonksiyonunun döndüğü cevabı alır. Eğer satış kanalından iptal siparişleri okumak için hazırlanan veri üzerinde bir doğrulama yapılması gerekiyor ise kullanılır. Doğrulama yapılmayacak ise parametre olarak verilen data’nın döndürülmesi gerekir.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="channel.commands.orders.orders.GetCancelledOrders.transform_data">
+<span class="sig-name descname"><span class="pre">transform_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/channel/commands/orders/orders.html#GetCancelledOrders.transform_data"><span class="viewcode-link"><span class="pre">[kaynak]</span></span></a><a class="headerlink" href="#channel.commands.orders.orders.GetCancelledOrders.transform_data" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
+<dd><p>Parametre olarak validated_data fonksiyonunun döndürdüğü cevabı alır. Eğer satış kanalından iptal sipariş kayıtları okumadan önce veri üzerinde değişiklik yapılması gerekiyor ise kullanılır. Cevap olarak iletilmek istenen verinin son halini döndürür.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="channel.commands.orders.orders.GetCancelledOrders.send_request">
+<span class="sig-name descname"><span class="pre">send_request</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">transformed_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/channel/commands/orders/orders.html#GetCancelledOrders.send_request"><span class="viewcode-link"><span class="pre">[kaynak]</span></span></a><a class="headerlink" href="#channel.commands.orders.orders.GetCancelledOrders.send_request" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
+<dd><p>Parametre olarak transform_data fonksiyonunun döndürdüğü cevabı alır. Bu fonksiyon aldığı veriyi satış kanalının ilgili uç noktasına isteğin atılacağı yerdir. Cevap olarak response veya response ile gelen veriyi dönmesi gerekir.</p>
+<div class="admonition attention">
+<p class="admonition-title">Dikkat</p>
+<p>Bu kısımda dönülecek cevap normalize_response fonksiyonuna iletileceği için veri döndürürken veri tipleri konusunda dikkat etmek gerekmektedir.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="channel.commands.orders.orders.GetCancelledOrders.normalize_response">
+<span class="sig-name descname"><span class="pre">normalize_response</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validated_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformed_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">response</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/channel/commands/orders/orders.html#GetCancelledOrders.normalize_response"><span class="viewcode-link"><span class="pre">[kaynak]</span></span></a><a class="headerlink" href="#channel.commands.orders.orders.GetCancelledOrders.normalize_response" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
+<dd><p>Bu fonksiyon fetch_and_create_cancel taskında satış kanalında oluşmuş iptal siparişlerimizi okumak için hazırladığımız verileri ve satış kanalından gelen cevabı toplayıp Akinında siparişleri iptal etmek için son haline getirdiğimiz yerdir. Bu fonksiyonun döneceği cevap doğrudan fetch_and_create_cancel fonksiyonunda kullanılacaktır.</p>
+<div class="admonition attention">
+<p class="admonition-title">Dikkat</p>
+<p>Bu kısımda dönülecek cevap 3 parçadan oluşmalıdır. BU METHOD GENERATOR tipinde donmelidir.</p>
+<div class="line-block">
+<div class="line"><strong>response_data</strong>: Satış kanalından dönen verinin işlenmiş halidir. Dönen cevapda kullanılacak bir veri yok ise boş string dönülmesi yeterlidir. Dönen response kullanılacak ise dönen verinin tipi CancelOrderDto olmak zorundadır.</div>
+<div class="line"><strong>report</strong>: Satış kanalından dönen cevabı işlerken oluşturduğumuz hata raporlarıdır.</div>
+<div class="line"><strong>data</strong>: None</div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># örnek generator dönüş tipi</span>
+<span class="k">yield</span> <span class="n">response_data</span><span class="p">,</span> <span class="n">report</span><span class="p">,</span> <span class="kc">None</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div></blockquote>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2022, Eyüp Tuğrul, Mustafa Yetiş, Sabri Özgür.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> and ❤️  using a custom <a href="https://github.com/LinxiFan/Sphinx-theme">theme</a> based on <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/documentation_options.js"></script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

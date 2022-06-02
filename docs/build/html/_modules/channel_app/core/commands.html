@@ -1,0 +1,572 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>channel_app.core.commands &mdash; Channel App Template 0.1.0 belgelendirmesi</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Dizin"
+              href="../../../genindex.html"/>
+        <link rel="search" title="Ara" href="../../../search.html"/>
+    <link rel="top" title="Channel App Template 0.1.0 belgelendirmesi" href="../../../index.html"/>
+        <link rel="up" title="Modül kodu" href="../../index.html"/> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Channel App Template
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../setup/index.html">Kurulum ve Kullanım</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../project/index.html">Geliştirme Adımları</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture/index.html">Mimari</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../terminology.html">Terminoloji</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../flows.html">Akışlar</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Channel App Template</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Modül kodu</a> &raquo;</li>
+        
+      <li>channel_app.core.commands</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>channel_app.core.commands öğesinin kaynak kodu</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">traceback</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">StringIO</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Any</span>
+
+<span class="kn">from</span> <span class="nn">omnisdk.omnitron.models</span> <span class="kn">import</span> <span class="n">BatchRequest</span>
+<span class="kn">from</span> <span class="nn">requests</span> <span class="kn">import</span> <span class="n">HTTPError</span><span class="p">,</span> <span class="n">Request</span><span class="p">,</span> <span class="n">Response</span>
+
+<span class="kn">from</span> <span class="nn">channel_app.core.data</span> <span class="kn">import</span> <span class="n">ErrorReportDto</span>
+<span class="kn">from</span> <span class="nn">channel_app.core.integration</span> <span class="kn">import</span> <span class="n">BaseIntegration</span>
+<span class="kn">from</span> <span class="nn">channel_app.omnitron.batch_request</span> <span class="kn">import</span> <span class="n">ClientBatchRequest</span>
+<span class="kn">from</span> <span class="nn">channel_app.omnitron.constants</span> <span class="kn">import</span> <span class="n">BatchRequestStatus</span><span class="p">,</span> <span class="n">ContentType</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">LogService</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+
+<div class="viewcode-block" id="CommandInterface"><a class="viewcode-back" href="../../../architecture/index.html#channel_app.core.commands.CommandInterface">[belgeler]</a><span class="k">class</span> <span class="nc">CommandInterface</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="CommandInterface.get_data"><a class="viewcode-back" href="../../../architecture/index.html#channel_app.core.commands.CommandInterface.get_data">[belgeler]</a>    <span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">object</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This method fetches the input data for the command.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="CommandInterface.transform_data"><a class="viewcode-back" href="../../../architecture/index.html#channel_app.core.commands.CommandInterface.transform_data">[belgeler]</a>    <span class="k">def</span> <span class="nf">transform_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">object</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This method can be used to format the input data before it is executed on the run method.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="CommandInterface.validated_data"><a class="viewcode-back" href="../../../architecture/index.html#channel_app.core.commands.CommandInterface.validated_data">[belgeler]</a>    <span class="k">def</span> <span class="nf">validated_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        If the input data needs to satisfy some conditions or contain required a parameter, the</span>
+<span class="sd">        validation is done here.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">data</span></div>
+
+<div class="viewcode-block" id="CommandInterface.send"><a class="viewcode-back" href="../../../architecture/index.html#channel_app.core.commands.CommandInterface.send">[belgeler]</a>    <span class="k">def</span> <span class="nf">send</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">validated_data</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">object</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        If the command sends a request using input data to achieve the main object of the</span>
+<span class="sd">        command, it is recommended to place those operations in this method.</span>
+
+<span class="sd">        :param validated_data:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div></div>
+
+
+<span class="k">class</span> <span class="nc">ChannelCommandInterface</span><span class="p">(</span><span class="n">CommandInterface</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">integration</span><span class="p">,</span> <span class="n">objects</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">batch_request</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">objects</span> <span class="o">=</span> <span class="n">objects</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">integration</span> <span class="o">=</span> <span class="n">integration</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">batch_request</span> <span class="o">=</span> <span class="n">batch_request</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">failed_object_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">session</span> <span class="o">=</span> <span class="n">integration</span><span class="o">.</span><span class="n">_session</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">CHUNK_SIZE</span> <span class="o">=</span> <span class="mi">50</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">BATCH_SIZE</span> <span class="o">=</span> <span class="mi">100</span>
+
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;param_</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">key</span><span class="p">),</span> <span class="n">value</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">object</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+    <span class="k">def</span> <span class="nf">validated_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">object</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+    <span class="k">def</span> <span class="nf">transform_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">object</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+    <span class="k">def</span> <span class="nf">send_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">transformed_data</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">object</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        If the command sends a request using input data to achieve the main object of the</span>
+<span class="sd">        command, it is recommended to place those operations in this method.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">normalize_response</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">validated_data</span><span class="p">,</span> <span class="n">transformed_data</span><span class="p">,</span>
+                           <span class="n">response</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Main flow of the command. `do_action` method of the integration class executes this method.</span>
+<span class="sd">        This method must also call necessary command interface methods.</span>
+<span class="sd">        :return: returns to response of the command if it has one.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_data</span><span class="p">()</span>
+        <span class="n">validated_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">validated_data</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">transformed_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform_data</span><span class="p">(</span><span class="n">validated_data</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">send_request</span><span class="p">(</span><span class="n">transformed_data</span><span class="o">=</span><span class="n">transformed_data</span><span class="p">)</span>
+        <span class="n">normalize_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">normalize_response</span><span class="p">(</span>
+            <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
+            <span class="n">validated_data</span><span class="o">=</span><span class="n">validated_data</span><span class="p">,</span>
+            <span class="n">transformed_data</span><span class="o">=</span><span class="n">transformed_data</span><span class="p">,</span>
+            <span class="n">response</span><span class="o">=</span><span class="n">response</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">normalize_data</span>
+
+    <span class="k">def</span> <span class="nf">create_report</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_batch_request</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+        <span class="n">report_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">report</span> <span class="o">=</span> <span class="n">ErrorReportDto</span><span class="p">(</span>
+            <span class="n">action_content_type</span><span class="o">=</span><span class="n">ContentType</span><span class="o">.</span><span class="n">batch_request</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+            <span class="n">action_object_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">batch_request</span><span class="o">.</span><span class="n">pk</span><span class="p">,</span>
+            <span class="n">modified_date</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S&quot;</span><span class="p">),</span>
+            <span class="n">error_code</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">batch_request</span><span class="o">.</span><span class="n">local_batch_id</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="n">error_description</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">batch_request</span><span class="o">.</span><span class="n">local_batch_id</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="n">raw_request</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">method</span><span class="si">}</span><span class="s2">-&quot;</span>
+                        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">url</span><span class="si">}</span><span class="s2">-&quot;</span>
+                        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">body</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="n">raw_response</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
+        <span class="n">is_ok</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">check_response_is_ok</span><span class="p">(</span><span class="n">response</span><span class="o">=</span><span class="n">response</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">is_ok</span><span class="p">:</span>
+            <span class="n">report</span><span class="o">.</span><span class="n">is_ok</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">report</span><span class="o">.</span><span class="n">is_ok</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">report_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">report</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">failed_obj</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">failed_object_list</span><span class="p">:</span>
+            <span class="n">raw_report</span> <span class="o">=</span> <span class="n">ErrorReportDto</span><span class="p">(</span>
+                <span class="n">action_content_type</span><span class="o">=</span><span class="n">failed_obj</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                <span class="n">action_object_id</span><span class="o">=</span><span class="n">failed_obj</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">pk</span><span class="p">,</span>
+                <span class="n">modified_date</span><span class="o">=</span><span class="n">failed_obj</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">modified_date</span><span class="p">,</span>
+                <span class="n">error_code</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">batch_request</span><span class="o">.</span><span class="n">local_batch_id</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+                <span class="n">error_description</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">batch_request</span><span class="o">.</span><span class="n">local_batch_id</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+                <span class="n">raw_request</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+                <span class="n">raw_response</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">failed_obj</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">failed_reason_type</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">failed_obj</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+                <span class="n">is_ok</span><span class="o">=</span><span class="kc">False</span>
+            <span class="p">)</span>
+            <span class="n">report_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">raw_report</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">report_list</span>
+
+    <span class="k">def</span> <span class="nf">check_response_is_ok</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">)</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;2&quot;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">is_batch_request</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="n">is_object</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;batch_request&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="n">is_object</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">OmnitronCommandInterface</span><span class="p">(</span><span class="n">CommandInterface</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Commands implement list of steps to achieve a task. A command can contain a simple get request</span>
+<span class="sd">    or a complicated business logic with lots of validation.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">batch_service</span> <span class="o">=</span> <span class="n">ClientBatchRequest</span>
+    <span class="n">content_type</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">integration</span><span class="p">:</span> <span class="n">BaseIntegration</span><span class="p">,</span> <span class="n">objects</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                 <span class="n">batch_request</span><span class="p">:</span> <span class="n">BatchRequest</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param integration: Integration object</span>
+<span class="sd">        :param objects: Input to the command</span>
+<span class="sd">        :param batch_request: Related batch request to keep track of the whole task</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">objects</span> <span class="o">=</span> <span class="n">objects</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">batch_request</span> <span class="o">=</span> <span class="n">batch_request</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">integration</span> <span class="o">=</span> <span class="n">integration</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">failed_object_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;param_</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">key</span><span class="p">),</span> <span class="n">value</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">object</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">objects</span>
+
+    <span class="k">def</span> <span class="nf">send</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">validated_data</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">object</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">validated_data</span>
+
+    <span class="k">def</span> <span class="nf">normalize_response</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">response</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">object</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="n">response</span>
+
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Main flow of the command. `do_action` method of the integration class executes this method.</span>
+<span class="sd">        This method must also call necessary command interface methods.</span>
+<span class="sd">        :return: Response of the command or None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">is_ok</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="n">formatted_data</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">raw_request</span><span class="p">,</span> <span class="n">raw_response</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">model_items</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">validated_data</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_data</span><span class="p">())</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">validated_data</span><span class="o">=</span><span class="n">model_items</span><span class="p">)</span>
+            <span class="n">normalize_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">normalize_response</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">model_items</span><span class="p">,</span>
+                                                     <span class="n">response</span><span class="o">=</span><span class="n">response</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">normalize_data</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+                <span class="n">formatted_data</span> <span class="o">=</span> <span class="p">[</span><span class="n">model_obj</span> <span class="k">for</span> <span class="n">model_obj</span> <span class="ow">in</span> <span class="n">normalize_data</span>
+                                  <span class="k">if</span>
+                                  <span class="ow">not</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">model_obj</span><span class="p">,</span> <span class="s2">&quot;failed_reason_type&quot;</span><span class="p">,</span>
+                                              <span class="kc">None</span><span class="p">)]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">row_send_error_report</span><span class="p">()</span>
+        <span class="k">except</span> <span class="n">HTTPError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">request</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">request</span>
+            <span class="n">raw_request</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">request</span><span class="o">.</span><span class="n">method</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">request</span><span class="o">.</span><span class="n">url</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">request</span><span class="o">.</span><span class="n">body</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="n">raw_response</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">text</span>
+            <span class="n">is_ok</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">raw_request</span><span class="si">}</span><span class="s2">-/-</span><span class="si">{</span><span class="n">raw_response</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">is_ok</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="n">raw_response</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">traceback</span><span class="o">.</span><span class="n">format_exc</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="n">request</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="s2">&quot;request&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">request</span><span class="p">:</span>
+                <span class="n">raw_request</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">request</span><span class="o">.</span><span class="n">method</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">request</span><span class="o">.</span><span class="n">url</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">request</span><span class="o">.</span><span class="n">body</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">raw_request</span><span class="si">}</span><span class="s2">-/-</span><span class="si">{</span><span class="n">raw_response</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">is_ok</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">send_error_report</span><span class="p">(</span><span class="n">raw_request</span><span class="p">,</span> <span class="n">raw_response</span><span class="p">)</span>
+
+        <span class="n">is_check_and_update_batch_service</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">check_run</span><span class="p">(</span>
+            <span class="n">is_ok</span><span class="o">=</span><span class="n">is_ok</span><span class="p">,</span> <span class="n">formatted_data</span><span class="o">=</span><span class="n">formatted_data</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">is_check_and_update_batch_service</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[]</span>
+
+        <span class="k">return</span> <span class="n">formatted_data</span>
+
+    <span class="k">def</span> <span class="nf">check_run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">is_ok</span><span class="p">,</span> <span class="n">formatted_data</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">is_ok</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">formatted_data</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_batch_request</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">batch_service</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">integration</span><span class="o">.</span><span class="n">channel_id</span><span class="p">)</span><span class="o">.</span><span class="n">to_done</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">integration</span><span class="o">.</span><span class="n">batch_request</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">is_ok</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_batch_request</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">integration</span><span class="o">.</span><span class="n">batch_request</span><span class="o">.</span><span class="n">objects</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">batch_service</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">integration</span><span class="o">.</span><span class="n">channel_id</span><span class="p">)</span><span class="o">.</span><span class="n">to_fail</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">integration</span><span class="o">.</span><span class="n">batch_request</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="kc">True</span>
+
+    <span class="k">def</span> <span class="nf">row_send_error_report</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+        <span class="k">for</span> <span class="n">failed_obj</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">failed_object_list</span><span class="p">:</span>
+            <span class="n">report</span> <span class="o">=</span> <span class="n">ErrorReportDto</span><span class="p">(</span>
+                <span class="n">action_content_type</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">content_type</span><span class="p">,</span>
+                <span class="n">action_object_id</span><span class="o">=</span><span class="n">failed_obj</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">pk</span><span class="p">,</span>
+                <span class="n">modified_date</span><span class="o">=</span><span class="n">failed_obj</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">modified_date</span><span class="p">,</span>
+                <span class="n">error_code</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">integration</span><span class="o">.</span><span class="n">batch_request</span><span class="o">.</span><span class="n">local_batch_id</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+                <span class="n">error_description</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">integration</span><span class="o">.</span><span class="n">batch_request</span><span class="o">.</span><span class="n">local_batch_id</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+                <span class="n">raw_request</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+                <span class="n">raw_response</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">failed_obj</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">failed_reason_type</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">failed_obj</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+                <span class="n">is_ok</span><span class="o">=</span><span class="kc">False</span>
+            <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">integration</span><span class="o">.</span><span class="n">do_action</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="s1">&#39;create_error_report&#39;</span><span class="p">,</span>
+                                       <span class="n">objects</span><span class="o">=</span><span class="n">report</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">send_error_report</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">raw_request</span><span class="p">,</span> <span class="n">raw_response</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_batch_request</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="n">name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+
+        <span class="n">report</span> <span class="o">=</span> <span class="n">ErrorReportDto</span><span class="p">(</span>
+            <span class="n">action_content_type</span><span class="o">=</span><span class="n">ContentType</span><span class="o">.</span><span class="n">batch_request</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+            <span class="n">action_object_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">integration</span><span class="o">.</span><span class="n">batch_request</span><span class="o">.</span><span class="n">pk</span><span class="p">,</span>
+            <span class="n">modified_date</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S&quot;</span><span class="p">),</span>
+            <span class="n">error_code</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">integration</span><span class="o">.</span><span class="n">batch_request</span><span class="o">.</span><span class="n">local_batch_id</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="n">error_description</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">integration</span><span class="o">.</span><span class="n">batch_request</span><span class="o">.</span><span class="n">local_batch_id</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="n">raw_request</span><span class="o">=</span><span class="n">raw_request</span><span class="p">,</span>
+            <span class="n">raw_response</span><span class="o">=</span><span class="n">raw_response</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">integration</span><span class="o">.</span><span class="n">do_action</span><span class="p">(</span>
+            <span class="n">key</span><span class="o">=</span><span class="s1">&#39;create_error_report&#39;</span><span class="p">,</span>
+            <span class="n">objects</span><span class="o">=</span><span class="n">report</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">is_batch_request</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="n">is_object</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">integration</span><span class="p">,</span> <span class="s1">&#39;batch_request&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="n">is_object</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">create_log_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">raw_request</span><span class="p">:</span> <span class="n">Request</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                        <span class="n">raw_response</span><span class="p">:</span> <span class="n">Response</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Log files are attached to batch requests. If you need to attach logs</span>
+<span class="sd">        to a problematic command or want to see detailed logs for standard a</span>
+<span class="sd">        command, you can use this method. However, if you do not use a batch request</span>
+<span class="sd">        for a command and still want to see the logs, You will need to manage the command</span>
+<span class="sd">        with a batch request.</span>
+
+<span class="sd">        :param message: Reason of the exception/entry logged</span>
+<span class="sd">        :param raw_request:</span>
+<span class="sd">        :param raw_response:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">bytes_io</span> <span class="o">=</span> <span class="n">StringIO</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">raw_request</span> <span class="ow">and</span> <span class="n">raw_response</span><span class="p">:</span>
+            <span class="n">context</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">            &quot;message&quot;: </span><span class="si">{</span><span class="n">message</span><span class="si">}</span><span class="s2">,</span>
+<span class="s2">            &quot;url&quot;: </span><span class="si">{</span><span class="n">raw_request</span><span class="o">.</span><span class="n">url</span><span class="si">}</span><span class="s2">,</span>
+<span class="s2">            &quot;request_body&quot;: </span><span class="si">{</span><span class="n">raw_request</span><span class="o">.</span><span class="n">body</span><span class="si">}</span><span class="s2">,</span>
+<span class="s2">            &quot;response_text&quot;: </span><span class="si">{</span><span class="n">raw_response</span><span class="o">.</span><span class="n">text</span><span class="si">}</span><span class="s2">,</span>
+<span class="s2">            &quot;response_reason&quot;: </span><span class="si">{</span><span class="n">raw_response</span><span class="o">.</span><span class="n">reason</span><span class="si">}</span><span class="s2">,</span>
+<span class="s2">            &quot;response_status_code&quot;: </span><span class="si">{</span><span class="n">raw_response</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2"></span>
+<span class="s2">            &quot;&quot;&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">context</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                        &quot;message&quot;: </span><span class="si">{</span><span class="n">message</span><span class="si">}</span><span class="s2"></span>
+<span class="s2">                        &quot;&quot;&quot;</span>
+        <span class="n">bytes_io</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">context</span><span class="p">)</span>
+        <span class="n">bytes_io</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">bytes_io</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">update_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">BatchRequestStatus</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">BatchRequestStatus</span><span class="o">.</span><span class="n">commit</span>
+
+    <span class="k">def</span> <span class="nf">update_batch_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">objects_data</span><span class="p">:</span> <span class="nb">list</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Batch requests are used to track state of long-running processes across multiple</span>
+<span class="sd">        systems. State of those requests can be managed through this method.</span>
+
+<span class="sd">        :param content_type: String values of the ContentType enum model</span>
+<span class="sd">        :param remote_batch_id: Batch request id of the</span>
+<span class="sd">        :param objects_data:</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">integration</span><span class="o">.</span><span class="n">batch_request</span><span class="o">.</span><span class="n">objects</span> <span class="o">=</span> <span class="n">objects_data</span>
+        <span class="n">service</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">batch_service</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">integration</span><span class="o">.</span><span class="n">channel_id</span><span class="p">)</span>
+        <span class="n">state</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">service</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;to_</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">update_state</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">integration</span><span class="o">.</span><span class="n">batch_request</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">state</span>
+
+    <span class="k">def</span> <span class="nf">create_batch_objects</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">content_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">dict</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        In batch requests, you can attach Omnitron objects that are being processed in that batch</span>
+<span class="sd">        so that they are excluded from further calls until that batch is finalized with done or</span>
+<span class="sd">        fail statuses.</span>
+
+<span class="sd">        :param data: List of objects which are being processed for this batch request</span>
+<span class="sd">        :param content_type: String values of the ContentType enum model</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">objects</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+            <span class="nb">object</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">&quot;pk&quot;</span><span class="p">:</span> <span class="n">item</span><span class="o">.</span><span class="n">pk</span><span class="p">,</span>
+                <span class="s2">&quot;failed_reason_type&quot;</span><span class="p">:</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="s2">&quot;failed_reason_type&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+                <span class="s2">&quot;remote_id&quot;</span><span class="p">:</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="s2">&quot;remote_id&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+                <span class="s2">&quot;version_date&quot;</span><span class="p">:</span> <span class="n">item</span><span class="o">.</span><span class="n">modified_date</span><span class="p">,</span>
+                <span class="s2">&quot;content_type&quot;</span><span class="p">:</span> <span class="n">content_type</span>
+            <span class="p">}</span>
+            <span class="n">objects</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">object</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">objects</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2022, Eyüp Tuğrul, Mustafa Yetiş, Sabri Özgür.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> and ❤️  using a custom <a href="https://github.com/LinxiFan/Sphinx-theme">theme</a> based on <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/documentation_options.js"></script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

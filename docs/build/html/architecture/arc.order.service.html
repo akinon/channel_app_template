@@ -1,0 +1,285 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Sipariş Servisi &mdash; Channel App Template 0.1.0 belgelendirmesi</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Dizin"
+              href="../genindex.html"/>
+        <link rel="search" title="Ara" href="../search.html"/>
+    <link rel="top" title="Channel App Template 0.1.0 belgelendirmesi" href="../index.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Channel App Template
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../setup/index.html">Kurulum ve Kullanım</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../project/index.html">Geliştirme Adımları</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Mimari</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../terminology.html">Terminoloji</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../flows.html">Akışlar</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Channel App Template</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Sipariş Servisi</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/architecture/arc.order.service.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="siparis-servisi">
+<h1>Sipariş Servisi<a class="headerlink" href="#siparis-servisi" title="Bu başlık için kalıcı bağlantı">¶</a></h1>
+<p>Sipariş servisi üzerinde siparişleri oluşturma, güncelleme ve iptal aksiyonlarını
+üzerinde barındırır. Bu aksiyonları gerçekleştirmek için OmnitronIntegration ve
+ChannelIntegration entegrasyolanrından yardım alır.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="OrderService">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">OrderService</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">object</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#OrderService" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="OrderService.fetch_and_create_order">
+<span class="sig-name descname"><span class="pre">fetch_and_create_order</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_success_log</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#OrderService.fetch_and_create_order" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
+<dd><p>Bu fonksiyon öncelikle Satış Kanalına bağlanır ve oluşmuş siparişleri çeker.
+Sonrasında Akinon’a üzerinde bulunan <strong>create_order</strong>
+fonksiyonu aracılığıyla iletilir. Bir hata ile karşılaşılır ise <em>error_report</em> oluşturulur.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="OrderService.create_order">
+<span class="sig-name descname"><span class="pre">create_order</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">omnitron_integration</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="index.html#channel_app.omnitron.integration.OmnitronIntegration" title="channel_app.omnitron.integration.OmnitronIntegration"><span class="pre">OmnitronIntegration</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel_order</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ChannelCreateOrderDto</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">Order</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#OrderService.create_order" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
+<dd><p>Bu fonksiyon satış kanalından gelen siparişleri Akinon’a aktarmayı sağlar.
+Satış kanalından gelen veriler üzerinden sırasıyla müşteri ve adres bilgilerini
+Akinon’a yazar ve dönen cevabı tutar. Sipariş üzerindeki kargo firmasının da
+Akinondaki karşılığını okuyarak sipariş yaratmak için gerekli olan tüm bilgileri
+toplamış olur. Son olarak Akinon’a sipariş bilgileri iletilir.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="OrderService.update_orders">
+<span class="sig-name descname"><span class="pre">update_orders</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_sync</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_success_log</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#OrderService.update_orders" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
+<dd><p>Bu fonksiyon öncelikle Akinon Omnitron’a bağlanır ve satış kanalına iletilebilecek
+güncellenmiş siparişleri çeker. Sonrasında Satış Kanalına <em>send_updated_orders</em>
+komutu aracılığıyla iletilir. <em>is_sync</em> parametresinin aldığı değere göre
+satış kanalı ile kurulacak iletişimin senkron mu asenkron mu olacağına karar verir.
+Asenkron olacak ise <strong>batch_service</strong> üzerinden gerkli kayıtlar oluşturulur.
+Bir hata ile karşılaşılır ise <em>error_report</em> oluşturulur.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="OrderService.get_order_batch_requests">
+<span class="sig-name descname"><span class="pre">get_order_batch_requests</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_success_log</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#OrderService.get_order_batch_requests" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
+<dd><p>Bu fonksiyon öncelikle Akinon Omnitron’a bağlanır ve satış kanalına sipariş yaratmak/güncellemek
+için iletilmiş ve işlemi devam eden <strong>batch_request</strong> ‘leri çeker.
+Sonrasında Satış Kanalından <em>check_orders</em> komutu aracılığıyla sorgular.
+Bir hata ile karşılaşılır ise <em>error_report</em> oluşturulur. Son olarak
+satış kanalından gelen cevabı Akinon Omnitrona ileterek akışı tamamlar.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="OrderService.fetch_and_create_cancel">
+<span class="sig-name descname"><span class="pre">fetch_and_create_cancel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_success_log</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#OrderService.fetch_and_create_cancel" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
+<dd><p>Bu fonksiyon öncelikle Satış Kanalına bağlanır ve oluşmuş sipariş iptallerini çeker.
+Sonrasında Akinon’a üzerinde bulunan <strong>create_cancel</strong>
+fonksiyonu aracılığıyla iletilir. Bir hata ile karşılaşılır ise <em>error_report</em> oluşturulur.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="OrderService.create_cancel">
+<span class="sig-name descname"><span class="pre">create_cancel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">omnitron_integration</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="index.html#channel_app.omnitron.integration.OmnitronIntegration" title="channel_app.omnitron.integration.OmnitronIntegration"><span class="pre">OmnitronIntegration</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">cancel_order_dto</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">CancelOrderDto</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#OrderService.create_cancel" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
+<dd><p>Bu fonksiyon satış kanalından gelen sipariş iptallerini Akinon’a aktarmayı sağlar.
+Akinon’a <em>create_order_cancel</em> komutu aracılığıyla parametre olarak verilen
+sipariş iptallerini iletir.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2022, Eyüp Tuğrul, Mustafa Yetiş, Sabri Özgür.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> and ❤️  using a custom <a href="https://github.com/LinxiFan/Sphinx-theme">theme</a> based on <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/documentation_options.js"></script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

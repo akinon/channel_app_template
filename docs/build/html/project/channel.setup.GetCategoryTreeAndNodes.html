@@ -1,0 +1,275 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>GetCategoryTreeAndNodes &mdash; Channel App Template 0.1.0 belgelendirmesi</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Dizin"
+              href="../genindex.html"/>
+        <link rel="search" title="Ara" href="../search.html"/>
+    <link rel="top" title="Channel App Template 0.1.0 belgelendirmesi" href="../index.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Channel App Template
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../setup/index.html">Kurulum ve Kullanım</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Geliştirme Adımları</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture/index.html">Mimari</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../terminology.html">Terminoloji</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../flows.html">Akışlar</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Channel App Template</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>GetCategoryTreeAndNodes</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/project/channel.setup.GetCategoryTreeAndNodes.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="getcategorytreeandnodes">
+<h1>GetCategoryTreeAndNodes<a class="headerlink" href="#getcategorytreeandnodes" title="Bu başlık için kalıcı bağlantı">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="channel_app.channel.commands.setup.GetCategoryTreeAndNodes">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetCategoryTreeAndNodes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">integration</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">objects</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_request</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/channel_app/channel/commands/setup.html#GetCategoryTreeAndNodes"><span class="viewcode-link"><span class="pre">[kaynak]</span></span></a><a class="headerlink" href="#channel_app.channel.commands.setup.GetCategoryTreeAndNodes" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
+<dd><p>Category trees and categories represent an easy way to find, list, filter
+products. Tree representation of the sales channel must be fetched and
+all products we want to sell must be assigned to a category.</p>
+<p>This command fetches all categories belonging to a sales channels and their
+tree structure.</p>
+<dl>
+<dt>input olarak do_action’da</dt><dd><p>objects -&gt; None tipinde kayıt alır. Yani veri almaz
+batch_request -&gt; BatchRequest tipinde kayıt alır. Ana işleme ait</p>
+<blockquote>
+<div><p>BatchRequest kaydı. Rapor üretmek için kullanılır.</p>
+</div></blockquote>
+</dd>
+</dl>
+<p>CategoryTreeDto -&gt; Kategori ağacı ve buna bağlı dalları barındıran veri tipi.</p>
+<p>ErrorReportDto -&gt; Rapor için üretilmiş  veri tipi. Hata olmasada uretilebilir.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="channel_app.channel.commands.setup.GetCategoryTreeAndNodes.get_data">
+<span class="sig-name descname"><span class="pre">get_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/channel_app/channel/commands/setup.html#GetCategoryTreeAndNodes.get_data"><span class="viewcode-link"><span class="pre">[kaynak]</span></span></a><a class="headerlink" href="#channel_app.channel.commands.setup.GetCategoryTreeAndNodes.get_data" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
+<dd><p>This method fetches the input data for the command.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="channel_app.channel.commands.setup.GetCategoryTreeAndNodes.validated_data">
+<span class="sig-name descname"><span class="pre">validated_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">object</span></span></span><a class="reference internal" href="../_modules/channel_app/channel/commands/setup.html#GetCategoryTreeAndNodes.validated_data"><span class="viewcode-link"><span class="pre">[kaynak]</span></span></a><a class="headerlink" href="#channel_app.channel.commands.setup.GetCategoryTreeAndNodes.validated_data" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
+<dd><p>If the input data needs to satisfy some conditions or contain required a parameter, the
+validation is done here.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="channel_app.channel.commands.setup.GetCategoryTreeAndNodes.transform_data">
+<span class="sig-name descname"><span class="pre">transform_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">object</span></span></span><a class="reference internal" href="../_modules/channel_app/channel/commands/setup.html#GetCategoryTreeAndNodes.transform_data"><span class="viewcode-link"><span class="pre">[kaynak]</span></span></a><a class="headerlink" href="#channel_app.channel.commands.setup.GetCategoryTreeAndNodes.transform_data" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
+<dd><p>This method can be used to format the input data before it is executed on the run method.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="channel_app.channel.commands.setup.GetCategoryTreeAndNodes.send_request">
+<span class="sig-name descname"><span class="pre">send_request</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">validated_data</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">object</span></span></span><a class="reference internal" href="../_modules/channel_app/channel/commands/setup.html#GetCategoryTreeAndNodes.send_request"><span class="viewcode-link"><span class="pre">[kaynak]</span></span></a><a class="headerlink" href="#channel_app.channel.commands.setup.GetCategoryTreeAndNodes.send_request" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
+<dd><p>If the command sends a request using input data to achieve the main object of the
+command, it is recommended to place those operations in this method.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="channel_app.channel.commands.setup.GetCategoryTreeAndNodes.normalize_response">
+<span class="sig-name descname"><span class="pre">normalize_response</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validated_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformed_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">response</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">channel_app.core.data.CategoryTreeDto</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">channel_app.core.data.ErrorReportDto</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/channel_app/channel/commands/setup.html#GetCategoryTreeAndNodes.normalize_response"><span class="viewcode-link"><span class="pre">[kaynak]</span></span></a><a class="headerlink" href="#channel_app.channel.commands.setup.GetCategoryTreeAndNodes.normalize_response" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
+<dd><p>Convert channel category tree to the format OmnitronIntegration
+requires</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2022, Eyüp Tuğrul, Mustafa Yetiş, Sabri Özgür.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> and ❤️  using a custom <a href="https://github.com/LinxiFan/Sphinx-theme">theme</a> based on <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/documentation_options.js"></script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

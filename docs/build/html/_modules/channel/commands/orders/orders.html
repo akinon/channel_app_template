@@ -1,0 +1,311 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>channel.commands.orders.orders &mdash; Channel App Template 0.1.0 belgelendirmesi</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Dizin"
+              href="../../../../genindex.html"/>
+        <link rel="search" title="Ara" href="../../../../search.html"/>
+    <link rel="top" title="Channel App Template 0.1.0 belgelendirmesi" href="../../../../index.html"/>
+        <link rel="up" title="Modül kodu" href="../../../index.html"/> 
+
+  
+  <script src="../../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> Channel App Template
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../setup/index.html">Kurulum ve Kullanım</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../project/index.html">Geliştirme Adımları</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../architecture/index.html">Mimari</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../terminology.html">Terminoloji</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../flows.html">Akışlar</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Channel App Template</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Modül kodu</a> &raquo;</li>
+        
+      <li>channel.commands.orders.orders</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>channel.commands.orders.orders öğesinin kaynak kodu</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">List</span>
+
+<span class="kn">from</span> <span class="nn">channel_app.channel.commands.orders.orders</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">GetOrders</span> <span class="k">as</span> <span class="n">AppGetOrders</span><span class="p">,</span>
+    <span class="n">SendUpdatedOrders</span> <span class="k">as</span> <span class="n">AppSendUpdatedOrders</span><span class="p">,</span>
+    <span class="n">CheckOrders</span> <span class="k">as</span> <span class="n">AppCheckOrders</span><span class="p">,</span>
+    <span class="n">GetCancelledOrders</span> <span class="k">as</span> <span class="n">AppGetCancelledOrders</span><span class="p">,</span>
+
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">omnisdk.omnitron.models</span> <span class="kn">import</span> <span class="n">Order</span><span class="p">,</span> <span class="n">BatchRequest</span>
+
+<span class="kn">from</span> <span class="nn">channel_app.core.data</span> <span class="kn">import</span> <span class="p">(</span><span class="n">ErrorReportDto</span><span class="p">,</span> <span class="n">ChannelCreateOrderDto</span><span class="p">,</span>
+                                   <span class="n">OrderBatchRequestResponseDto</span><span class="p">,</span> <span class="n">CancelOrderDto</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="GetOrders"><a class="viewcode-back" href="../../../../project/channel.orders.html#channel.commands.orders.orders.GetOrders">[belgeler]</a><span class="k">class</span> <span class="nc">GetOrders</span><span class="p">(</span><span class="n">AppGetOrders</span><span class="p">):</span>
+<div class="viewcode-block" id="GetOrders.get_data"><a class="viewcode-back" href="../../../../project/channel.orders.html#channel.commands.orders.orders.GetOrders.get_data">[belgeler]</a>    <span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">object</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+<div class="viewcode-block" id="GetOrders.validated_data"><a class="viewcode-back" href="../../../../project/channel.orders.html#channel.commands.orders.orders.GetOrders.validated_data">[belgeler]</a>    <span class="k">def</span> <span class="nf">validated_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">object</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+<div class="viewcode-block" id="GetOrders.transform_data"><a class="viewcode-back" href="../../../../project/channel.orders.html#channel.commands.orders.orders.GetOrders.transform_data">[belgeler]</a>    <span class="k">def</span> <span class="nf">transform_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">object</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+<div class="viewcode-block" id="GetOrders.send_request"><a class="viewcode-back" href="../../../../project/channel.orders.html#channel.commands.orders.orders.GetOrders.send_request">[belgeler]</a>    <span class="k">def</span> <span class="nf">send_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">validated_data</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">object</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+<div class="viewcode-block" id="GetOrders.normalize_response"><a class="viewcode-back" href="../../../../project/channel.orders.html#channel.commands.orders.orders.GetOrders.normalize_response">[belgeler]</a>    <span class="k">def</span> <span class="nf">normalize_response</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">validated_data</span><span class="p">,</span> <span class="n">transformed_data</span><span class="p">,</span>
+                           <span class="n">response</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">ChannelCreateOrderDto</span><span class="p">,</span>
+                                              <span class="n">ErrorReportDto</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div></div>
+
+
+<div class="viewcode-block" id="SendUpdatedOrders"><a class="viewcode-back" href="../../../../project/channel.orders.html#channel.commands.orders.orders.SendUpdatedOrders">[belgeler]</a><span class="k">class</span> <span class="nc">SendUpdatedOrders</span><span class="p">(</span><span class="n">AppSendUpdatedOrders</span><span class="p">):</span>
+    <span class="n">param_sync</span> <span class="o">=</span> <span class="kc">True</span>
+
+<div class="viewcode-block" id="SendUpdatedOrders.get_data"><a class="viewcode-back" href="../../../../project/channel.orders.html#channel.commands.orders.orders.SendUpdatedOrders.get_data">[belgeler]</a>    <span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Order</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+<div class="viewcode-block" id="SendUpdatedOrders.validated_data"><a class="viewcode-back" href="../../../../project/channel.orders.html#channel.commands.orders.orders.SendUpdatedOrders.validated_data">[belgeler]</a>    <span class="k">def</span> <span class="nf">validated_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">object</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+<div class="viewcode-block" id="SendUpdatedOrders.transform_data"><a class="viewcode-back" href="../../../../project/channel.orders.html#channel.commands.orders.orders.SendUpdatedOrders.transform_data">[belgeler]</a>    <span class="k">def</span> <span class="nf">transform_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">object</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+<div class="viewcode-block" id="SendUpdatedOrders.send_request"><a class="viewcode-back" href="../../../../project/channel.orders.html#channel.commands.orders.orders.SendUpdatedOrders.send_request">[belgeler]</a>    <span class="k">def</span> <span class="nf">send_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">transformed_data</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">object</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+<div class="viewcode-block" id="SendUpdatedOrders.normalize_response"><a class="viewcode-back" href="../../../../project/channel.orders.html#channel.commands.orders.orders.SendUpdatedOrders.normalize_response">[belgeler]</a>    <span class="k">def</span> <span class="nf">normalize_response</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">validated_data</span><span class="p">,</span> <span class="n">transformed_data</span><span class="p">,</span>
+                           <span class="n">response</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">OrderBatchRequestResponseDto</span><span class="p">],</span>
+                                              <span class="n">ErrorReportDto</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div></div>
+
+
+<div class="viewcode-block" id="CheckOrders"><a class="viewcode-back" href="../../../../project/channel.orders.html#channel.commands.orders.orders.CheckOrders">[belgeler]</a><span class="k">class</span> <span class="nc">CheckOrders</span><span class="p">(</span><span class="n">AppCheckOrders</span><span class="p">):</span>
+<div class="viewcode-block" id="CheckOrders.get_data"><a class="viewcode-back" href="../../../../project/channel.orders.html#channel.commands.orders.orders.CheckOrders.get_data">[belgeler]</a>    <span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">BatchRequest</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+<div class="viewcode-block" id="CheckOrders.validated_data"><a class="viewcode-back" href="../../../../project/channel.orders.html#channel.commands.orders.orders.CheckOrders.validated_data">[belgeler]</a>    <span class="k">def</span> <span class="nf">validated_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">object</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+<div class="viewcode-block" id="CheckOrders.transform_data"><a class="viewcode-back" href="../../../../project/channel.orders.html#channel.commands.orders.orders.CheckOrders.transform_data">[belgeler]</a>    <span class="k">def</span> <span class="nf">transform_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">object</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+<div class="viewcode-block" id="CheckOrders.send_request"><a class="viewcode-back" href="../../../../project/channel.orders.html#channel.commands.orders.orders.CheckOrders.send_request">[belgeler]</a>    <span class="k">def</span> <span class="nf">send_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">transformed_data</span><span class="p">:</span> <span class="n">BatchRequest</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">object</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+<div class="viewcode-block" id="CheckOrders.normalize_response"><a class="viewcode-back" href="../../../../project/channel.orders.html#channel.commands.orders.orders.CheckOrders.normalize_response">[belgeler]</a>    <span class="k">def</span> <span class="nf">normalize_response</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">validated_data</span><span class="p">,</span> <span class="n">transformed_data</span><span class="p">,</span>
+                           <span class="n">response</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">OrderBatchRequestResponseDto</span><span class="p">],</span>
+                                              <span class="n">ErrorReportDto</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div></div>
+
+
+<div class="viewcode-block" id="GetCancelledOrders"><a class="viewcode-back" href="../../../../project/channel.orders.html#channel.commands.orders.orders.GetCancelledOrders">[belgeler]</a><span class="k">class</span> <span class="nc">GetCancelledOrders</span><span class="p">(</span><span class="n">AppGetCancelledOrders</span><span class="p">):</span>
+<div class="viewcode-block" id="GetCancelledOrders.get_data"><a class="viewcode-back" href="../../../../project/channel.orders.html#channel.commands.orders.orders.GetCancelledOrders.get_data">[belgeler]</a>    <span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">BatchRequest</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+<div class="viewcode-block" id="GetCancelledOrders.validated_data"><a class="viewcode-back" href="../../../../project/channel.orders.html#channel.commands.orders.orders.GetCancelledOrders.validated_data">[belgeler]</a>    <span class="k">def</span> <span class="nf">validated_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">object</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+<div class="viewcode-block" id="GetCancelledOrders.transform_data"><a class="viewcode-back" href="../../../../project/channel.orders.html#channel.commands.orders.orders.GetCancelledOrders.transform_data">[belgeler]</a>    <span class="k">def</span> <span class="nf">transform_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">object</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+<div class="viewcode-block" id="GetCancelledOrders.send_request"><a class="viewcode-back" href="../../../../project/channel.orders.html#channel.commands.orders.orders.GetCancelledOrders.send_request">[belgeler]</a>    <span class="k">def</span> <span class="nf">send_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">transformed_data</span><span class="p">:</span> <span class="n">BatchRequest</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">object</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+<div class="viewcode-block" id="GetCancelledOrders.normalize_response"><a class="viewcode-back" href="../../../../project/channel.orders.html#channel.commands.orders.orders.GetCancelledOrders.normalize_response">[belgeler]</a>    <span class="k">def</span> <span class="nf">normalize_response</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">validated_data</span><span class="p">,</span> <span class="n">transformed_data</span><span class="p">,</span>
+                           <span class="n">response</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">CancelOrderDto</span><span class="p">,</span>
+                                              <span class="n">ErrorReportDto</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2022, Eyüp Tuğrul, Mustafa Yetiş, Sabri Özgür.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> and ❤️  using a custom <a href="https://github.com/LinxiFan/Sphinx-theme">theme</a> based on <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../',
+            VERSION:'0.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../../_static/documentation_options.js"></script>
+      <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
