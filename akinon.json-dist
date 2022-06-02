@@ -1,0 +1,33 @@
+{
+  "name": "Sales Channel",
+  "description": "Sales Channel",
+  "scripts": {
+    "release": "sleep 3",
+    "build": "./build.sh"
+  },
+  "env": {},
+  "formation": {
+    "beat": {
+      "min": 1,
+      "max": 1
+    },
+    "worker": {
+      "min": 1,
+      "max": "auto"
+    },
+    "web": {
+      "min": 1,
+      "max": "auto"
+    }
+  },
+  "runtime": "python:3.8-alpine",
+  "addons": [
+    {
+      "plan": "redis",
+      "as": "BROKER"
+    },
+    {
+      "plan": "sentry"
+    }
+  ]
+}

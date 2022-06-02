@@ -1,0 +1,1 @@
+apk update && apk add python3-dev git && pip install -U --force-reinstall pip && pip install -r requirements.txt
