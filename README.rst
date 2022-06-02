@@ -2,6 +2,10 @@
 Channel App Template Proje Dokümantasyonu
 ===========================================
 
+.. image:: https://readthedocs.org/projects/channel-app-template/badge/?version=latest
+:target: https://channel-app-template.readthedocs.io/tr/latest/?badge=latest
+:alt: Documentation Status
+
 Channel App Template projesi, Akinon Commerce Cloud (ACC) üzerinde farklı
 pazaralanlarına yapılacak entegrasyonlar için taslak oluşturmak amacıyla
 hazırlanmıştır.
