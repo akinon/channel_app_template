@@ -120,5 +120,6 @@ Module                           Açıklama
 :doc:`arc.product.service`       Ürün ile ilgili komutlar
 :doc:`arc.product_p.service`     Fiyat ile ilgili komutlar
 :doc:`arc.product_s.service`     Stok ile ilgili komutlar
+:doc:`arc.product_i.service`     Resim ile ilgili komutlar
 :doc:`arc.order.service`         Sipariş ile ilgili komutlar
 ============================== ================================

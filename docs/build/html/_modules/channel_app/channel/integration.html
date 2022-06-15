@@ -156,22 +156,19 @@
   <h1>channel_app.channel.integration öğesinin kaynak kodu</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">requests</span>
 
-<span class="kn">from</span> <span class="nn">channel_app.channel.commands.orders.orders</span> <span class="kn">import</span> <span class="n">GetOrders</span><span class="p">,</span> <span class="n">CheckOrders</span><span class="p">,</span> \
-    <span class="n">SendUpdatedOrders</span><span class="p">,</span> <span class="n">GetCancelledOrders</span>
-<span class="kn">from</span> <span class="nn">channel_app.channel.commands.product_prices</span> <span class="kn">import</span> <span class="p">(</span><span class="n">CheckPrices</span><span class="p">,</span>
-                                                         <span class="n">SendInsertedPrices</span><span class="p">,</span>
-                                                         <span class="n">SendUpdatedPrices</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">channel_app.channel.commands.product_stocks</span> <span class="kn">import</span> <span class="p">(</span><span class="n">SendUpdatedStocks</span><span class="p">,</span>
-                                                         <span class="n">CheckStocks</span><span class="p">,</span>
-                                                         <span class="n">SendInsertedStocks</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">channel_app.channel.commands.products</span> <span class="kn">import</span> <span class="p">(</span><span class="n">SendInsertedProducts</span><span class="p">,</span>
-                                                   <span class="n">CheckProducts</span><span class="p">,</span>
-                                                   <span class="n">CheckDeletedProducts</span><span class="p">,</span>
-                                                   <span class="n">SendUpdatedProducts</span><span class="p">,</span>
-                                                   <span class="n">SendDeletedProducts</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">channel_app.channel.commands.setup</span> <span class="kn">import</span> <span class="p">(</span><span class="n">GetCategoryTreeAndNodes</span><span class="p">,</span>
-                                                <span class="n">GetCategoryAttributes</span><span class="p">,</span>
-                                                <span class="n">GetChannelConfSchema</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">channel_app.channel.commands.orders.orders</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">GetOrders</span><span class="p">,</span> <span class="n">CheckOrders</span><span class="p">,</span> <span class="n">SendUpdatedOrders</span><span class="p">,</span> <span class="n">GetCancelledOrders</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">channel_app.channel.commands.product_images</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">SendUpdatedImages</span><span class="p">,</span> <span class="n">SendInsertedImages</span><span class="p">,</span> <span class="n">CheckImages</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">channel_app.channel.commands.product_prices</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">CheckPrices</span><span class="p">,</span> <span class="n">SendInsertedPrices</span><span class="p">,</span> <span class="n">SendUpdatedPrices</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">channel_app.channel.commands.product_stocks</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">SendUpdatedStocks</span><span class="p">,</span> <span class="n">CheckStocks</span><span class="p">,</span> <span class="n">SendInsertedStocks</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">channel_app.channel.commands.products</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">SendInsertedProducts</span><span class="p">,</span> <span class="n">CheckProducts</span><span class="p">,</span> <span class="n">CheckDeletedProducts</span><span class="p">,</span>
+    <span class="n">SendUpdatedProducts</span><span class="p">,</span> <span class="n">SendDeletedProducts</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">channel_app.channel.commands.setup</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">GetCategoryTreeAndNodes</span><span class="p">,</span> <span class="n">GetCategoryAttributes</span><span class="p">,</span> <span class="n">GetChannelConfSchema</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">channel_app.core.integration</span> <span class="kn">import</span> <span class="n">BaseIntegration</span>
 
 
@@ -193,8 +190,11 @@
         <span class="s2">&quot;send_inserted_stocks&quot;</span><span class="p">:</span> <span class="n">SendInsertedStocks</span><span class="p">,</span>
         <span class="s2">&quot;send_updated_prices&quot;</span><span class="p">:</span> <span class="n">SendUpdatedPrices</span><span class="p">,</span>
         <span class="s2">&quot;send_inserted_prices&quot;</span><span class="p">:</span> <span class="n">SendInsertedPrices</span><span class="p">,</span>
+        <span class="s2">&quot;send_updated_images&quot;</span><span class="p">:</span> <span class="n">SendUpdatedImages</span><span class="p">,</span>
+        <span class="s2">&quot;send_inserted_images&quot;</span><span class="p">:</span> <span class="n">SendInsertedImages</span><span class="p">,</span>
         <span class="s2">&quot;check_stocks&quot;</span><span class="p">:</span> <span class="n">CheckStocks</span><span class="p">,</span>
         <span class="s2">&quot;check_prices&quot;</span><span class="p">:</span> <span class="n">CheckPrices</span><span class="p">,</span>
+        <span class="s2">&quot;check_images&quot;</span><span class="p">:</span> <span class="n">CheckImages</span><span class="p">,</span>
         <span class="s2">&quot;get_category_tree_and_nodes&quot;</span><span class="p">:</span> <span class="n">GetCategoryTreeAndNodes</span><span class="p">,</span>
         <span class="s2">&quot;get_channel_conf_schema&quot;</span><span class="p">:</span> <span class="n">GetChannelConfSchema</span><span class="p">,</span>
         <span class="s2">&quot;get_category_attributes&quot;</span><span class="p">:</span> <span class="n">GetCategoryAttributes</span><span class="p">,</span>

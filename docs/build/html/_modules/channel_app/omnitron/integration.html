@@ -176,7 +176,11 @@
     <span class="n">CreateOrderShippingInfo</span><span class="p">,</span>
     <span class="n">GetOrders</span><span class="p">,</span>
     <span class="n">ProcessOrderBatchRequests</span><span class="p">,</span>
-    <span class="n">CreateOrderCancel</span><span class="p">)</span>
+    <span class="n">CreateOrderCancel</span><span class="p">,</span>
+    <span class="n">GetCancellationRequest</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">channel_app.omnitron.commands.product_images</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">GetUpdatedProductImages</span><span class="p">,</span> <span class="n">GetInsertedProductImages</span><span class="p">,</span>
+    <span class="n">ProcessImageBatchRequests</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">channel_app.omnitron.commands.product_prices</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">GetUpdatedProductPrices</span><span class="p">,</span> <span class="n">ProcessPriceBatchRequests</span><span class="p">,</span>
     <span class="n">GetInsertedProductPrices</span><span class="p">,</span> <span class="n">GetInsertedProductPricesFromExtraPriceList</span><span class="p">,</span>
@@ -195,7 +199,9 @@
     <span class="n">GetProductPrices</span><span class="p">,</span>
     <span class="n">GetProductStocks</span><span class="p">,</span>
     <span class="n">GetInsertedOrUpdatedProducts</span><span class="p">,</span>
-    <span class="n">GetProductCategoryNodes</span><span class="p">,</span> <span class="n">GetProductObjects</span><span class="p">,</span> <span class="n">GetProductsFromBatchrequest</span><span class="p">)</span>
+    <span class="n">GetProductCategoryNodes</span><span class="p">,</span> <span class="n">GetProductObjects</span><span class="p">,</span> <span class="n">GetProductsFromBatchrequest</span><span class="p">,</span>
+    <span class="n">GetProductPricesWithOutCommit</span><span class="p">,</span> <span class="n">GetProductStocksWithOutCommit</span><span class="p">,</span>
+    <span class="n">GetMappedProductsWithOutCommit</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">channel_app.omnitron.commands.setup</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">CreateOrUpdateCategoryTreeAndNodes</span><span class="p">,</span> <span class="n">CreateOrUpdateCategoryAttributes</span><span class="p">,</span>
     <span class="n">GetCategoryIds</span><span class="p">,</span> <span class="n">CreateOrUpdateChannelAttributeSet</span><span class="p">,</span>
@@ -219,8 +225,11 @@
         <span class="s2">&quot;get_inserted_or_updated_products&quot;</span><span class="p">:</span> <span class="n">GetInsertedOrUpdatedProducts</span><span class="p">,</span>
         <span class="s2">&quot;get_deleted_products&quot;</span><span class="p">:</span> <span class="n">GetDeletedProducts</span><span class="p">,</span>
         <span class="s2">&quot;get_mapped_products&quot;</span><span class="p">:</span> <span class="n">GetMappedProducts</span><span class="p">,</span>
+        <span class="s2">&quot;get_mapped_products_without_commit&quot;</span><span class="p">:</span> <span class="n">GetMappedProductsWithOutCommit</span><span class="p">,</span>
         <span class="s2">&quot;get_product_prices&quot;</span><span class="p">:</span> <span class="n">GetProductPrices</span><span class="p">,</span>
+        <span class="s2">&quot;get_product_prices_without_commit&quot;</span><span class="p">:</span> <span class="n">GetProductPricesWithOutCommit</span><span class="p">,</span>
         <span class="s2">&quot;get_product_stocks&quot;</span><span class="p">:</span> <span class="n">GetProductStocks</span><span class="p">,</span>
+        <span class="s2">&quot;get_product_stocks_without_commit&quot;</span><span class="p">:</span> <span class="n">GetProductStocksWithOutCommit</span><span class="p">,</span>
         <span class="s2">&quot;get_product_categories&quot;</span><span class="p">:</span> <span class="n">GetProductCategoryNodes</span><span class="p">,</span>
         <span class="s2">&quot;get_batch_requests&quot;</span><span class="p">:</span> <span class="n">GetBatchRequests</span><span class="p">,</span>
         <span class="s2">&quot;get_updated_stocks&quot;</span><span class="p">:</span> <span class="n">GetUpdatedProductStocks</span><span class="p">,</span>
@@ -231,9 +240,12 @@
         <span class="s2">&quot;get_inserted_prices&quot;</span><span class="p">:</span> <span class="n">GetInsertedProductPrices</span><span class="p">,</span>
         <span class="s2">&quot;get_inserted_prices_from_extra_price_list&quot;</span><span class="p">:</span> <span class="n">GetInsertedProductPricesFromExtraPriceList</span><span class="p">,</span>
         <span class="s2">&quot;get_updated_prices_from_extra_price_list&quot;</span><span class="p">:</span> <span class="n">GetUpdatedProductPricesFromExtraPriceList</span><span class="p">,</span>
+        <span class="s2">&quot;get_updated_images&quot;</span><span class="p">:</span> <span class="n">GetUpdatedProductImages</span><span class="p">,</span>
+        <span class="s2">&quot;get_inserted_images&quot;</span><span class="p">:</span> <span class="n">GetInsertedProductImages</span><span class="p">,</span>
         <span class="s2">&quot;process_product_batch_requests&quot;</span><span class="p">:</span> <span class="n">ProcessProductBatchRequests</span><span class="p">,</span>
         <span class="s2">&quot;process_stock_batch_requests&quot;</span><span class="p">:</span> <span class="n">ProcessStockBatchRequests</span><span class="p">,</span>
         <span class="s2">&quot;process_price_batch_requests&quot;</span><span class="p">:</span> <span class="n">ProcessPriceBatchRequests</span><span class="p">,</span>
+        <span class="s2">&quot;process_image_batch_requests&quot;</span><span class="p">:</span> <span class="n">ProcessImageBatchRequests</span><span class="p">,</span>
         <span class="s2">&quot;process_order_batch_requests&quot;</span><span class="p">:</span> <span class="n">ProcessOrderBatchRequests</span><span class="p">,</span>
         <span class="s2">&quot;process_delete_product_batch_requests&quot;</span><span class="p">:</span> <span class="n">ProcessDeletedProductBatchRequests</span><span class="p">,</span>
         <span class="s2">&quot;get_or_create_customer&quot;</span><span class="p">:</span> <span class="n">GetOrCreateCustomer</span><span class="p">,</span>
@@ -268,6 +280,7 @@
         <span class="s2">&quot;update_channel_conf_schema&quot;</span><span class="p">:</span> <span class="n">UpdateChannelConfSchema</span><span class="p">,</span>
         <span class="s2">&quot;get_product_objects&quot;</span><span class="p">:</span> <span class="n">GetProductObjects</span><span class="p">,</span>
         <span class="s2">&quot;get_product_from_batch_request&quot;</span><span class="p">:</span> <span class="n">GetProductsFromBatchrequest</span><span class="p">,</span>
+        <span class="s2">&quot;get_cancellation_requests&quot;</span><span class="p">:</span> <span class="n">GetCancellationRequest</span><span class="p">,</span>
         <span class="c1"># &quot;fetch_cancellation_plan&quot;: FetchCancellationPlan</span>
     <span class="p">}</span>
 
@@ -294,6 +307,9 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">api</span> <span class="o">=</span> <span class="n">OmnitronApiClient</span><span class="p">(</span><span class="n">base_url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">base_url</span><span class="p">,</span>
                                      <span class="n">username</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">username</span><span class="p">,</span>
                                      <span class="n">password</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">password</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">channel_is_active</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">channel</span><span class="o">.</span><span class="n">is_active</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">channel_is_active</span><span class="p">:</span>
+            <span class="k">return</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_batch</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">batch_request</span> <span class="o">=</span> <span class="n">ClientBatchRequest</span><span class="p">(</span>
                 <span class="n">channel_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">channel_id</span><span class="p">)</span><span class="o">.</span><span class="n">create</span><span class="p">()</span>
@@ -301,7 +317,9 @@
         <span class="k">return</span> <span class="bp">self</span>
 
     <span class="k">def</span> <span class="fm">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exc_type</span><span class="p">,</span> <span class="n">exc_val</span><span class="p">,</span> <span class="n">exc_tb</span><span class="p">):</span>
-        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">api</span></div>
+        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">api</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">exc_val</span><span class="p">,</span> <span class="ne">Exception</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">channel_is_active</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span></div>
 </pre></div>
 
            </div>

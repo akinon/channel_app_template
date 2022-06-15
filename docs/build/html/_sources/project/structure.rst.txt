@@ -17,6 +17,7 @@ ChannelTemplateApp projesini kullanan firmaların yeni satış kanalı geliştir
     |       └── products.py
     |       └── product_prices.py
     |       └── product_stocks.py
+    |       └── product_images.py
     |       └── orders
     |           └── orders.py
     | ├── app
@@ -164,6 +165,7 @@ Module                           Açıklama
 :doc:`channel.products`          Ürün ile ilgili komutlar
 :doc:`channel.product_prices`    Fiyat ile ilgili komutlar
 :doc:`channel.product_stocks`    Stok ile ilgili komutlar
+:doc:`channel.product_images`    Resim ile ilgili komutlar
 :doc:`channel.orders`            Sipariş ile ilgili komutlar
 ============================== ================================
 

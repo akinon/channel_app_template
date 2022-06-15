@@ -1,5 +1,6 @@
 from channel_app.app.order.service import OrderService
 from channel_app.app.product.service import ProductService
+from channel_app.app.product_image.service import ImageService
 from channel_app.app.product_price.service import PriceService
 from channel_app.app.product_stock.service import StockService
 from channel_app.app.setup.service import SetupService
@@ -110,6 +111,27 @@ def insert_prices():
 def check_prices():
     service = PriceService()
     service.get_price_batch_requests(is_success_log=True)
+
+
+# IMAGE TASKS
+
+
+@app.task
+def update_images():
+    service = ImageService()
+    service.update_product_images(is_sync=True, is_success_log=True)
+
+
+@app.task
+def insert_prices():
+    service = ImageService()
+    service.insert_product_images(is_sync=True, is_success_log=True)
+
+
+@app.task
+def check_prices():
+    service = ImageService()
+    service.get_image_batch_requests(is_success_log=True)
 
 
 # ORDER TASKS
