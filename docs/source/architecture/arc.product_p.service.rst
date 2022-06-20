@@ -6,7 +6,7 @@ ChannelIntegration entegrasyolanrından yardım alır.
 
 .. class:: PriceService(object)
 
-  .. method:: update_product_prices(self, is_sync=True, is_success_log=True)
+  .. method:: update_product_prices(self, is_sync=True, is_success_log=True, add_product_objects=False, add_stock=False)
 
     Bu fonksiyon öncelikle Akinon Omnitron'a bağlanır ve satış kanalına güncellemesi iletilebilecek
     ürünlerin fiyat bilgisini çeker. Sonrasında Satış Kanalına *send_updated_prices*
@@ -15,7 +15,7 @@ ChannelIntegration entegrasyolanrından yardım alır.
     Asenkron olacak ise **batch_service** üzerinden gerkli kayıtlar oluşturulur.
     Bir hata ile karşılaşılır ise *error_report* oluşturulur.
 
-  .. method:: insert_product_prices(self, is_sync=True, is_success_log=True)
+  .. method:: insert_product_prices(self, is_sync=True, is_success_log=True, add_product_objects=False, add_stock=False)
 
     Bu fonksiyon öncelikle Akinon Omnitron'a bağlanır ve satış kanalına eklenebilecek
     ürünlerin fiyat bilgisini çeker. Sonrasında Satış Kanalına *send_inserted_prices*
@@ -24,7 +24,7 @@ ChannelIntegration entegrasyolanrından yardım alır.
     Asenkron olacak ise **batch_service** üzerinden gerkli kayıtlar oluşturulur.
     Bir hata ile karşılaşılır ise *error_report* oluşturulur.
 
-  .. method:: insert_product_prices_from_extra_price_list(self, is_sync=True, is_success_log=True)
+  .. method:: insert_product_prices_from_extra_price_list(self, is_sync=True, is_success_log=True, add_product_objects=False, add_stock=False)
 
     Bu fonksiyon öncelikle Akinon Omnitron'a bağlanır ve satış kanalına eklenebilecek
     ürünlerin ekstra fiyat bilgisini çeker. Sonrasında Satış Kanalına *send_inserted_prices*
@@ -33,7 +33,7 @@ ChannelIntegration entegrasyolanrından yardım alır.
     Asenkron olacak ise **batch_service** üzerinden gerkli kayıtlar oluşturulur.
     Bir hata ile karşılaşılır ise *error_report* oluşturulur.
 
-  .. method:: update_product_prices_from_extra_price_list(self, is_sync=True, is_success_log=True)
+  .. method:: update_product_prices_from_extra_price_list(self, is_sync=True, is_success_log=True, add_product_objects=False, add_stock=False)
 
     Bu fonksiyon öncelikle Akinon Omnitron'a bağlanır ve satış kanalına güncellemesi iletilebilecek
     ürünlerin ekstra fiyat bilgisini çeker. Sonrasında Satış Kanalına *send_updated_prices*

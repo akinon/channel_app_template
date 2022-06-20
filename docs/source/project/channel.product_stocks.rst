@@ -2,6 +2,37 @@
 Product Stock
 ======================
 
+ProductStock Data
+=================
+
+..  code-block:: python
+
+    {
+        "pk": 1,
+        "product": 2250,
+        "stock": 46,
+        "stock_list": 1,
+        "unit_type": "qty",
+        "extra_field":{},
+        "sold_quantity_unreported": 0,
+        "modified_date": "2017-01-23T13:37:31.947171Z"
+    }
+
+productstock yer alan verinin içerisinde;
+
+|   `product` kısmında ürünün omnitrondaki pk vardır.
+|
+|   `stock` kısmında satılabilir stok miktarı vardır.
+|
+|   `stock_list` kısmında akinondaki stok listesinin ID bilgisi vardır
+|
+|   `unit_type` kısmında miktar bilgisinin birimi vardır.
+|
+|   `sold_quantity_unreported` kısımında akinondaki rezerve stok miktarı vardır.
+|
+|   `modified_date` son güncelleme tarihi vardır.
+|
+
 Ürün entegrasyonu ile ilgili channel_app_template.app.tasks altında çalışan tasklar
 
 1. insert_stocks
@@ -19,6 +50,10 @@ Product Stock
   .. attention::
 
      :ref:`Stok Servisi` içerisinde yer alan insert_product_stocks servisine ait parametreler
+
+     | **add_price**      : Ürün Stocklarına ürün fiyat verisi eklenir. :ref:`Ürün Stock için Fiyat Verisi`
+
+     | **add_product_objects**      : Ürün Stocklarına ürün verisi eklenir. :ref:`Ürün Stock Datasına Ürün Datası Eklemek`
 
      | **is_sync**        : Stok satış kanalına yollandığında durumu hemen mi ediniliyor :ref:`Senkron veya Asenkron Satış Kanalı Süreç`
                         yoksa asenkron bir şekilde mi ediniliyor olduğudur.
@@ -84,6 +119,10 @@ Product Stock
   .. attention::
 
      :ref:`Stok Servisi` içerisinde yer alan insert_product_stocks servisine ait parametreler
+
+     | **add_price**      : Ürün Stocklarına ürün fiyat verisi eklenir. :ref:`Ürün Stock için Fiyat Verisi`
+
+     | **add_product_objects**      : Ürün Stocklarına ürün verisi eklenir. :ref:`Ürün Stock Datasına Ürün Datası Eklemek`
 
      | **is_sync**        : Stok satış kanalına yollandığında durumu hemen mi ediniliyor :ref:`Senkron veya Asenkron Satış Kanalı Süreç`
                         yoksa asenkron bir şekilde mi ediniliyor olduğudur.
@@ -182,4 +221,74 @@ Product Stock
 
           # örnek return
           return response_data, report, data
+
+
+Ürün Stock Datasına Fiyat Datası Eklemek
+=================
+
+..  code-block:: python
+
+    {
+        "pk": 1,
+        "product": 2250,
+        "stock": 46,
+        "stock_list": 1,
+        "unit_type": "qty",
+        "extra_field":{},
+        "sold_quantity_unreported": 0,
+        "modified_date": "2017-01-23T13:37:31.947171Z",
+        "productprice":    {
+            "pk": 2,
+            "product": 913,
+            "price": "62.44",
+            "price_list": 1,
+            "currency_type": "try",
+            "tax_rate": "8.00",
+            "retail_price": "249.75",
+            "extra_field": {},
+            "discount_percentage": "75.00",
+            "modified_date": "2017-01-23T18:29:23.716095Z"
+        }
+    }
+
+Ürün Stock Datasına Ürün Datası Eklemek
+=================
+
+..  code-block:: python
+
+    {
+        "pk": 1,
+        "product": 2250,
+        "stock": 46,
+        "stock_list": 1,
+        "unit_type": "qty",
+        "extra_field":{},
+        "sold_quantity_unreported": 0,
+        "modified_date": "2017-01-23T13:37:31.947171Z",
+        "product": {
+            "pk": 12227,
+            "name": "Kırmızı Tişört",
+            "base_code": "1KBATC0231",
+            "sku": "1KBATC0231001",
+            "product_type": "0",
+            "is_active": true,
+            "parent": null,
+            "attributes": {
+                "boyut": "34X34",
+                "renk": "001",
+                "uretim_yeri": "Türkiye",
+                "materyal": "%100 POLYESTER",
+            },
+            "productimage_set": [
+                {
+                    "pk": 20044,
+                    "status": "active",
+                    "image": "http://localhost:8001/media/products/2021/10/17/12227/1bfe74b4-175e-4c1a-80f2-b355feae498c.jpg"
+                }
+            ],
+            "attribute_set": 2,
+            "productization_date": "2017-01-23T16:40:58.578504Z"
+        }
+    }
+
 

@@ -6,7 +6,7 @@ ChannelIntegration entegrasyolanrından yardım alır.
 
 .. class:: StokService(object)
 
-  .. method:: update_product_stocks(self, is_sync=True, is_success_log=True)
+  .. method:: update_product_stocks(self, is_sync=True, is_success_log=True, add_product_objects=False, add_price=False)
 
     Bu fonksiyon öncelikle Akinon Omnitron'a bağlanır ve satış kanalına güncellemesi iletilebilecek
     ürünlerin stok bilgisini çeker. Sonrasında Satış Kanalına *send_updated_stocks*
@@ -15,7 +15,7 @@ ChannelIntegration entegrasyolanrından yardım alır.
     Asenkron olacak ise **batch_service** üzerinden gerkli kayıtlar oluşturulur.
     Bir hata ile karşılaşılır ise *error_report* oluşturulur.
 
-  .. method:: insert_product_stocks(self, is_sync=True, is_success_log=True)
+  .. method:: insert_product_stocks(self, is_sync=True, is_success_log=True, add_product_objects=False, add_price=False)
 
     Bu fonksiyon öncelikle Akinon Omnitron'a bağlanır ve satış kanalına eklenebilecek
     ürünlerin stok bilgisini çeker. Sonrasında Satış Kanalına *send_inserted_stocks*
@@ -24,7 +24,7 @@ ChannelIntegration entegrasyolanrından yardım alır.
     Asenkron olacak ise **batch_service** üzerinden gerkli kayıtlar oluşturulur.
     Bir hata ile karşılaşılır ise *error_report* oluşturulur.
 
-  .. method:: insert_product_stocks_from_extra_stock_list(self, is_sync=True, is_success_log=True)
+  .. method:: insert_product_stocks_from_extra_stock_list(self, is_sync=True, is_success_log=True, add_product_objects=False, add_price=False)
 
     Bu fonksiyon öncelikle Akinon Omnitron'a bağlanır ve satış kanalına eklenebilecek
     ürünlerin ekstra stok bilgisini çeker. Sonrasında Satış Kanalına *send_insert_stocks*
@@ -33,7 +33,7 @@ ChannelIntegration entegrasyolanrından yardım alır.
     Asenkron olacak ise **batch_service** üzerinden gerkli kayıtlar oluşturulur.
     Bir hata ile karşılaşılır ise *error_report* oluşturulur.
 
-  .. method:: update_product_stocks_from_extra_stock_list(self, is_sync=True, is_success_log=True)
+  .. method:: update_product_stocks_from_extra_stock_list(self, is_sync=True, is_success_log=True,add_product_objects=False, add_price=False)
 
     Bu fonksiyon öncelikle Akinon Omnitron'a bağlanır ve satış kanalına güncellemesi iletilebilecek
     ürünlerin ekstra stok bilgisini çeker. Sonrasında Satış Kanalına *send_updated_stocks*
@@ -45,7 +45,8 @@ ChannelIntegration entegrasyolanrından yardım alır.
   .. method:: get_warehouse_mappings(self)
 
     Bu fonksiyon yardımcı görevi görür. OmnitronIntegration üzerinde bulunan
-    konfigrasyon üzerinden *WAREHOUSE_CODES* okur ve formatlayıp döndürür.
+    konfigrasyon üzerinden *WAREHOUSE_CODES* okur ve formatlayıp döndürür. Ürün
+    stock listelerini maplemek için kullanılır.
 
   .. method:: get_stock_batch_requests(self, is_success_log=True)
 
