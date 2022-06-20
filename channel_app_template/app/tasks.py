@@ -78,13 +78,15 @@ def check_products():
 @app.task
 def insert_stocks():
     service = StockService()
-    service.insert_product_stocks(is_sync=True, is_success_log=True)
+    service.insert_product_stocks(is_sync=True, is_success_log=True,
+                                  add_product_objects=False, add_price=False)
 
 
 @app.task
 def update_stocks():
     service = StockService()
-    service.update_product_stocks(is_sync=True, is_success_log=True)
+    service.update_product_stocks(is_sync=True, is_success_log=True,
+                                  add_product_objects=False, add_price=False)
 
 
 @app.task
@@ -98,13 +100,15 @@ def check_stocks():
 @app.task
 def update_prices():
     service = PriceService()
-    service.update_product_prices(is_sync=True, is_success_log=True)
+    service.update_product_prices(is_sync=True, is_success_log=True,
+                                  add_product_objects=False, add_stock=False)
 
 
 @app.task
 def insert_prices():
     service = PriceService()
-    service.insert_product_prices(is_sync=True, is_success_log=True)
+    service.insert_product_prices(is_sync=True, is_success_log=True,
+                                  add_product_objects=False, add_stock=False)
 
 
 @app.task
