@@ -2,7 +2,7 @@
 Orders
 ======================
 
-Ürün entegrasyonu ile ilgili channel_app_template.app.tasks altında çalışan tasklar
+Sipariş entegrasyonu ile ilgili channel_app_template.app.tasks altında çalışan tasklar
 
 1. fetch_orders
 
