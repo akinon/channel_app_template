@@ -1,3 +1,5 @@
+:orphan:
+
 ======================
 Product Stock
 ======================
@@ -51,7 +53,7 @@ productstock yer alan verinin içerisinde;
 
      :ref:`Stok Servisi` içerisinde yer alan insert_product_stocks servisine ait parametreler
 
-     | **add_price**      : Ürün Stocklarına ürün fiyat verisi eklenir. :ref:`Ürün Stock için Fiyat Verisi`
+     | **add_price**      : Ürün Stocklarına ürün fiyat verisi eklenir. :ref:`Ürün Stock Datasına Fiyat Datası Eklemek`
 
      | **add_product_objects**      : Ürün Stocklarına ürün verisi eklenir. :ref:`Ürün Stock Datasına Ürün Datası Eklemek`
 
@@ -120,7 +122,7 @@ productstock yer alan verinin içerisinde;
 
      :ref:`Stok Servisi` içerisinde yer alan insert_product_stocks servisine ait parametreler
 
-     | **add_price**      : Ürün Stocklarına ürün fiyat verisi eklenir. :ref:`Ürün Stock için Fiyat Verisi`
+     | **add_price**      : Ürün Stocklarına ürün fiyat verisi eklenir. :ref:`Ürün Stock Datasına Fiyat Datası Eklemek`
 
      | **add_product_objects**      : Ürün Stocklarına ürün verisi eklenir. :ref:`Ürün Stock Datasına Ürün Datası Eklemek`
 
@@ -224,7 +226,7 @@ productstock yer alan verinin içerisinde;
 
 
 Ürün Stock Datasına Fiyat Datası Eklemek
-=================
+===================================================
 
 ..  code-block:: python
 
@@ -252,7 +254,7 @@ productstock yer alan verinin içerisinde;
     }
 
 Ürün Stock Datasına Ürün Datası Eklemek
-=================
+===================================================
 
 ..  code-block:: python
 

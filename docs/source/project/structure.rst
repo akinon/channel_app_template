@@ -1,6 +1,6 @@
-
+=============
 Klasör Yapısı
-======================
+=============
 
 
 Kopyalacağınız proje ile ilgili klasör ve dosya yapısı aşağıdaki gibidir.
@@ -43,16 +43,16 @@ ChannelTemplateApp projesini kullanan firmaların yeni satış kanalı geliştir
       yazabilirsiniz.
 
 
-.. py:class:: channel_app.channel.integration.ChannelIntegration
+   .. py:class:: channel_app_template.channel.integration.ChannelIntegration
 
-   Actions özelliğinde yer alan komutlar aracılığı ile Satış Kanalının
-   servisleri haberleşir. Her komut üzerinde *get_data*, *validated_data*,
-  *transform_data*, *send_request* ve *normalize_response* fonksiyonlarını
-  barındırmak zorundadır
+      Actions özelliğinde yer alan komutlar aracılığı ile Satış Kanalının
+      servisleri haberleşir. Her komut üzerinde *get_data*, *validated_data*,
+      *transform_data*, *send_request* ve *normalize_response* fonksiyonlarını
+      barındırmak zorundadır
 
    .. py:attribute:: channel
 
-      Satış kanalı objesidir. `Detaylı Bilgi <https://developers.akinon.com/docs/guide/omni/channels/introduction>`_
+      Satış kanalı objesidir. `Channel Detaylı Bilgi <https://developers.akinon.com/docs/guide/omni/channels/introduction>`_
       Örnek channel objesi.
 
       .. code-block:: python
@@ -93,7 +93,7 @@ ChannelTemplateApp projesini kullanan firmaların yeni satış kanalı geliştir
 
    .. py:attribute:: catalog
 
-      Katalog objesidir. `Detaylı Bilgi <https://developers.akinon.com/docs/guide/omni/catalogue/introduction>`_.
+      Katalog objesidir. `Katalog Detaylı Bilgi <https://developers.akinon.com/docs/guide/omni/catalogue/introduction>`_.
       Örnek katalog objesi
 
       .. code-block:: python
@@ -149,6 +149,7 @@ ChannelTemplateApp projesini kullanan firmaların yeni satış kanalı geliştir
                 batch_request=omnitron_integration.batch_request)
 
 
+==========================
 Satış Kanalının Kodlanması
 ==========================
 
@@ -169,10 +170,19 @@ Module                           Açıklama
 :doc:`channel.orders`            Sipariş ile ilgili komutlar
 ============================== ================================
 
+.. toctree::
+   :hidden:
 
+   channel.setup
+   channel.products
+   channel.product_prices
+   channel.product_stocks
+   channel.product_images
+   channel.orders
 
+===========================
 Akinon'a Yeni Komut Eklemek
----------------------------
+===========================
 
 Uygulama içerisindeki akinon klasör içerisinde Akinon'nun omnitron ürününe ait ihtiyaç duyduğu
 servisler ile haberleşen süreçler kodlanmıştır. Geliştirmenin yapılacağı satış

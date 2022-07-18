@@ -1,4 +1,4 @@
-
+:orphan:
 
 Ürün Oluşturma/Güncelleme İşlem Sonuç Üretme
 ============================================

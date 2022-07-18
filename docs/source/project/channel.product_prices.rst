@@ -1,3 +1,5 @@
+:orphan:
+
 ======================
 Product Price
 ======================
@@ -233,7 +235,7 @@ productprice yer alan verinin içerisinde;
 
 
 Ürün Fiyat Datasına Stock Datası Eklemek
-=================
+===================================================
 
 ..  code-block:: python
 
@@ -261,7 +263,7 @@ productprice yer alan verinin içerisinde;
     }
 
 Ürün Fiyat Datasına Ürün Datası Eklemek
-=================
+===================================================
 
 ..  code-block:: python
 

@@ -1,3 +1,5 @@
+:orphan:
+
 Fiyat Servisi
 ============================================
 Fiyat servisi üzerinde ürünlerin fiyatlarını oluşturma, güncelleme ve silme aksiyonlarını
@@ -13,7 +15,7 @@ ChannelIntegration entegrasyolanrından yardım alır.
     komutu aracılığıyla iletilir. *is_sync* parametresinin aldığı değere göre
     satış kanalı ile kurulacak iletişimin senkron mu asenkron mu olacağına karar verir.
     Asenkron olacak ise **batch_service** üzerinden gerkli kayıtlar oluşturulur.
-    Bir hata ile karşılaşılır ise *error_report* oluşturulur.
+    Bir hata ile karşılaşılır ise *error_report* oluşturulur :ref:`Sales Channel Logları`.
 
   .. method:: insert_product_prices(self, is_sync=True, is_success_log=True, add_product_objects=False, add_stock=False)
 
@@ -22,7 +24,7 @@ ChannelIntegration entegrasyolanrından yardım alır.
     komutu aracılığıyla iletilir. *is_sync* parametresinin aldığı değere göre
     satış kanalı ile kurulacak iletişimin senkron mu asenkron mu olacağına karar verir.
     Asenkron olacak ise **batch_service** üzerinden gerkli kayıtlar oluşturulur.
-    Bir hata ile karşılaşılır ise *error_report* oluşturulur.
+    Bir hata ile karşılaşılır ise *error_report* oluşturulur :ref:`Sales Channel Logları`.
 
   .. method:: insert_product_prices_from_extra_price_list(self, is_sync=True, is_success_log=True, add_product_objects=False, add_stock=False)
 
@@ -31,7 +33,7 @@ ChannelIntegration entegrasyolanrından yardım alır.
     komutu aracılığıyla iletilir. *is_sync* parametresinin aldığı değere göre
     satış kanalı ile kurulacak iletişimin senkron mu asenkron mu olacağına karar verir.
     Asenkron olacak ise **batch_service** üzerinden gerkli kayıtlar oluşturulur.
-    Bir hata ile karşılaşılır ise *error_report* oluşturulur.
+    Bir hata ile karşılaşılır ise *error_report* oluşturulur :ref:`Sales Channel Logları`.
 
   .. method:: update_product_prices_from_extra_price_list(self, is_sync=True, is_success_log=True, add_product_objects=False, add_stock=False)
 
@@ -40,7 +42,7 @@ ChannelIntegration entegrasyolanrından yardım alır.
     komutu aracılığıyla iletilir. *is_sync* parametresinin aldığı değere göre
     satış kanalı ile kurulacak iletişimin senkron mu asenkron mu olacağına karar verir.
     Asenkron olacak ise **batch_service** üzerinden gerkli kayıtlar oluşturulur.
-    Bir hata ile karşılaşılır ise *error_report* oluşturulur.
+    Bir hata ile karşılaşılır ise *error_report* oluşturulur :ref:`Sales Channel Logları`.
 
   .. method:: get_currency_mappings(self)
 
@@ -52,8 +54,8 @@ ChannelIntegration entegrasyolanrından yardım alır.
     Bu fonksiyon öncelikle Akinon Omnitron'a bağlanır ve satış kanalına ürün yaratmak/güncellemek
     için iletilmiş ve işlemi devam eden **batch_request** 'leri çeker.
     Sonrasında Satış Kanalından *check_products* komutu aracılığıyla sorgular.
-    Bir hata ile karşılaşılır ise *error_report* oluşturulur. Son olarak
-    satış kanalından gelen cevabı Akinon Omnitrona ileterek akışı tamamlar.
+    Bir hata ile karşılaşılır ise *error_report* oluşturulur :ref:`Sales Channel Logları`.
+    Son olarak satış kanalından gelen cevabı Akinon Omnitrona ileterek akışı tamamlar.
 
 
 
