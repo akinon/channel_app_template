@@ -55,6 +55,16 @@ ChannelTemplateApp projesini kullanan firmaların yeni satış kanalı geliştir
       Satış kanalı objesidir. `Channel Detaylı Bilgi <https://developers.akinon.com/docs/guide/omni/channels/introduction>`_
       Örnek channel objesi.
 
+      Schema alanında  FAILED_INTEGRATION, ATTRIBUTE_SET_STRATEGY eklenmsi zorunlu alanlardır.
+
+
+      1. ATTRIBUTE_SET_STRATEGY: "CategoryNode" veya "None" değerleri alabilir. Category nodeların
+      attribute setlerin category bağlı olup olmadığı bilgisi için gereklidir.
+
+
+      2. FAILED_INTEGRATION: Hata alınan işlemlerin tekrar edilmesi için gereken sürelerin girildiği alandır.
+
+
       .. code-block:: python
 
          {
@@ -81,7 +91,17 @@ ChannelTemplateApp projesini kullanan firmaların yeni satış kanalı geliştir
                     "client_id": "69b5c9c1-20e1-4c62-89f9-7186bde1b13f",
                     "ATTRIBUTE_SET_STRATEGY": "CategoryNode"
                 },
-                "schema": None
+                "schema": {
+                    "FAILED_INTEGRATION": {
+                        "label": "FAILED_INTEGRATION",
+                        "key": "FAILED_INTEGRATION",
+                        "data_type": "json",
+                        "required": True},
+                    "ATTRIBUTE_SET_STRATEGY": {
+                           "key": "ATTRIBUTE_SET_STRATEGY",
+                           "label": "ATTRIBUTE_SET_STRATEGY",
+                           "required": True,
+                           "data_type": "text"}}
          }
 
          >>> self.channel.pk
