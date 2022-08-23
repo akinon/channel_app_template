@@ -101,6 +101,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../architecture/index.html">Mimari</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../terminology.html">Terminoloji</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../flows.html">Akışlar</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../logs.html">Sales Channel Logları</a></li>
 </ul>
 
             
@@ -191,6 +192,9 @@ OMNITRON_CATALOG_ID: Bağlı satış kanalının katalog id değeri.</p></li>
 <span class="nb">export</span> <span class="nv">BROKER_HOST</span><span class="o">=</span><span class="m">127</span>.0.0.1
 <span class="nb">export</span> <span class="nv">BROKER_PORT</span><span class="o">=</span><span class="m">6379</span>
 <span class="nb">export</span> <span class="nv">BROKER_DATABASE_INDEX</span><span class="o">=</span><span class="m">4</span>
+<span class="nb">export</span> <span class="nv">CACHE_HOST</span><span class="o">=</span><span class="m">127</span>.0.0.1
+<span class="nb">export</span> <span class="nv">CACHE_PORT</span><span class="o">=</span><span class="m">6379</span>
+<span class="nb">export</span> <span class="nv">CACHE_DATABASE_INDEX</span><span class="o">=</span><span class="m">3</span>
 
 celery -A channel_app.celery_app worker -l info
 </pre></div>

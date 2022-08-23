@@ -38,7 +38,10 @@
         <link rel="index" title="Dizin"
               href="../genindex.html"/>
         <link rel="search" title="Ara" href="../search.html"/>
-    <link rel="top" title="Channel App Template 0.1.0 belgelendirmesi" href="../index.html"/> 
+    <link rel="top" title="Channel App Template 0.1.0 belgelendirmesi" href="../index.html"/>
+        <link rel="up" title="Klasör Yapısı" href="structure.html"/>
+        <link rel="next" title="Product Image" href="channel.product_images.html"/>
+        <link rel="prev" title="Product Price" href="channel.product_prices.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -84,12 +87,31 @@
           
             
             
-                <ul>
+                <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../setup/index.html">Kurulum ve Kullanım</a></li>
-<li class="toctree-l1"><a class="reference internal" href="index.html">Geliştirme Adımları</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Geliştirme Adımları</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="structure.html">Klasör Yapısı</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="structure.html#satis-kanalinin-kodlanmasi">Satış Kanalının Kodlanması</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="channel.setup.html">Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="channel.products.html">Products</a></li>
+<li class="toctree-l3"><a class="reference internal" href="channel.product_prices.html">Product Price</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Product Stock</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#productstock-data">ProductStock Data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#urun-stock-datasina-fiyat-datasi-eklemek">Ürün Stock Datasına Fiyat Datası Eklemek</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#urun-stock-datasina-urun-datasi-eklemek">Ürün Stock Datasına Ürün Datası Eklemek</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="channel.product_images.html">Product Image</a></li>
+<li class="toctree-l3"><a class="reference internal" href="channel.orders.html">Orders</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="structure.html#akinon-a-yeni-komut-eklemek">Akinon’a Yeni Komut Eklemek</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../architecture/index.html">Mimari</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../terminology.html">Terminoloji</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../flows.html">Akışlar</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../logs.html">Sales Channel Logları</a></li>
 </ul>
 
             
@@ -134,6 +156,10 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
+          <li><a href="index.html">Geliştirme Adımları</a> &raquo;</li>
+        
+          <li><a href="structure.html">Klasör Yapısı</a> &raquo;</li>
+        
       <li>Product Stock</li>
     
     
@@ -155,6 +181,35 @@
             
   <section id="product-stock">
 <h1>Product Stock<a class="headerlink" href="#product-stock" title="Bu başlık için kalıcı bağlantı">¶</a></h1>
+<section id="productstock-data">
+<h2>ProductStock Data<a class="headerlink" href="#productstock-data" title="Bu başlık için kalıcı bağlantı">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;pk&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">&quot;product&quot;</span><span class="p">:</span> <span class="mi">2250</span><span class="p">,</span>
+    <span class="s2">&quot;stock&quot;</span><span class="p">:</span> <span class="mi">46</span><span class="p">,</span>
+    <span class="s2">&quot;stock_list&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">&quot;unit_type&quot;</span><span class="p">:</span> <span class="s2">&quot;qty&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;extra_field&quot;</span><span class="p">:{},</span>
+    <span class="s2">&quot;sold_quantity_unreported&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s2">&quot;modified_date&quot;</span><span class="p">:</span> <span class="s2">&quot;2017-01-23T13:37:31.947171Z&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>productstock yer alan verinin içerisinde;</p>
+<div class="line-block">
+<div class="line"><cite>product</cite> kısmında ürünün omnitrondaki pk vardır.</div>
+<div class="line"><br /></div>
+<div class="line"><cite>stock</cite> kısmında satılabilir stok miktarı vardır.</div>
+<div class="line"><br /></div>
+<div class="line"><cite>stock_list</cite> kısmında akinondaki stok listesinin ID bilgisi vardır</div>
+<div class="line"><br /></div>
+<div class="line"><cite>unit_type</cite> kısmında miktar bilgisinin birimi vardır.</div>
+<div class="line"><br /></div>
+<div class="line"><cite>sold_quantity_unreported</cite> kısımında akinondaki rezerve stok miktarı vardır.</div>
+<div class="line"><br /></div>
+<div class="line"><cite>modified_date</cite> son güncelleme tarihi vardır.</div>
+<div class="line"><br /></div>
+</div>
 <p>Ürün entegrasyonu ile ilgili channel_app_template.app.tasks altında çalışan tasklar</p>
 <ol class="arabic simple">
 <li><p>insert_stocks</p></li>
@@ -169,6 +224,12 @@ aşağıda listesi verilen parametre değerleri ile Stok Verisi zenginleştirile
 <div class="admonition attention">
 <p class="admonition-title">Dikkat</p>
 <p><a class="reference internal" href="../architecture/arc.product_s.service.html#stok-servisi"><span class="std std-ref">Stok Servisi</span></a> içerisinde yer alan insert_product_stocks servisine ait parametreler</p>
+<div class="line-block">
+<div class="line"><strong>add_price</strong>      : Ürün Stocklarına ürün fiyat verisi eklenir. <a class="reference internal" href="#urun-stock-datasina-fiyat-datasi-eklemek"><span class="std std-ref">Ürün Stock Datasına Fiyat Datası Eklemek</span></a></div>
+</div>
+<div class="line-block">
+<div class="line"><strong>add_product_objects</strong>      : Ürün Stocklarına ürün verisi eklenir. <a class="reference internal" href="#urun-stock-datasina-urun-datasi-eklemek"><span class="std std-ref">Ürün Stock Datasına Ürün Datası Eklemek</span></a></div>
+</div>
 <div class="line-block">
 <div class="line"><strong>is_sync</strong>        : Stok satış kanalına yollandığında durumu hemen mi ediniliyor <a class="reference internal" href="channel.products.detail.html#senkron-veya-asenkron-satis-kanali-surec"><span class="std std-ref">Senkron veya Asenkron Satış Kanalı Süreç</span></a>
 yoksa asenkron bir şekilde mi ediniliyor olduğudur.</div>
@@ -246,6 +307,12 @@ aşağıda listesi verilen parametre değerleri ile Stok Verisi zenginleştirile
 <div class="admonition attention">
 <p class="admonition-title">Dikkat</p>
 <p><a class="reference internal" href="../architecture/arc.product_s.service.html#stok-servisi"><span class="std std-ref">Stok Servisi</span></a> içerisinde yer alan insert_product_stocks servisine ait parametreler</p>
+<div class="line-block">
+<div class="line"><strong>add_price</strong>      : Ürün Stocklarına ürün fiyat verisi eklenir. <a class="reference internal" href="#urun-stock-datasina-fiyat-datasi-eklemek"><span class="std std-ref">Ürün Stock Datasına Fiyat Datası Eklemek</span></a></div>
+</div>
+<div class="line-block">
+<div class="line"><strong>add_product_objects</strong>      : Ürün Stocklarına ürün verisi eklenir. <a class="reference internal" href="#urun-stock-datasina-urun-datasi-eklemek"><span class="std std-ref">Ürün Stock Datasına Ürün Datası Eklemek</span></a></div>
+</div>
 <div class="line-block">
 <div class="line"><strong>is_sync</strong>        : Stok satış kanalına yollandığında durumu hemen mi ediniliyor <a class="reference internal" href="channel.products.detail.html#senkron-veya-asenkron-satis-kanali-surec"><span class="std std-ref">Senkron veya Asenkron Satış Kanalı Süreç</span></a>
 yoksa asenkron bir şekilde mi ediniliyor olduğudur.</div>
@@ -372,11 +439,87 @@ komut’a gönderir. Bu komut ile satış kanalında bulunan ürünün stok bilg
 
 </div></blockquote>
 </section>
+<section id="urun-stock-datasina-fiyat-datasi-eklemek">
+<h2>Ürün Stock Datasına Fiyat Datası Eklemek<a class="headerlink" href="#urun-stock-datasina-fiyat-datasi-eklemek" title="Bu başlık için kalıcı bağlantı">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;pk&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">&quot;product&quot;</span><span class="p">:</span> <span class="mi">2250</span><span class="p">,</span>
+    <span class="s2">&quot;stock&quot;</span><span class="p">:</span> <span class="mi">46</span><span class="p">,</span>
+    <span class="s2">&quot;stock_list&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">&quot;unit_type&quot;</span><span class="p">:</span> <span class="s2">&quot;qty&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;extra_field&quot;</span><span class="p">:{},</span>
+    <span class="s2">&quot;sold_quantity_unreported&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s2">&quot;modified_date&quot;</span><span class="p">:</span> <span class="s2">&quot;2017-01-23T13:37:31.947171Z&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;productprice&quot;</span><span class="p">:</span>    <span class="p">{</span>
+        <span class="s2">&quot;pk&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="s2">&quot;product&quot;</span><span class="p">:</span> <span class="mi">913</span><span class="p">,</span>
+        <span class="s2">&quot;price&quot;</span><span class="p">:</span> <span class="s2">&quot;62.44&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;price_list&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">&quot;currency_type&quot;</span><span class="p">:</span> <span class="s2">&quot;try&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;tax_rate&quot;</span><span class="p">:</span> <span class="s2">&quot;8.00&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;retail_price&quot;</span><span class="p">:</span> <span class="s2">&quot;249.75&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;extra_field&quot;</span><span class="p">:</span> <span class="p">{},</span>
+        <span class="s2">&quot;discount_percentage&quot;</span><span class="p">:</span> <span class="s2">&quot;75.00&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;modified_date&quot;</span><span class="p">:</span> <span class="s2">&quot;2017-01-23T18:29:23.716095Z&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="urun-stock-datasina-urun-datasi-eklemek">
+<h2>Ürün Stock Datasına Ürün Datası Eklemek<a class="headerlink" href="#urun-stock-datasina-urun-datasi-eklemek" title="Bu başlık için kalıcı bağlantı">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;pk&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">&quot;product&quot;</span><span class="p">:</span> <span class="mi">2250</span><span class="p">,</span>
+    <span class="s2">&quot;stock&quot;</span><span class="p">:</span> <span class="mi">46</span><span class="p">,</span>
+    <span class="s2">&quot;stock_list&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">&quot;unit_type&quot;</span><span class="p">:</span> <span class="s2">&quot;qty&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;extra_field&quot;</span><span class="p">:{},</span>
+    <span class="s2">&quot;sold_quantity_unreported&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s2">&quot;modified_date&quot;</span><span class="p">:</span> <span class="s2">&quot;2017-01-23T13:37:31.947171Z&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;product&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;pk&quot;</span><span class="p">:</span> <span class="mi">12227</span><span class="p">,</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Kırmızı Tişört&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;base_code&quot;</span><span class="p">:</span> <span class="s2">&quot;1KBATC0231&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;sku&quot;</span><span class="p">:</span> <span class="s2">&quot;1KBATC0231001&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;product_type&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;is_active&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+        <span class="s2">&quot;parent&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+        <span class="s2">&quot;attributes&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;boyut&quot;</span><span class="p">:</span> <span class="s2">&quot;34X34&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;renk&quot;</span><span class="p">:</span> <span class="s2">&quot;001&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;uretim_yeri&quot;</span><span class="p">:</span> <span class="s2">&quot;Türkiye&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;materyal&quot;</span><span class="p">:</span> <span class="s2">&quot;%100 POLYESTER&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;productimage_set&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;pk&quot;</span><span class="p">:</span> <span class="mi">20044</span><span class="p">,</span>
+                <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;active&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;image&quot;</span><span class="p">:</span> <span class="s2">&quot;http://localhost:8001/media/products/2021/10/17/12227/1bfe74b4-175e-4c1a-80f2-b355feae498c.jpg&quot;</span>
+            <span class="p">}</span>
+        <span class="p">],</span>
+        <span class="s2">&quot;attribute_set&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="s2">&quot;productization_date&quot;</span><span class="p">:</span> <span class="s2">&quot;2017-01-23T16:40:58.578504Z&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
 
 
            </div>
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="channel.product_images.html" class="btn btn-neutral float-right" title="Product Image" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="channel.product_prices.html" class="btn btn-neutral" title="Product Price" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

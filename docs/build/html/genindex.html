@@ -89,6 +89,7 @@
 <li class="toctree-l1"><a class="reference internal" href="architecture/index.html">Mimari</a></li>
 <li class="toctree-l1"><a class="reference internal" href="terminology.html">Terminoloji</a></li>
 <li class="toctree-l1"><a class="reference internal" href="flows.html">Akışlar</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logs.html">Sales Channel Logları</a></li>
 </ul>
 
             
@@ -189,19 +190,19 @@
 <h2 id="C">C</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="architecture/index.html#channel_app.core.integration.BaseIntegration.catalog">catalog (BaseIntegration property)</a>
+      <li><a href="project/structure.html#catalog">catalog</a>
 
       <ul>
-        <li><a href="project/structure.html#channel_app.channel.integration.ChannelIntegration.catalog">(channel_app.channel.integration.ChannelIntegration özniteliği)</a>
+        <li><a href="architecture/index.html#channel_app.core.integration.BaseIntegration.catalog">(BaseIntegration property)</a>
 </li>
       </ul></li>
-      <li><a href="architecture/index.html#channel_app.core.integration.BaseIntegration.channel">channel (BaseIntegration property)</a>
+      <li><a href="project/structure.html#channel">channel</a>
 
       <ul>
-        <li><a href="project/structure.html#channel_app.channel.integration.ChannelIntegration.channel">(channel_app.channel.integration.ChannelIntegration özniteliği)</a>
+        <li><a href="architecture/index.html#channel_app.core.integration.BaseIntegration.channel">(BaseIntegration property)</a>
 </li>
       </ul></li>
-      <li><a href="project/structure.html#channel_app.channel.integration.ChannelIntegration">channel_app.channel.integration.ChannelIntegration (yerleşik sınıf)</a>
+      <li><a href="project/structure.html#channel_app_template.channel.integration.ChannelIntegration">channel_app_template.channel.integration.ChannelIntegration (yerleşik sınıf)</a>
 </li>
       <li><a href="architecture/index.html#channel_app.channel.integration.ChannelIntegration">ChannelIntegration (channel_app.channel.integration içindeki sınıf)</a>
 </li>
@@ -229,7 +230,7 @@
 </li>
       <li><a href="architecture/arc.order.service.html#OrderService.create_order">create_order() (OrderService yöntemi)</a>
 </li>
-      <li><a href="project/structure.html#channel_app.channel.integration.ChannelIntegration.create_session">create_session() (channel_app.channel.integration.ChannelIntegration yöntemi)</a>
+      <li><a href="project/structure.html#create_session">create_session()</a>
 </li>
   </ul></td>
 </tr></table>
@@ -239,10 +240,10 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="architecture/arc.product.service.html#ProductService.delete_products">delete_products() (ProductService yöntemi)</a>
 </li>
-      <li><a href="architecture/index.html#channel_app.core.integration.BaseIntegration.do_action">do_action() (BaseIntegration yöntemi)</a>
+      <li><a href="project/structure.html#do_action">do_action()</a>
 
       <ul>
-        <li><a href="project/structure.html#channel_app.channel.integration.ChannelIntegration.do_action">(channel_app.channel.integration.ChannelIntegration yöntemi)</a>
+        <li><a href="architecture/index.html#channel_app.core.integration.BaseIntegration.do_action">(BaseIntegration yöntemi)</a>
 </li>
       </ul></li>
   </ul></td>
@@ -260,6 +261,8 @@
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="architecture/arc.order.service.html#OrderService.fetch_and_create_order">fetch_and_create_order() (OrderService yöntemi)</a>
+</li>
+      <li><a href="architecture/arc.order.service.html#OrderService.fetch_and_update_order_items">fetch_and_update_order_items() (OrderService yöntemi)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -286,9 +289,9 @@
 </li>
         <li><a href="project/channel.orders.html#channel.commands.orders.orders.GetCancelledOrders.get_data">(GetCancelledOrders yöntemi)</a>
 </li>
-        <li><a href="project/channel.setup.GetCategoryTreeAndNodes.html#channel_app.channel.commands.setup.GetCategoryTreeAndNodes.get_data">(GetCategoryTreeAndNodes yöntemi)</a>
-</li>
         <li><a href="project/channel.orders.html#channel.commands.orders.orders.GetOrders.get_data">(GetOrders yöntemi)</a>
+</li>
+        <li><a href="project/channel.orders.html#channel.commands.orders.orders.GetUpdatedOrderItems.get_data">(GetUpdatedOrderItems yöntemi)</a>
 </li>
         <li><a href="project/channel.products.html#channel.commands.products.SendDeletedProducts.get_data">(SendDeletedProducts yöntemi)</a>
 </li>
@@ -329,17 +332,15 @@
 </li>
       <li><a href="project/channel.orders.html#channel.commands.orders.orders.GetCancelledOrders">GetCancelledOrders (channel.commands.orders.orders içindeki sınıf)</a>
 </li>
-      <li><a href="project/channel.setup.html#channel.commands.setup.GetCategoryAttributes">GetCategoryAttributes (channel.commands.setup içindeki sınıf)</a>
+      <li><a href="project/channel.setup.GetCategoryAttributes.html#channel.commands.setup.GetCategoryAttributes">GetCategoryAttributes (channel.commands.setup içindeki sınıf)</a>
 </li>
-      <li><a href="project/channel.setup.html#channel.commands.setup.GetCategoryTreeAndNodes">GetCategoryTreeAndNodes (channel.commands.setup içindeki sınıf)</a>
-
-      <ul>
-        <li><a href="project/channel.setup.GetCategoryTreeAndNodes.html#channel_app.channel.commands.setup.GetCategoryTreeAndNodes">(channel_app.channel.commands.setup içindeki sınıf)</a>
+      <li><a href="project/channel.setup.GetCategoryTreeAndNodes.html#channel.commands.setup.GetCategoryTreeAndNodes">GetCategoryTreeAndNodes (channel.commands.setup içindeki sınıf)</a>
 </li>
-      </ul></li>
-      <li><a href="project/channel.setup.html#channel.commands.setup.GetChannelConfSchema">GetChannelConfSchema (channel.commands.setup içindeki sınıf)</a>
+      <li><a href="project/channel.setup.GetChannelConfSchema.html#channel.commands.setup.GetChannelConfSchema">GetChannelConfSchema (channel.commands.setup içindeki sınıf)</a>
 </li>
       <li><a href="project/channel.orders.html#channel.commands.orders.orders.GetOrders">GetOrders (channel.commands.orders.orders içindeki sınıf)</a>
+</li>
+      <li><a href="project/channel.orders.html#channel.commands.orders.orders.GetUpdatedOrderItems">GetUpdatedOrderItems (channel.commands.orders.orders içindeki sınıf)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -384,13 +385,15 @@
 </li>
         <li><a href="project/channel.orders.html#channel.commands.orders.orders.GetCancelledOrders.normalize_response">(GetCancelledOrders yöntemi)</a>
 </li>
-        <li><a href="project/channel.setup.html#channel.commands.setup.GetCategoryAttributes.normalize_response">(GetCategoryAttributes yöntemi)</a>
+        <li><a href="project/channel.setup.GetCategoryAttributes.html#channel.commands.setup.GetCategoryAttributes.normalize_response">(GetCategoryAttributes yöntemi)</a>
 </li>
-        <li><a href="project/channel.setup.GetCategoryTreeAndNodes.html#channel_app.channel.commands.setup.GetCategoryTreeAndNodes.normalize_response">(GetCategoryTreeAndNodes yöntemi)</a>, <a href="project/channel.setup.html#channel.commands.setup.GetCategoryTreeAndNodes.normalize_response">[1]</a>
+        <li><a href="project/channel.setup.GetCategoryTreeAndNodes.html#channel.commands.setup.GetCategoryTreeAndNodes.normalize_response">(GetCategoryTreeAndNodes yöntemi)</a>
 </li>
-        <li><a href="project/channel.setup.html#channel.commands.setup.GetChannelConfSchema.normalize_response">(GetChannelConfSchema yöntemi)</a>
+        <li><a href="project/channel.setup.GetChannelConfSchema.html#channel.commands.setup.GetChannelConfSchema.normalize_response">(GetChannelConfSchema yöntemi)</a>
 </li>
         <li><a href="project/channel.orders.html#channel.commands.orders.orders.GetOrders.normalize_response">(GetOrders yöntemi)</a>
+</li>
+        <li><a href="project/channel.orders.html#channel.commands.orders.orders.GetUpdatedOrderItems.normalize_response">(GetUpdatedOrderItems yöntemi)</a>
 </li>
         <li><a href="project/channel.products.html#channel.commands.products.SendDeletedProducts.normalize_response">(SendDeletedProducts yöntemi)</a>
 </li>
@@ -462,11 +465,13 @@
 </li>
         <li><a href="project/channel.orders.html#channel.commands.orders.orders.GetCancelledOrders.send_request">(GetCancelledOrders yöntemi)</a>
 </li>
-        <li><a href="project/channel.setup.html#channel.commands.setup.GetCategoryAttributes.send_request">(GetCategoryAttributes yöntemi)</a>
+        <li><a href="project/channel.setup.GetCategoryAttributes.html#channel.commands.setup.GetCategoryAttributes.send_request">(GetCategoryAttributes yöntemi)</a>
 </li>
-        <li><a href="project/channel.setup.GetCategoryTreeAndNodes.html#channel_app.channel.commands.setup.GetCategoryTreeAndNodes.send_request">(GetCategoryTreeAndNodes yöntemi)</a>, <a href="project/channel.setup.html#channel.commands.setup.GetCategoryTreeAndNodes.send_request">[1]</a>
+        <li><a href="project/channel.setup.GetCategoryTreeAndNodes.html#channel.commands.setup.GetCategoryTreeAndNodes.send_request">(GetCategoryTreeAndNodes yöntemi)</a>
 </li>
         <li><a href="project/channel.orders.html#channel.commands.orders.orders.GetOrders.send_request">(GetOrders yöntemi)</a>
+</li>
+        <li><a href="project/channel.orders.html#channel.commands.orders.orders.GetUpdatedOrderItems.send_request">(GetUpdatedOrderItems yöntemi)</a>
 </li>
         <li><a href="project/channel.products.html#channel.commands.products.SendDeletedProducts.send_request">(SendDeletedProducts yöntemi)</a>
 </li>
@@ -511,7 +516,7 @@
 </li>
       <li><a href="project/channel.product_stocks.html#channel.commands.product_stocks.SendUpdatedStocks">SendUpdatedStocks (channel.commands.product_stocks içindeki sınıf)</a>
 </li>
-      <li><a href="project/structure.html#channel_app.channel.integration.ChannelIntegration.session">session (channel_app.channel.integration.ChannelIntegration özniteliği)</a>
+      <li><a href="project/structure.html#session">session</a>
 </li>
       <li><a href="architecture/arc.setup.service.html#SetupService">SetupService (yerleşik sınıf)</a>
 </li>
@@ -540,9 +545,9 @@
 </li>
         <li><a href="project/channel.orders.html#channel.commands.orders.orders.GetCancelledOrders.transform_data">(GetCancelledOrders yöntemi)</a>
 </li>
-        <li><a href="project/channel.setup.GetCategoryTreeAndNodes.html#channel_app.channel.commands.setup.GetCategoryTreeAndNodes.transform_data">(GetCategoryTreeAndNodes yöntemi)</a>
-</li>
         <li><a href="project/channel.orders.html#channel.commands.orders.orders.GetOrders.transform_data">(GetOrders yöntemi)</a>
+</li>
+        <li><a href="project/channel.orders.html#channel.commands.orders.orders.GetUpdatedOrderItems.transform_data">(GetUpdatedOrderItems yöntemi)</a>
 </li>
         <li><a href="project/channel.products.html#channel.commands.products.SendDeletedProducts.transform_data">(SendDeletedProducts yöntemi)</a>
 </li>
@@ -612,9 +617,9 @@
 </li>
         <li><a href="project/channel.orders.html#channel.commands.orders.orders.GetCancelledOrders.validated_data">(GetCancelledOrders yöntemi)</a>
 </li>
-        <li><a href="project/channel.setup.GetCategoryTreeAndNodes.html#channel_app.channel.commands.setup.GetCategoryTreeAndNodes.validated_data">(GetCategoryTreeAndNodes yöntemi)</a>
-</li>
         <li><a href="project/channel.orders.html#channel.commands.orders.orders.GetOrders.validated_data">(GetOrders yöntemi)</a>
+</li>
+        <li><a href="project/channel.orders.html#channel.commands.orders.orders.GetUpdatedOrderItems.validated_data">(GetUpdatedOrderItems yöntemi)</a>
 </li>
         <li><a href="project/channel.products.html#channel.commands.products.SendDeletedProducts.validated_data">(SendDeletedProducts yöntemi)</a>
 </li>

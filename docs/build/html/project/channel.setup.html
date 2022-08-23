@@ -38,7 +38,10 @@
         <link rel="index" title="Dizin"
               href="../genindex.html"/>
         <link rel="search" title="Ara" href="../search.html"/>
-    <link rel="top" title="Channel App Template 0.1.0 belgelendirmesi" href="../index.html"/> 
+    <link rel="top" title="Channel App Template 0.1.0 belgelendirmesi" href="../index.html"/>
+        <link rel="up" title="Klasör Yapısı" href="structure.html"/>
+        <link rel="next" title="Products" href="channel.products.html"/>
+        <link rel="prev" title="Klasör Yapısı" href="structure.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -84,12 +87,26 @@
           
             
             
-                <ul>
+                <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../setup/index.html">Kurulum ve Kullanım</a></li>
-<li class="toctree-l1"><a class="reference internal" href="index.html">Geliştirme Adımları</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Geliştirme Adımları</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="structure.html">Klasör Yapısı</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="structure.html#satis-kanalinin-kodlanmasi">Satış Kanalının Kodlanması</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="channel.products.html">Products</a></li>
+<li class="toctree-l3"><a class="reference internal" href="channel.product_prices.html">Product Price</a></li>
+<li class="toctree-l3"><a class="reference internal" href="channel.product_stocks.html">Product Stock</a></li>
+<li class="toctree-l3"><a class="reference internal" href="channel.product_images.html">Product Image</a></li>
+<li class="toctree-l3"><a class="reference internal" href="channel.orders.html">Orders</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="structure.html#akinon-a-yeni-komut-eklemek">Akinon’a Yeni Komut Eklemek</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../architecture/index.html">Mimari</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../terminology.html">Terminoloji</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../flows.html">Akışlar</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../logs.html">Sales Channel Logları</a></li>
 </ul>
 
             
@@ -134,6 +151,10 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
+          <li><a href="index.html">Geliştirme Adımları</a> &raquo;</li>
+        
+          <li><a href="structure.html">Klasör Yapısı</a> &raquo;</li>
+        
       <li>Setup</li>
     
     
@@ -161,7 +182,7 @@ dosyasında yer almaktadır.
 Setup adımları ile ilgili 3 adet düzenli çalışabilecek durumda olan job vardır.</p>
 <ol class="arabic">
 <li><p><strong>update_channel_conf_schema</strong>:</p>
-<p><strong>Düzenlenmesi gereken class</strong> <a class="reference internal" href="#channel.commands.setup.GetChannelConfSchema" title="channel.commands.setup.GetChannelConfSchema"><code class="xref py py-class docutils literal notranslate"><span class="pre">channel.commands.setup.GetChannelConfSchema</span></code></a></p>
+<p><strong>Düzenlenmesi gereken class</strong> <a class="reference internal" href="channel.setup.GetChannelConfSchema.html#getchannelconfschema"><span class="std std-ref">GetChannelConfSchema</span></a></p>
 <p>İş sürecinde oluşturulacak olan satış kanalı için
 ihtiyaç duyulan ayarları oluşturur. İşlem sırası olarak öncelikle satış
 kanalı entegrasyonunda yapılan gelişltirme aracılığıyla ayarları okur,
@@ -171,147 +192,28 @@ sonrasında Akinon’a iletir.</p>
 ikilisi koyabilir ve buna göre geliştirmenizi yapabilirsiniz.</p>
 </li>
 <li><p><strong>create_or_update_category_tree_and_nodes</strong></p>
-<p><strong>Düzenlenmesi gereken class</strong> <a class="reference internal" href="#channel.commands.setup.GetCategoryTreeAndNodes" title="channel.commands.setup.GetCategoryTreeAndNodes"><code class="xref py py-class docutils literal notranslate"><span class="pre">channel.commands.setup.GetCategoryTreeAndNodes</span></code></a></p>
+<p><strong>Düzenlenmesi gereken class</strong> <a class="reference internal" href="channel.setup.GetCategoryTreeAndNodes.html#getcategorytreeandnodes"><span class="std std-ref">GetCategoryTreeAndNodes</span></a></p>
 <p>Satış kanalına ait kategori ağacını akinon tarafında oluşturur.</p>
 </li>
 <li><p><strong>create_or_update_category_attributes</strong></p>
-<p><strong>Düzenlenmesi gereken class</strong> <a class="reference internal" href="#channel.commands.setup.GetCategoryAttributes" title="channel.commands.setup.GetCategoryAttributes"><code class="xref py py-class docutils literal notranslate"><span class="pre">channel.commands.setup.GetCategoryAttributes</span></code></a></p>
+<p><strong>Düzenlenmesi gereken class</strong> <a class="reference internal" href="channel.setup.GetCategoryAttributes.html#getcategoryattributes"><span class="std std-ref">GetCategoryAttributes</span></a></p>
 </li>
 </ol>
-<dl class="py class">
-<dt class="sig sig-object py" id="channel.commands.setup.GetChannelConfSchema">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetChannelConfSchema</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">integration</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">objects</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_request</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/channel/commands/setup.html#GetChannelConfSchema"><span class="viewcode-link"><span class="pre">[kaynak]</span></span></a><a class="headerlink" href="#channel.commands.setup.GetChannelConfSchema" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
-<dd><dl class="py method">
-<dt class="sig sig-object py" id="channel.commands.setup.GetChannelConfSchema.normalize_response">
-<span class="sig-name descname"><span class="pre">normalize_response</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validated_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformed_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">response</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/channel/commands/setup.html#GetChannelConfSchema.normalize_response"><span class="viewcode-link"><span class="pre">[kaynak]</span></span></a><a class="headerlink" href="#channel.commands.setup.GetChannelConfSchema.normalize_response" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
-<dd><p>Açılacak satış kanalı için dinamik satış kanalı configurasyon ayarı
-burada tanımlanır. Aşağıdaki formatta satış kanalının ayarı olarak
-girilmesini istediğiniz bilgileri tanımlayabilirsiniz. Yapacağınız
-geliştirmede bu girilen ayarları kullanabilirsiniz.</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="bp">self</span><span class="o">.</span><span class="n">integration</span><span class="o">.</span><span class="n">channel</span><span class="o">.</span><span class="n">conf</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;main_url&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>Örnek Kod:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">schema</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;main_url&quot;</span><span class="p">:</span> <span class="n">ChannelConfSchemaField</span><span class="p">(</span>
-        <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-        <span class="n">data_type</span><span class="o">=</span><span class="n">ChannelConfSchemaDataTypes</span><span class="o">.</span><span class="n">text</span><span class="p">,</span>
-        <span class="n">key</span><span class="o">=</span><span class="s2">&quot;main_url&quot;</span><span class="p">,</span>
-        <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Api Url&quot;</span><span class="p">),</span>
-    <span class="s2">&quot;marchant_id&quot;</span><span class="p">:</span> <span class="n">ChannelConfSchemaField</span><span class="p">(</span>
-        <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-        <span class="n">data_type</span><span class="o">=</span><span class="n">ChannelConfSchemaDataTypes</span><span class="o">.</span><span class="n">text</span><span class="p">,</span>
-        <span class="n">key</span><span class="o">=</span><span class="s2">&quot;marchant_id&quot;</span><span class="p">,</span>
-        <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Satıcı Kodu&quot;</span><span class="p">),</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="channel.commands.setup.GetCategoryTreeAndNodes">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetCategoryTreeAndNodes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">integration</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">objects</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_request</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/channel/commands/setup.html#GetCategoryTreeAndNodes"><span class="viewcode-link"><span class="pre">[kaynak]</span></span></a><a class="headerlink" href="#channel.commands.setup.GetCategoryTreeAndNodes" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
-<dd><p>Satış kanalında yer alan kategori ağacı akinon tarafında da oluşturturulabilmesi
-için gerekli veriyi sağlar. Komut parametre almadan çalışmaktadır.</p>
-<p><a class="reference internal" href="channel.setup.GetCategoryTreeAndNodes.html"><span class="doc">GetCategoryAttributes</span></a></p>
-<dl class="py method">
-<dt class="sig sig-object py" id="channel.commands.setup.GetCategoryTreeAndNodes.send_request">
-<span class="sig-name descname"><span class="pre">send_request</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">transformed_data</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">HttpResponse</span></span></span><a class="reference internal" href="../_modules/channel/commands/setup.html#GetCategoryTreeAndNodes.send_request"><span class="viewcode-link"><span class="pre">[kaynak]</span></span></a><a class="headerlink" href="#channel.commands.setup.GetCategoryTreeAndNodes.send_request" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
-<dd><p>Kategori ağacına ulaşmak için gerekli request isteği atılır.</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;url&quot;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">return</span> <span class="n">response</span>
-</pre></div>
-</div>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="channel.commands.setup.GetCategoryTreeAndNodes.normalize_response">
-<span class="sig-name descname"><span class="pre">normalize_response</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validated_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformed_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">response</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/channel/commands/setup.html#GetCategoryTreeAndNodes.normalize_response"><span class="viewcode-link"><span class="pre">[kaynak]</span></span></a><a class="headerlink" href="#channel.commands.setup.GetCategoryTreeAndNodes.normalize_response" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
-<dd><p>Tuple[CategoryTreeDto, ErrorReportDto, Any]</p>
-<p>İç içe geçmiş bir ağaç yapısı mevcuttur kategori ağaçlarında. Burada
-dönülmesi istenilen <a class="reference external" href="https://docs.python.org/3/library/dataclasses.html">DataClass</a>
-objesi CategoryTreeDto’dur. Örnek CategoryTreeDto oluşturmak için.</p>
-<p>Satış kanalında yer alan ağacın aşağıdaki şekilde olduğunu varsayalım.</p>
-<div class="line-block">
-<div class="line">sales channel</div>
-<div class="line">├── Giyim</div>
-<div class="line-block">
-<div class="line">└── Kadın</div>
-<div class="line-block">
-<div class="line">└── Elbise</div>
-</div>
-<div class="line">└── Erkek</div>
-<div class="line-block">
-<div class="line">└── Pantalon</div>
-</div>
-</div>
-</div>
-<p>Örnek Kod:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">node_elbise</span> <span class="o">=</span> <span class="n">CategoryNodeDto</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Elbise&quot;</span><span class="p">,</span> <span class="n">children</span><span class="o">=</span><span class="p">[],</span> <span class="n">remote_id</span><span class="o">=</span><span class="s2">&quot;Elbise&quot;</span><span class="p">,</span> <span class="n">parent</span><span class="p">)</span>
-<span class="n">node_pantalon</span> <span class="o">=</span> <span class="n">CategoryNodeDto</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Pantalon&quot;</span><span class="p">,</span> <span class="n">children</span><span class="o">=</span><span class="p">[],</span> <span class="n">remote_id</span><span class="o">=</span><span class="s2">&quot;Pantalon&quot;</span><span class="p">,</span> <span class="n">parent</span><span class="p">)</span>
-<span class="n">node_kadin</span> <span class="o">=</span> <span class="n">CategoryNodeDto</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Kadın&quot;</span><span class="p">,</span> <span class="n">children</span><span class="o">=</span><span class="p">[</span><span class="n">node_elbise</span><span class="p">],</span> <span class="n">remote_id</span><span class="o">=</span><span class="s2">&quot;Kadın&quot;</span><span class="p">,</span> <span class="n">parent</span><span class="p">)</span>
-<span class="n">node_erkek</span> <span class="o">=</span> <span class="n">CategoryNodeDto</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Erkek&quot;</span><span class="p">,</span> <span class="n">children</span><span class="o">=</span><span class="p">[</span><span class="n">node_pantalon</span><span class="p">],</span> <span class="n">remote_id</span><span class="o">=</span><span class="s2">&quot;Erkek&quot;</span><span class="p">,</span> <span class="n">parent</span><span class="p">)</span>
-<span class="n">node_giyim</span> <span class="o">=</span> <span class="n">CategoryNodeDto</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Giyim&quot;</span><span class="p">,</span> <span class="n">children</span><span class="o">=</span><span class="p">[</span><span class="n">node_kadin</span><span class="p">,</span> <span class="n">node_Erkek</span><span class="p">],</span> <span class="n">remote_id</span><span class="o">=</span><span class="s2">&quot;Giyim&quot;</span><span class="p">,</span> <span class="n">parent</span><span class="p">)</span>
-<span class="n">node_root</span> <span class="o">=</span> <span class="n">CategoryNodeDto</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;sales channel&quot;</span><span class="p">,</span> <span class="n">children</span><span class="o">=</span><span class="p">[</span><span class="n">node_giyim</span><span class="p">],</span> <span class="n">remote_id</span><span class="o">=</span><span class="s2">&quot;sales channel&quot;</span><span class="p">,</span> <span class="n">parent</span><span class="p">)</span>
-
-<span class="n">report</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_report</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
-<span class="k">return</span> <span class="n">node_root</span><span class="p">,</span> <span class="n">report</span><span class="p">,</span> <span class="p">[]</span>
-</pre></div>
-</div>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="channel.commands.setup.GetCategoryAttributes">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetCategoryAttributes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">integration</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">objects</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_request</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/channel/commands/setup.html#GetCategoryAttributes"><span class="viewcode-link"><span class="pre">[kaynak]</span></span></a><a class="headerlink" href="#channel.commands.setup.GetCategoryAttributes" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
-<dd><p>Satış kanalında bulunan kategori ağacında kullanılan özellikleri ve
-değerlerini Omnitron üzerinde oluşturur. Özellikler oluşturulurken
-kullanılan <a class="reference external" href="https://docs.python.org/3/library/dataclasses.html">DataClass</a>
-<em>CategoryAttributeDto</em> ‘dur.</p>
-<p><span class="xref std std-doc">GetCategoryAttributes</span></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">CategoryAttributeDto</span>
- <span class="n">remote_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">-&gt;</span> <span class="s2">&quot;Ozelligin varsa remote_id&#39;si yoksa ismi remote id olarak belirlenebilir&quot;</span>
- <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">-&gt;</span> <span class="s2">&quot;Özelliğin adı, örneğin renk, beden içerik gibi&quot;</span>
- <span class="n">required</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">-&gt;</span> <span class="s2">&quot;Zorunlu bir özellik olup olmadığı&quot;</span>
- <span class="n">variant</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">-&gt;</span> <span class="s2">&quot;varyant kırılımı olarak kullanılıp kullanılmadığı&quot;</span>
- <span class="n">allow_custom_value</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">-&gt;</span> <span class="s2">&quot;satış kanalında tanımlı değerler dışında değer kabul edip etmediği&quot;</span>
-                             <span class="s2">&quot;örneğin renk için tanımlı değerler dışında kabul etmeyebilir&quot;</span>
-                             <span class="s2">&quot;Ölçü için satış kanalında tanımlı olmayan değerleride kabul edebilir&quot;</span>
-                             <span class="s2">&quot;Açıklama ise tanımlı değer olamayacağı için her zaman custom değer alabilir anlamındadır&quot;</span>
- <span class="n">values</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">CategoryAttributeValueDto</span><span class="p">]</span>
-<span class="o">---</span>
-<span class="k">class</span> <span class="nc">CategoryAttributeValueDto</span><span class="p">:</span>
- <span class="n">remote_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">-&gt;</span> <span class="s2">&quot;özelliğin satış kanalındaki kodu&quot;</span>
- <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">-&gt;</span> <span class="s2">&quot;Özelliğin değeri&quot;</span>
-</pre></div>
-</div>
-<dl class="py method">
-<dt class="sig sig-object py" id="channel.commands.setup.GetCategoryAttributes.send_request">
-<span class="sig-name descname"><span class="pre">send_request</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">transformed_data</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">HttpResponse</span></span></span><a class="reference internal" href="../_modules/channel/commands/setup.html#GetCategoryAttributes.send_request"><span class="viewcode-link"><span class="pre">[kaynak]</span></span></a><a class="headerlink" href="#channel.commands.setup.GetCategoryAttributes.send_request" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
-<dd><p>Kategori ağacının özelliklerine ulaşmak için gerekli request isteği atılır.</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;url&quot;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">return</span> <span class="n">response</span>
-</pre></div>
-</div>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="channel.commands.setup.GetCategoryAttributes.normalize_response">
-<span class="sig-name descname"><span class="pre">normalize_response</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validated_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformed_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">response</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/channel/commands/setup.html#GetCategoryAttributes.normalize_response"><span class="viewcode-link"><span class="pre">[kaynak]</span></span></a><a class="headerlink" href="#channel.commands.setup.GetCategoryAttributes.normalize_response" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
-<dd><p>Tuple[CategoryDto, ErrorReportDto, Any]</p>
-</dd></dl>
-
-</dd></dl>
-
 </section>
 
 
            </div>
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="channel.products.html" class="btn btn-neutral float-right" title="Products" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="structure.html" class="btn btn-neutral" title="Klasör Yapısı" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

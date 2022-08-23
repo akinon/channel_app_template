@@ -90,6 +90,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../architecture/index.html">Mimari</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../terminology.html">Terminoloji</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../flows.html">Akışlar</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../logs.html">Sales Channel Logları</a></li>
 </ul>
 
             
@@ -166,20 +167,20 @@
 <span class="p">)</span>
 
 
-<div class="viewcode-block" id="GetCategoryTreeAndNodes"><a class="viewcode-back" href="../../../project/channel.setup.html#channel.commands.setup.GetCategoryTreeAndNodes">[belgeler]</a><span class="k">class</span> <span class="nc">GetCategoryTreeAndNodes</span><span class="p">(</span><span class="n">AppGetCategoryTreeAndNodes</span><span class="p">):</span>
+<div class="viewcode-block" id="GetCategoryTreeAndNodes"><a class="viewcode-back" href="../../../project/channel.setup.GetCategoryTreeAndNodes.html#channel.commands.setup.GetCategoryTreeAndNodes">[belgeler]</a><span class="k">class</span> <span class="nc">GetCategoryTreeAndNodes</span><span class="p">(</span><span class="n">AppGetCategoryTreeAndNodes</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">transform_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span>
 
-<div class="viewcode-block" id="GetCategoryTreeAndNodes.send_request"><a class="viewcode-back" href="../../../project/channel.setup.html#channel.commands.setup.GetCategoryTreeAndNodes.send_request">[belgeler]</a>    <span class="k">def</span> <span class="nf">send_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">transformed_data</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">object</span><span class="p">:</span>
+<div class="viewcode-block" id="GetCategoryTreeAndNodes.send_request"><a class="viewcode-back" href="../../../project/channel.setup.GetCategoryTreeAndNodes.html#channel.commands.setup.GetCategoryTreeAndNodes.send_request">[belgeler]</a>    <span class="k">def</span> <span class="nf">send_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">transformed_data</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">object</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 
-<div class="viewcode-block" id="GetCategoryTreeAndNodes.normalize_response"><a class="viewcode-back" href="../../../project/channel.setup.html#channel.commands.setup.GetCategoryTreeAndNodes.normalize_response">[belgeler]</a>    <span class="k">def</span> <span class="nf">normalize_response</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">validated_data</span><span class="p">,</span> <span class="n">transformed_data</span><span class="p">,</span>
+<div class="viewcode-block" id="GetCategoryTreeAndNodes.normalize_response"><a class="viewcode-back" href="../../../project/channel.setup.GetCategoryTreeAndNodes.html#channel.commands.setup.GetCategoryTreeAndNodes.normalize_response">[belgeler]</a>    <span class="k">def</span> <span class="nf">normalize_response</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">validated_data</span><span class="p">,</span> <span class="n">transformed_data</span><span class="p">,</span>
                            <span class="n">response</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">CategoryTreeDto</span><span class="p">,</span> <span class="n">ErrorReportDto</span><span class="p">,</span>
                                               <span class="n">Any</span><span class="p">]:</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div></div>
 
 
-<div class="viewcode-block" id="GetCategoryAttributes"><a class="viewcode-back" href="../../../project/channel.setup.html#channel.commands.setup.GetCategoryAttributes">[belgeler]</a><span class="k">class</span> <span class="nc">GetCategoryAttributes</span><span class="p">(</span><span class="n">AppGetCategoryAttributes</span><span class="p">):</span>
+<div class="viewcode-block" id="GetCategoryAttributes"><a class="viewcode-back" href="../../../project/channel.setup.GetCategoryAttributes.html#channel.commands.setup.GetCategoryAttributes">[belgeler]</a><span class="k">class</span> <span class="nc">GetCategoryAttributes</span><span class="p">(</span><span class="n">AppGetCategoryAttributes</span><span class="p">):</span>
 
     <span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">object</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span>
@@ -190,18 +191,18 @@
     <span class="k">def</span> <span class="nf">transform_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">object</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span>
 
-<div class="viewcode-block" id="GetCategoryAttributes.send_request"><a class="viewcode-back" href="../../../project/channel.setup.html#channel.commands.setup.GetCategoryAttributes.send_request">[belgeler]</a>    <span class="k">def</span> <span class="nf">send_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">transformed_data</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">object</span><span class="p">:</span>
+<div class="viewcode-block" id="GetCategoryAttributes.send_request"><a class="viewcode-back" href="../../../project/channel.setup.GetCategoryAttributes.html#channel.commands.setup.GetCategoryAttributes.send_request">[belgeler]</a>    <span class="k">def</span> <span class="nf">send_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">transformed_data</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">object</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 
-<div class="viewcode-block" id="GetCategoryAttributes.normalize_response"><a class="viewcode-back" href="../../../project/channel.setup.html#channel.commands.setup.GetCategoryAttributes.normalize_response">[belgeler]</a>    <span class="k">def</span> <span class="nf">normalize_response</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">validated_data</span><span class="p">,</span> <span class="n">transformed_data</span><span class="p">,</span>
+<div class="viewcode-block" id="GetCategoryAttributes.normalize_response"><a class="viewcode-back" href="../../../project/channel.setup.GetCategoryAttributes.html#channel.commands.setup.GetCategoryAttributes.normalize_response">[belgeler]</a>    <span class="k">def</span> <span class="nf">normalize_response</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">validated_data</span><span class="p">,</span> <span class="n">transformed_data</span><span class="p">,</span>
                            <span class="n">response</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">CategoryDto</span><span class="p">,</span> <span class="n">ErrorReportDto</span><span class="p">,</span>
                                               <span class="n">Any</span><span class="p">]:</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div></div>
 
 
-<div class="viewcode-block" id="GetChannelConfSchema"><a class="viewcode-back" href="../../../project/channel.setup.html#channel.commands.setup.GetChannelConfSchema">[belgeler]</a><span class="k">class</span> <span class="nc">GetChannelConfSchema</span><span class="p">(</span><span class="n">AppGetChannelConfSchema</span><span class="p">):</span>
+<div class="viewcode-block" id="GetChannelConfSchema"><a class="viewcode-back" href="../../../project/channel.setup.GetChannelConfSchema.html#channel.commands.setup.GetChannelConfSchema">[belgeler]</a><span class="k">class</span> <span class="nc">GetChannelConfSchema</span><span class="p">(</span><span class="n">AppGetChannelConfSchema</span><span class="p">):</span>
 
-<div class="viewcode-block" id="GetChannelConfSchema.normalize_response"><a class="viewcode-back" href="../../../project/channel.setup.html#channel.commands.setup.GetChannelConfSchema.normalize_response">[belgeler]</a>    <span class="k">def</span> <span class="nf">normalize_response</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">validated_data</span><span class="p">,</span> <span class="n">transformed_data</span><span class="p">,</span>
+<div class="viewcode-block" id="GetChannelConfSchema.normalize_response"><a class="viewcode-back" href="../../../project/channel.setup.GetChannelConfSchema.html#channel.commands.setup.GetChannelConfSchema.normalize_response">[belgeler]</a>    <span class="k">def</span> <span class="nf">normalize_response</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">validated_data</span><span class="p">,</span> <span class="n">transformed_data</span><span class="p">,</span>
                            <span class="n">response</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">dict</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div></div>
 </pre></div>

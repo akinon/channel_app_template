@@ -38,7 +38,10 @@
         <link rel="index" title="Dizin"
               href="../genindex.html"/>
         <link rel="search" title="Ara" href="../search.html"/>
-    <link rel="top" title="Channel App Template 0.1.0 belgelendirmesi" href="../index.html"/> 
+    <link rel="top" title="Channel App Template 0.1.0 belgelendirmesi" href="../index.html"/>
+        <link rel="up" title="Klasör Yapısı" href="structure.html"/>
+        <link rel="next" title="Mimari" href="../architecture/index.html"/>
+        <link rel="prev" title="Product Image" href="channel.product_images.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -84,12 +87,26 @@
           
             
             
-                <ul>
+                <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../setup/index.html">Kurulum ve Kullanım</a></li>
-<li class="toctree-l1"><a class="reference internal" href="index.html">Geliştirme Adımları</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Geliştirme Adımları</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="structure.html">Klasör Yapısı</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="structure.html#satis-kanalinin-kodlanmasi">Satış Kanalının Kodlanması</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="channel.setup.html">Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="channel.products.html">Products</a></li>
+<li class="toctree-l3"><a class="reference internal" href="channel.product_prices.html">Product Price</a></li>
+<li class="toctree-l3"><a class="reference internal" href="channel.product_stocks.html">Product Stock</a></li>
+<li class="toctree-l3"><a class="reference internal" href="channel.product_images.html">Product Image</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Orders</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="structure.html#akinon-a-yeni-komut-eklemek">Akinon’a Yeni Komut Eklemek</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../architecture/index.html">Mimari</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../terminology.html">Terminoloji</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../flows.html">Akışlar</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../logs.html">Sales Channel Logları</a></li>
 </ul>
 
             
@@ -134,6 +151,10 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
+          <li><a href="index.html">Geliştirme Adımları</a> &raquo;</li>
+        
+          <li><a href="structure.html">Klasör Yapısı</a> &raquo;</li>
+        
       <li>Orders</li>
     
     
@@ -155,7 +176,7 @@
             
   <section id="orders">
 <h1>Orders<a class="headerlink" href="#orders" title="Bu başlık için kalıcı bağlantı">¶</a></h1>
-<p>Ürün entegrasyonu ile ilgili channel_app_template.app.tasks altında çalışan tasklar</p>
+<p>Sipariş entegrasyonu ile ilgili channel_app_template.app.tasks altında çalışan tasklar</p>
 <ol class="arabic simple">
 <li><p>fetch_orders</p></li>
 </ol>
@@ -416,12 +437,86 @@ Parametre almaz.</p>
 </dd></dl>
 
 </div></blockquote>
+<ol class="arabic simple" start="5">
+<li><p>fetch_and_update_order_items</p></li>
+</ol>
+<blockquote>
+<div><p>Satış kanalında güncellenmiş siparişleri almak ve Omnitron’a OrderItem bazında aktarmak için
+<a class="reference internal" href="#channel.commands.orders.orders.GetUpdatedOrderItems" title="channel.commands.orders.orders.GetUpdatedOrderItems"><code class="xref py py-class docutils literal notranslate"><span class="pre">channel.commands.orders.orders.GetUpdatedOrderItems</span></code></a> yer alan
+komut çalıştırılır ve Akinon’a istenilen formatta veri sağlar. (ChannelUpdateOrderItemDto).
+Bu komut ile satış kanalına güncellenmiş siparişlerin okunup Omnitron’a aktarılması sağlanır.</p>
+<p>OrderService içerisinde yer alan fetch_and_update_order_items fonksiyonu ile süreç işletilir.</p>
+<p>Güncellenmiş siparişleri satış kanalından almak ve istenilen formata çevirmek için aşağıda listesi verilen
+açıklamalara göre bu command hazırlanmalıdır.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="channel.commands.orders.orders.GetUpdatedOrderItems">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetUpdatedOrderItems</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">integration</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">objects</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_request</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/channel/commands/orders/orders.html#GetUpdatedOrderItems"><span class="viewcode-link"><span class="pre">[kaynak]</span></span></a><a class="headerlink" href="#channel.commands.orders.orders.GetUpdatedOrderItems" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="channel.commands.orders.orders.GetUpdatedOrderItems.get_data">
+<span class="sig-name descname"><span class="pre">get_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/channel/commands/orders/orders.html#GetUpdatedOrderItems.get_data"><span class="viewcode-link"><span class="pre">[kaynak]</span></span></a><a class="headerlink" href="#channel.commands.orders.orders.GetUpdatedOrderItems.get_data" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
+<dd><p>Bu fonksiyonda satış kanalı üzerinde güncellenmiş siparişlere ulaşmak için verilerin hazırladığı yerdir. Herhangi bir parametre almaz.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="channel.commands.orders.orders.GetUpdatedOrderItems.validated_data">
+<span class="sig-name descname"><span class="pre">validated_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/channel/commands/orders/orders.html#GetUpdatedOrderItems.validated_data"><span class="viewcode-link"><span class="pre">[kaynak]</span></span></a><a class="headerlink" href="#channel.commands.orders.orders.GetUpdatedOrderItems.validated_data" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
+<dd><p>Parametre olarak get_data fonksiyonunun döndüğü cevabı alır. Eğer satış kanalından siparişleri okumak için hazırlanan veri üzerinde bir doğrulama yapılması gerekiyor ise kullanılır. Doğrulama yapılmayacak ise parametre olarak verilen data’nın döndürülmesi gerekir.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="channel.commands.orders.orders.GetUpdatedOrderItems.transform_data">
+<span class="sig-name descname"><span class="pre">transform_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/channel/commands/orders/orders.html#GetUpdatedOrderItems.transform_data"><span class="viewcode-link"><span class="pre">[kaynak]</span></span></a><a class="headerlink" href="#channel.commands.orders.orders.GetUpdatedOrderItems.transform_data" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
+<dd><p>Parametre olarak validated_data fonksiyonunun döndürdüğü cevabı alır. Eğer satış kanalından sipariş okumadan önce veri üzerinde değişiklik yapılması gerekiyor ise kullanılır. Cevap olarak iletilmek istenen verinin son halini döndürür.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="channel.commands.orders.orders.GetUpdatedOrderItems.send_request">
+<span class="sig-name descname"><span class="pre">send_request</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">transformed_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/channel/commands/orders/orders.html#GetUpdatedOrderItems.send_request"><span class="viewcode-link"><span class="pre">[kaynak]</span></span></a><a class="headerlink" href="#channel.commands.orders.orders.GetUpdatedOrderItems.send_request" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
+<dd><p>Parametre olarak transform_data fonksiyonunun döndürdüğü cevabı alır. Bu fonksiyon aldığı veriyi satış kanalının ilgili uç noktasına isteğin atılacağı yerdir. Cevap olarak response veya response ile gelen veriyi dönmesi gerekir.</p>
+<div class="admonition attention">
+<p class="admonition-title">Dikkat</p>
+<p>Bu kısımda dönülecek cevap normalize_response fonksiyonuna iletileceği için veri döndürürken veri tipleri konusunda dikkat etmek gerekmektedir.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="channel.commands.orders.orders.GetUpdatedOrderItems.normalize_response">
+<span class="sig-name descname"><span class="pre">normalize_response</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validated_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformed_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">response</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/channel/commands/orders/orders.html#GetUpdatedOrderItems.normalize_response"><span class="viewcode-link"><span class="pre">[kaynak]</span></span></a><a class="headerlink" href="#channel.commands.orders.orders.GetUpdatedOrderItems.normalize_response" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
+<dd><p>Bu fonksiyon fetch_orders taskında satış kanalında oluşmuş siparişlerimizi okumak için hazırladığımız verileri ve satış kanalından gelen cevabı toplayıp Akinında siparişleri yaratmak için son haline getirdiğimiz yerdir.
+Bu fonksiyonun döneceği cevap doğrudan fetch_and_update_order_items fonksiyonundaki süreç ile işlenir.</p>
+<div class="admonition attention">
+<p class="admonition-title">Dikkat</p>
+<p>Bu kısımda dönülecek cevap 3 parçadan oluşmalıdır. BU METHOD GENERATOR tipinde donmelidir.</p>
+<div class="line-block">
+<div class="line"><strong>response_data</strong>: Satış kanalından dönen verinin işlenmiş halidir. Dönen veri liste tipinde ve içerisindeki elemanların tipi ChannelUpdateOrderItemDto olmak zorundadır.</div>
+<div class="line"><strong>report</strong>: Satış kanalından dönen cevabı işlerken oluşturduğumuz hata raporlarıdır.</div>
+<div class="line"><strong>data</strong>: None</div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># örnek generator</span>
+<span class="k">yield</span> <span class="n">response_data</span><span class="p">,</span> <span class="n">report</span><span class="p">,</span> <span class="kc">None</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div></blockquote>
 </section>
 
 
            </div>
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../architecture/index.html" class="btn btn-neutral float-right" title="Mimari" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="channel.product_images.html" class="btn btn-neutral" title="Product Image" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

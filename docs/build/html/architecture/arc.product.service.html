@@ -38,7 +38,10 @@
         <link rel="index" title="Dizin"
               href="../genindex.html"/>
         <link rel="search" title="Ara" href="../search.html"/>
-    <link rel="top" title="Channel App Template 0.1.0 belgelendirmesi" href="../index.html"/> 
+    <link rel="top" title="Channel App Template 0.1.0 belgelendirmesi" href="../index.html"/>
+        <link rel="up" title="Mimari" href="index.html"/>
+        <link rel="next" title="Fiyat Servisi" href="arc.product_p.service.html"/>
+        <link rel="prev" title="Kurulum Servisi" href="arc.setup.service.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -84,12 +87,25 @@
           
             
             
-                <ul>
+                <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../setup/index.html">Kurulum ve Kullanım</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../project/index.html">Geliştirme Adımları</a></li>
-<li class="toctree-l1"><a class="reference internal" href="index.html">Mimari</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Mimari</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#entegrasyon">Entegrasyon</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#servisler-flowlar">Servisler(Flowlar)</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="arc.setup.service.html">Kurulum Servisi</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Ürün Servisi</a></li>
+<li class="toctree-l3"><a class="reference internal" href="arc.product_p.service.html">Fiyat Servisi</a></li>
+<li class="toctree-l3"><a class="reference internal" href="arc.product_s.service.html">Stok Servisi</a></li>
+<li class="toctree-l3"><a class="reference internal" href="arc.product_i.service.html">Resim Servisi</a></li>
+<li class="toctree-l3"><a class="reference internal" href="arc.order.service.html">Sipariş Servisi</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../terminology.html">Terminoloji</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../flows.html">Akışlar</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../logs.html">Sales Channel Logları</a></li>
 </ul>
 
             
@@ -134,6 +150,8 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
+          <li><a href="index.html">Mimari</a> &raquo;</li>
+        
       <li>Ürün Servisi</li>
     
     
@@ -172,7 +190,7 @@ Akinon üzerinden çeker. Sonrasında Satış Kanalına <em>send_inserted_produc
 komutu aracılığıyla iletilir. <em>is_sync</em> parametresinin aldığı değere göre
 satış kanalı ile kurulacak iletişimin senkron mu asenkron mu olacağına karar verir.
 Asenkron olacak ise <strong>batch_service</strong> üzerinden gerkli kayıtlar oluşturulur.
-Bir hata ile karşılaşılır ise <em>error_report</em> oluşturulur.</p>
+Bir hata ile karşılaşılır ise <em>error_report</em> oluşturulur <a class="reference internal" href="../logs.html#sales-channel-loglari"><span class="std std-ref">Sales Channel Logları</span></a>.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -186,7 +204,7 @@ Akinon üzerinden çeker. Sonrasında Satış Kanalına <em>send_updated_product
 komutu aracılığıyla iletilir. <em>is_sync</em> parametresinin aldığı değere göre
 satış kanalı ile kurulacak iletişimin senkron mu asenkron mu olacağına karar verir.
 Asenkron olacak ise <strong>batch_service</strong> üzerinden gerkli kayıtlar oluşturulur.
-Bir hata ile karşılaşılır ise <em>error_report</em> oluşturulur.</p>
+Bir hata ile karşılaşılır ise <em>error_report</em> oluşturulur <a class="reference internal" href="../logs.html#sales-channel-loglari"><span class="std std-ref">Sales Channel Logları</span></a>.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -197,7 +215,7 @@ Bir hata ile karşılaşılır ise <em>error_report</em> oluşturulur.</p>
 komutu aracılığıyla iletilir. <em>is_sync</em> parametresinin aldığı değere göre
 satış kanalı ile kurulacak iletişimin senkron mu asenkron mu olacağına karar verir.
 Asenkron olacak ise <strong>batch_service</strong> üzerinden gerkli kayıtlar oluşturulur.
-Bir hata ile karşılaşılır ise <em>error_report</em> oluşturulur.</p>
+Bir hata ile karşılaşılır ise <em>error_report</em> oluşturulur <a class="reference internal" href="../logs.html#sales-channel-loglari"><span class="std std-ref">Sales Channel Logları</span></a>.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -206,8 +224,8 @@ Bir hata ile karşılaşılır ise <em>error_report</em> oluşturulur.</p>
 <dd><p>Bu fonksiyon öncelikle Akinon Omnitron’a bağlanır ve satış kanalına ürün silmek
 için iletilmiş ve işlemi devam eden <strong>batch_request</strong> ‘leri çeker.
 Sonrasında Satış Kanalından <em>check_deleted_products</em> komutu aracılığıyla sorgular.
-Bir hata ile karşılaşılır ise <em>error_report</em> oluşturulur. Son olarak
-satış kanalından gelen cevabı Akinon Omnitrona ileterek akışı tamamlar.</p>
+Bir hata ile karşılaşılır ise <em>error_report</em> oluşturulur <a class="reference internal" href="../logs.html#sales-channel-loglari"><span class="std std-ref">Sales Channel Logları</span></a>.
+Son olarak satış kanalından gelen cevabı Akinon Omnitrona ileterek akışı tamamlar.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -216,8 +234,8 @@ satış kanalından gelen cevabı Akinon Omnitrona ileterek akışı tamamlar.</
 <dd><p>Bu fonksiyon öncelikle Akinon Omnitron’a bağlanır ve satış kanalına ürün yaratmak/güncellemek
 için iletilmiş ve işlemi devam eden <strong>batch_request</strong> ‘leri çeker.
 Sonrasında Satış Kanalından <em>check_products</em> komutu aracılığıyla sorgular.
-Bir hata ile karşılaşılır ise <em>error_report</em> oluşturulur. Son olarak
-satış kanalından gelen cevabı Akinon Omnitrona ileterek akışı tamamlar.</p>
+Bir hata ile karşılaşılır ise <em>error_report</em> oluşturulur <a class="reference internal" href="../logs.html#sales-channel-loglari"><span class="std std-ref">Sales Channel Logları</span></a>.
+Son olarak satış kanalından gelen cevabı Akinon Omnitrona ileterek akışı tamamlar.</p>
 </dd></dl>
 
 </dd></dl>
@@ -228,6 +246,15 @@ satış kanalından gelen cevabı Akinon Omnitrona ileterek akışı tamamlar.</
            </div>
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="arc.product_p.service.html" class="btn btn-neutral float-right" title="Fiyat Servisi" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="arc.setup.service.html" class="btn btn-neutral" title="Kurulum Servisi" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

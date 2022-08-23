@@ -90,6 +90,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../architecture/index.html">Mimari</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../terminology.html">Terminoloji</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../flows.html">Akışlar</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../logs.html">Sales Channel Logları</a></li>
 </ul>
 
             
@@ -161,12 +162,14 @@
     <span class="n">SendUpdatedOrders</span> <span class="k">as</span> <span class="n">AppSendUpdatedOrders</span><span class="p">,</span>
     <span class="n">CheckOrders</span> <span class="k">as</span> <span class="n">AppCheckOrders</span><span class="p">,</span>
     <span class="n">GetCancelledOrders</span> <span class="k">as</span> <span class="n">AppGetCancelledOrders</span><span class="p">,</span>
-
+    <span class="n">GetUpdatedOrderItems</span> <span class="k">as</span> <span class="n">AppGetUpdatedOrderItems</span>
 <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">omnisdk.omnitron.models</span> <span class="kn">import</span> <span class="n">Order</span><span class="p">,</span> <span class="n">BatchRequest</span>
 
-<span class="kn">from</span> <span class="nn">channel_app.core.data</span> <span class="kn">import</span> <span class="p">(</span><span class="n">ErrorReportDto</span><span class="p">,</span> <span class="n">ChannelCreateOrderDto</span><span class="p">,</span>
-                                   <span class="n">OrderBatchRequestResponseDto</span><span class="p">,</span> <span class="n">CancelOrderDto</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">channel_app.core.data</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">ErrorReportDto</span><span class="p">,</span> <span class="n">ChannelCreateOrderDto</span><span class="p">,</span> <span class="n">OrderBatchRequestResponseDto</span><span class="p">,</span>
+    <span class="n">CancelOrderDto</span><span class="p">,</span> <span class="n">ChannelUpdateOrderItemDto</span>
+<span class="p">)</span>
 
 
 <div class="viewcode-block" id="GetOrders"><a class="viewcode-back" href="../../../../project/channel.orders.html#channel.commands.orders.orders.GetOrders">[belgeler]</a><span class="k">class</span> <span class="nc">GetOrders</span><span class="p">(</span><span class="n">AppGetOrders</span><span class="p">):</span>
@@ -243,6 +246,25 @@
 
 <div class="viewcode-block" id="GetCancelledOrders.normalize_response"><a class="viewcode-back" href="../../../../project/channel.orders.html#channel.commands.orders.orders.GetCancelledOrders.normalize_response">[belgeler]</a>    <span class="k">def</span> <span class="nf">normalize_response</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">validated_data</span><span class="p">,</span> <span class="n">transformed_data</span><span class="p">,</span>
                            <span class="n">response</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">CancelOrderDto</span><span class="p">,</span>
+                                              <span class="n">ErrorReportDto</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div></div>
+
+
+<div class="viewcode-block" id="GetUpdatedOrderItems"><a class="viewcode-back" href="../../../../project/channel.orders.html#channel.commands.orders.orders.GetUpdatedOrderItems">[belgeler]</a><span class="k">class</span> <span class="nc">GetUpdatedOrderItems</span><span class="p">(</span><span class="n">AppGetUpdatedOrderItems</span><span class="p">):</span>
+<div class="viewcode-block" id="GetUpdatedOrderItems.get_data"><a class="viewcode-back" href="../../../../project/channel.orders.html#channel.commands.orders.orders.GetUpdatedOrderItems.get_data">[belgeler]</a>    <span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+<div class="viewcode-block" id="GetUpdatedOrderItems.validated_data"><a class="viewcode-back" href="../../../../project/channel.orders.html#channel.commands.orders.orders.GetUpdatedOrderItems.validated_data">[belgeler]</a>    <span class="k">def</span> <span class="nf">validated_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">object</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+<div class="viewcode-block" id="GetUpdatedOrderItems.transform_data"><a class="viewcode-back" href="../../../../project/channel.orders.html#channel.commands.orders.orders.GetUpdatedOrderItems.transform_data">[belgeler]</a>    <span class="k">def</span> <span class="nf">transform_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">object</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+<div class="viewcode-block" id="GetUpdatedOrderItems.send_request"><a class="viewcode-back" href="../../../../project/channel.orders.html#channel.commands.orders.orders.GetUpdatedOrderItems.send_request">[belgeler]</a>    <span class="k">def</span> <span class="nf">send_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">validated_data</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">object</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+<div class="viewcode-block" id="GetUpdatedOrderItems.normalize_response"><a class="viewcode-back" href="../../../../project/channel.orders.html#channel.commands.orders.orders.GetUpdatedOrderItems.normalize_response">[belgeler]</a>    <span class="k">def</span> <span class="nf">normalize_response</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">validated_data</span><span class="p">,</span> <span class="n">transformed_data</span><span class="p">,</span>
+                           <span class="n">response</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">ChannelUpdateOrderItemDto</span><span class="p">,</span>
                                               <span class="n">ErrorReportDto</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div></div>
 </pre></div>

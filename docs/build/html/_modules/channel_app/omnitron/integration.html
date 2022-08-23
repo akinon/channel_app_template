@@ -90,6 +90,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../architecture/index.html">Mimari</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../terminology.html">Terminoloji</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../flows.html">Akışlar</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../logs.html">Sales Channel Logları</a></li>
 </ul>
 
             
@@ -177,18 +178,22 @@
     <span class="n">GetOrders</span><span class="p">,</span>
     <span class="n">ProcessOrderBatchRequests</span><span class="p">,</span>
     <span class="n">CreateOrderCancel</span><span class="p">,</span>
-    <span class="n">GetCancellationRequest</span><span class="p">)</span>
+    <span class="n">GetCancellationRequest</span><span class="p">,</span>
+    <span class="n">GetOrderItems</span><span class="p">,</span>
+    <span class="n">GetOrderItemsWithOrder</span><span class="p">,</span> <span class="n">UpdateOrderItems</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">channel_app.omnitron.commands.product_images</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">GetUpdatedProductImages</span><span class="p">,</span> <span class="n">GetInsertedProductImages</span><span class="p">,</span>
     <span class="n">ProcessImageBatchRequests</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">channel_app.omnitron.commands.product_prices</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">GetUpdatedProductPrices</span><span class="p">,</span> <span class="n">ProcessPriceBatchRequests</span><span class="p">,</span>
     <span class="n">GetInsertedProductPrices</span><span class="p">,</span> <span class="n">GetInsertedProductPricesFromExtraPriceList</span><span class="p">,</span>
-    <span class="n">GetUpdatedProductPricesFromExtraPriceList</span><span class="p">)</span>
+    <span class="n">GetUpdatedProductPricesFromExtraPriceList</span><span class="p">,</span>
+    <span class="n">GetProductStocksFromProductPrices</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">channel_app.omnitron.commands.product_stocks</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">GetUpdatedProductStocks</span><span class="p">,</span> <span class="n">ProcessStockBatchRequests</span><span class="p">,</span>
     <span class="n">GetInsertedProductStocks</span><span class="p">,</span> <span class="n">GetUpdatedProductStocksFromExtraStockList</span><span class="p">,</span>
-    <span class="n">GetInsertedProductStocksFromExtraStockList</span><span class="p">)</span>
+    <span class="n">GetInsertedProductStocksFromExtraStockList</span><span class="p">,</span>
+    <span class="n">GetProductPricesFromProductStocks</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">channel_app.omnitron.commands.products</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">GetInsertedProducts</span><span class="p">,</span>
     <span class="n">GetUpdatedProducts</span><span class="p">,</span>
@@ -201,7 +206,8 @@
     <span class="n">GetInsertedOrUpdatedProducts</span><span class="p">,</span>
     <span class="n">GetProductCategoryNodes</span><span class="p">,</span> <span class="n">GetProductObjects</span><span class="p">,</span> <span class="n">GetProductsFromBatchrequest</span><span class="p">,</span>
     <span class="n">GetProductPricesWithOutCommit</span><span class="p">,</span> <span class="n">GetProductStocksWithOutCommit</span><span class="p">,</span>
-    <span class="n">GetMappedProductsWithOutCommit</span><span class="p">)</span>
+    <span class="n">GetMappedProductsWithOutCommit</span><span class="p">,</span>
+    <span class="n">GetProductCategoryNodesWithIntegrationAction</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">channel_app.omnitron.commands.setup</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">CreateOrUpdateCategoryTreeAndNodes</span><span class="p">,</span> <span class="n">CreateOrUpdateCategoryAttributes</span><span class="p">,</span>
     <span class="n">GetCategoryIds</span><span class="p">,</span> <span class="n">CreateOrUpdateChannelAttributeSet</span><span class="p">,</span>
@@ -231,10 +237,13 @@
         <span class="s2">&quot;get_product_stocks&quot;</span><span class="p">:</span> <span class="n">GetProductStocks</span><span class="p">,</span>
         <span class="s2">&quot;get_product_stocks_without_commit&quot;</span><span class="p">:</span> <span class="n">GetProductStocksWithOutCommit</span><span class="p">,</span>
         <span class="s2">&quot;get_product_categories&quot;</span><span class="p">:</span> <span class="n">GetProductCategoryNodes</span><span class="p">,</span>
+        <span class="s2">&quot;get_product_categories_with_integration_action&quot;</span><span class="p">:</span> <span class="n">GetProductCategoryNodesWithIntegrationAction</span><span class="p">,</span>
         <span class="s2">&quot;get_batch_requests&quot;</span><span class="p">:</span> <span class="n">GetBatchRequests</span><span class="p">,</span>
         <span class="s2">&quot;get_updated_stocks&quot;</span><span class="p">:</span> <span class="n">GetUpdatedProductStocks</span><span class="p">,</span>
         <span class="s2">&quot;get_inserted_stocks&quot;</span><span class="p">:</span> <span class="n">GetInsertedProductStocks</span><span class="p">,</span>
         <span class="s2">&quot;get_updated_stocks_from_extra_stock_list&quot;</span><span class="p">:</span> <span class="n">GetUpdatedProductStocksFromExtraStockList</span><span class="p">,</span>
+        <span class="s2">&quot;get_prices_from_product_stocks&quot;</span><span class="p">:</span> <span class="n">GetProductPricesFromProductStocks</span><span class="p">,</span>
+        <span class="s2">&quot;get_stocks_from_product_prices&quot;</span><span class="p">:</span> <span class="n">GetProductStocksFromProductPrices</span><span class="p">,</span>
         <span class="s2">&quot;get_inserted_stocks_from_extra_stock_list&quot;</span><span class="p">:</span> <span class="n">GetInsertedProductStocksFromExtraStockList</span><span class="p">,</span>
         <span class="s2">&quot;get_updated_prices&quot;</span><span class="p">:</span> <span class="n">GetUpdatedProductPrices</span><span class="p">,</span>
         <span class="s2">&quot;get_inserted_prices&quot;</span><span class="p">:</span> <span class="n">GetInsertedProductPrices</span><span class="p">,</span>
@@ -253,6 +262,8 @@
         <span class="s2">&quot;get_cargo_company&quot;</span><span class="p">:</span> <span class="n">GetCargoCompany</span><span class="p">,</span>
         <span class="s2">&quot;create_order&quot;</span><span class="p">:</span> <span class="n">CreateOrders</span><span class="p">,</span>
         <span class="s2">&quot;get_orders&quot;</span><span class="p">:</span> <span class="n">GetOrders</span><span class="p">,</span>
+        <span class="s2">&quot;get_order_items&quot;</span><span class="p">:</span> <span class="n">GetOrderItems</span><span class="p">,</span>
+        <span class="s2">&quot;get_order_items_with_order&quot;</span><span class="p">:</span> <span class="n">GetOrderItemsWithOrder</span><span class="p">,</span>
         <span class="s2">&quot;create_order_shipping_info&quot;</span><span class="p">:</span> <span class="n">CreateOrderShippingInfo</span><span class="p">,</span>
         <span class="s2">&quot;create_or_update_category_tree_and_nodes&quot;</span><span class="p">:</span> <span class="n">CreateOrUpdateCategoryTreeAndNodes</span><span class="p">,</span>
         <span class="s2">&quot;create_or_update_category_attributes&quot;</span><span class="p">:</span> <span class="n">CreateOrUpdateCategoryAttributes</span><span class="p">,</span>
@@ -281,6 +292,7 @@
         <span class="s2">&quot;get_product_objects&quot;</span><span class="p">:</span> <span class="n">GetProductObjects</span><span class="p">,</span>
         <span class="s2">&quot;get_product_from_batch_request&quot;</span><span class="p">:</span> <span class="n">GetProductsFromBatchrequest</span><span class="p">,</span>
         <span class="s2">&quot;get_cancellation_requests&quot;</span><span class="p">:</span> <span class="n">GetCancellationRequest</span><span class="p">,</span>
+        <span class="s2">&quot;update_order_items&quot;</span><span class="p">:</span> <span class="n">UpdateOrderItems</span>
         <span class="c1"># &quot;fetch_cancellation_plan&quot;: FetchCancellationPlan</span>
     <span class="p">}</span>
 

@@ -90,6 +90,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../architecture/index.html">Mimari</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../terminology.html">Terminoloji</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../flows.html">Akışlar</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../logs.html">Sales Channel Logları</a></li>
 </ul>
 
             
@@ -191,16 +192,15 @@ yapılmış eşleşme(mapping) servisinden geçirilmiş sonucunun eklenmiş hali
 <p><cite>mapped_attributes</cite> özellik ismi ile ürün datasında yer alır ve firmanın ihtiyaç duyacağı özellik eşleştirme
 sonuçları yer almaktadır.</p>
 <div class="line-block">
-<div class="line"><cite>mapped_attribute_values</cite> kısmında özelliğin omnitron id’si ile birlikte</div>
+<div class="line"><cite>mapped_attribute_values</cite> kısmında özelliğin omnitron id’si ile birlikte
+satış kanalındaki özel kodu(remote_id) ve diğer özellik bilgierine ulaşılabilir.</div>
 </div>
-<p>satış kanalındaki özel kodu(remote_id) ve diğer özellik bilgierine ulaşılabilir.</p>
 <div class="line-block">
-<div class="line"><cite>attribute_set_id</cite> ve <cite>attribute_set_name</cite> kısmı omnitronda yer alan satış kanalındaki bu ürünün</div>
+<div class="line"><cite>attribute_set_id</cite> ve <cite>attribute_set_name</cite> kısmı omnitronda yer alan satış kanalındaki bu ürünün
+hangi özellik setine denk geldiğinin bilgisidir.</div>
 </div>
-<p>hangi özellik setine denk geldiğinin bilgisidir.</p>
 <div class="line-block">
 <div class="line"><cite>attribute_set_remote_id</cite> kısmı özellik setinin satış kanalındaki temsil eden eşsiz kodudur.</div>
-<div class="line"><br /></div>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
     <span class="s2">&quot;pk&quot;</span><span class="p">:</span> <span class="mi">12227</span><span class="p">,</span>

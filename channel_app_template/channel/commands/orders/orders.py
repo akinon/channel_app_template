@@ -5,12 +5,14 @@ from channel_app.channel.commands.orders.orders import (
     SendUpdatedOrders as AppSendUpdatedOrders,
     CheckOrders as AppCheckOrders,
     GetCancelledOrders as AppGetCancelledOrders,
-
+    GetUpdatedOrderItems as AppGetUpdatedOrderItems
 )
 from omnisdk.omnitron.models import Order, BatchRequest
 
-from channel_app.core.data import (ErrorReportDto, ChannelCreateOrderDto,
-                                   OrderBatchRequestResponseDto, CancelOrderDto)
+from channel_app.core.data import (
+    ErrorReportDto, ChannelCreateOrderDto, OrderBatchRequestResponseDto,
+    CancelOrderDto, ChannelUpdateOrderItemDto
+)
 
 
 class GetOrders(AppGetOrders):
@@ -87,5 +89,24 @@ class GetCancelledOrders(AppGetCancelledOrders):
 
     def normalize_response(self, data, validated_data, transformed_data,
                            response) -> Tuple[CancelOrderDto,
+                                              ErrorReportDto, Any]:
+        raise NotImplementedError
+
+
+class GetUpdatedOrderItems(AppGetUpdatedOrderItems):
+    def get_data(self):
+        raise NotImplementedError
+
+    def validated_data(self, data) -> object:
+        raise NotImplementedError
+
+    def transform_data(self, data) -> object:
+        raise NotImplementedError
+
+    def send_request(self, validated_data) -> object:
+        raise NotImplementedError
+
+    def normalize_response(self, data, validated_data, transformed_data,
+                           response) -> Tuple[ChannelUpdateOrderItemDto,
                                               ErrorReportDto, Any]:
         raise NotImplementedError

@@ -40,7 +40,7 @@
         <link rel="search" title="Ara" href="../search.html"/>
     <link rel="top" title="Channel App Template 0.1.0 belgelendirmesi" href="../index.html"/>
         <link rel="up" title="Geliştirme Adımları" href="index.html"/>
-        <link rel="next" title="Mimari" href="../architecture/index.html"/>
+        <link rel="next" title="Setup" href="channel.setup.html"/>
         <link rel="prev" title="Geliştirme Adımları" href="index.html"/> 
 
   
@@ -92,14 +92,21 @@
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Geliştirme Adımları</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Klasör Yapısı</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#satis-kanalinin-kodlanmasi">Satış Kanalının Kodlanması</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#akinon-a-yeni-komut-eklemek">Akinon’a Yeni Komut Eklemek</a></li>
+<li class="toctree-l3"><a class="reference internal" href="channel.setup.html">Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="channel.products.html">Products</a></li>
+<li class="toctree-l3"><a class="reference internal" href="channel.product_prices.html">Product Price</a></li>
+<li class="toctree-l3"><a class="reference internal" href="channel.product_stocks.html">Product Stock</a></li>
+<li class="toctree-l3"><a class="reference internal" href="channel.product_images.html">Product Image</a></li>
+<li class="toctree-l3"><a class="reference internal" href="channel.orders.html">Orders</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#akinon-a-yeni-komut-eklemek">Akinon’a Yeni Komut Eklemek</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../architecture/index.html">Mimari</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../terminology.html">Terminoloji</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../flows.html">Akışlar</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../logs.html">Sales Channel Logları</a></li>
 </ul>
 
             
@@ -221,22 +228,26 @@ olarak yazılmış ve yorum satırına alınmıştır. Düzenli aralıklar ile �
 gereken süreçleri yorum satırından kaldırıp, ne sıklık ile çalışması gerektiğini
 yazabilirsiniz.</p></li>
 </ol>
-</div>
 <dl class="py class">
-<dt class="sig sig-object py" id="channel_app.channel.integration.ChannelIntegration">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">channel_app.channel.integration.</span></span><span class="sig-name descname"><span class="pre">ChannelIntegration</span></span><a class="headerlink" href="#channel_app.channel.integration.ChannelIntegration" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
-<dd><blockquote>
-<div><p>Actions özelliğinde yer alan komutlar aracılığı ile Satış Kanalının
-servisleri haberleşir. Her komut üzerinde <em>get_data</em>, <em>validated_data</em>,</p>
-</div></blockquote>
-<p><em>transform_data</em>, <em>send_request</em> ve <em>normalize_response</em> fonksiyonlarını
+<dt class="sig sig-object py" id="channel_app_template.channel.integration.ChannelIntegration">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">channel_app_template.channel.integration.</span></span><span class="sig-name descname"><span class="pre">ChannelIntegration</span></span><a class="headerlink" href="#channel_app_template.channel.integration.ChannelIntegration" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
+<dd><p>Actions özelliğinde yer alan komutlar aracılığı ile Satış Kanalının
+servisleri haberleşir. Her komut üzerinde <em>get_data</em>, <em>validated_data</em>,
+<em>transform_data</em>, <em>send_request</em> ve <em>normalize_response</em> fonksiyonlarını
 barındırmak zorundadır</p>
-<blockquote>
-<div><dl class="py attribute">
-<dt class="sig sig-object py" id="channel_app.channel.integration.ChannelIntegration.channel">
-<span class="sig-name descname"><span class="pre">channel</span></span><a class="headerlink" href="#channel_app.channel.integration.ChannelIntegration.channel" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
-<dd><p>Satış kanalı objesidir. <a class="reference external" href="https://developers.akinon.com/docs/guide/omni/channels/introduction">Detaylı Bilgi</a>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="channel">
+<span class="sig-name descname"><span class="pre">channel</span></span><a class="headerlink" href="#channel" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
+<dd><p>Satış kanalı objesidir. <a class="reference external" href="https://developers.akinon.com/docs/guide/omni/channels/introduction">Channel Detaylı Bilgi</a>
 Örnek channel objesi.</p>
+<p>Schema alanında  FAILED_INTEGRATION, ATTRIBUTE_SET_STRATEGY eklenmsi zorunlu alanlardır.</p>
+<p>1. ATTRIBUTE_SET_STRATEGY: “CategoryNode” veya “None” değerleri alabilir. Category nodeların
+attribute setlerin category bağlı olup olmadığı bilgisi için gereklidir.</p>
+<ol class="arabic simple" start="2">
+<li><p>FAILED_INTEGRATION: Hata alınan işlemlerin tekrar edilmesi için gereken sürelerin girildiği alandır.</p></li>
+</ol>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
        <span class="s2">&quot;pk&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;test1:1_Channel&quot;</span><span class="p">,</span>
@@ -261,7 +272,17 @@ barındırmak zorundadır</p>
            <span class="s2">&quot;client_id&quot;</span><span class="p">:</span> <span class="s2">&quot;69b5c9c1-20e1-4c62-89f9-7186bde1b13f&quot;</span><span class="p">,</span>
            <span class="s2">&quot;ATTRIBUTE_SET_STRATEGY&quot;</span><span class="p">:</span> <span class="s2">&quot;CategoryNode&quot;</span>
        <span class="p">},</span>
-       <span class="s2">&quot;schema&quot;</span><span class="p">:</span> <span class="kc">None</span>
+       <span class="s2">&quot;schema&quot;</span><span class="p">:</span> <span class="p">{</span>
+           <span class="s2">&quot;FAILED_INTEGRATION&quot;</span><span class="p">:</span> <span class="p">{</span>
+               <span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="s2">&quot;FAILED_INTEGRATION&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;FAILED_INTEGRATION&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;data_type&quot;</span><span class="p">:</span> <span class="s2">&quot;json&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;required&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">},</span>
+           <span class="s2">&quot;ATTRIBUTE_SET_STRATEGY&quot;</span><span class="p">:</span> <span class="p">{</span>
+                  <span class="s2">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;ATTRIBUTE_SET_STRATEGY&quot;</span><span class="p">,</span>
+                  <span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="s2">&quot;ATTRIBUTE_SET_STRATEGY&quot;</span><span class="p">,</span>
+                  <span class="s2">&quot;required&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+                  <span class="s2">&quot;data_type&quot;</span><span class="p">:</span> <span class="s2">&quot;text&quot;</span><span class="p">}}</span>
 <span class="p">}</span>
 
 <span class="o">&gt;&gt;&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">channel</span><span class="o">.</span><span class="n">pk</span>
@@ -275,9 +296,9 @@ barındırmak zorundadır</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="channel_app.channel.integration.ChannelIntegration.catalog">
-<span class="sig-name descname"><span class="pre">catalog</span></span><a class="headerlink" href="#channel_app.channel.integration.ChannelIntegration.catalog" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
-<dd><p>Katalog objesidir. <a class="reference external" href="https://developers.akinon.com/docs/guide/omni/catalogue/introduction">Detaylı Bilgi</a>.
+<dt class="sig sig-object py" id="catalog">
+<span class="sig-name descname"><span class="pre">catalog</span></span><a class="headerlink" href="#catalog" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
+<dd><p>Katalog objesidir. <a class="reference external" href="https://developers.akinon.com/docs/guide/omni/catalogue/introduction">Katalog Detaylı Bilgi</a>.
 Örnek katalog objesi</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
     <span class="s2">&quot;pk&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
@@ -299,8 +320,8 @@ barındırmak zorundadır</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="channel_app.channel.integration.ChannelIntegration.create_session">
-<span class="sig-name descname"><span class="pre">create_session</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#channel_app.channel.integration.ChannelIntegration.create_session" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
+<dt class="sig sig-object py" id="create_session">
+<span class="sig-name descname"><span class="pre">create_session</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#create_session" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
 <dd><p>Session nesnesi, belirli parametreleri istekler arasında kalıcı hale
 getirmenize olanak tanır. Ayrıca, Session ile yapılan tüm isteklerde
 tanımlama bilgilerini(Çerezleri) taşır. Bu nedenle, aynı ana bilgisayara
@@ -310,8 +331,8 @@ Daha detaylı bilgi için <a class="reference external" href="https://docs.pytho
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="channel_app.channel.integration.ChannelIntegration.session">
-<span class="sig-name descname"><span class="pre">session</span></span><a class="headerlink" href="#channel_app.channel.integration.ChannelIntegration.session" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
+<dt class="sig sig-object py" id="session">
+<span class="sig-name descname"><span class="pre">session</span></span><a class="headerlink" href="#session" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
 <dd><p>Satış kanalının servislerine istek atılırken kullanılacak objedir.
 Session objesi komutlar içerisinde ki <em>send_request</em> fonksiyonu içerisinde
 kullanılabilir.</p>
@@ -321,8 +342,8 @@ kullanılabilir.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="channel_app.channel.integration.ChannelIntegration.do_action">
-<span class="sig-name descname"><span class="pre">do_action</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Any</span></span></span><a class="headerlink" href="#channel_app.channel.integration.ChannelIntegration.do_action" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
+<dt class="sig sig-object py" id="do_action">
+<span class="sig-name descname"><span class="pre">do_action</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Any</span></span></span><a class="headerlink" href="#do_action" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
 <dd><p>Servisler aracılığı ile tetiklenir.
 Çağırabilmek için öncesinde bir entegrasyon nesnesi yaratılmış olmalıdır.
 Parametre olarak verilen key çalışacak olan komutu temsil eder. Bu komut
@@ -339,9 +360,7 @@ sağlar.</p>
 </div>
 </dd></dl>
 
-</div></blockquote>
-</dd></dl>
-
+</div>
 </section>
 <section id="satis-kanalinin-kodlanmasi">
 <h1>Satış Kanalının Kodlanması<a class="headerlink" href="#satis-kanalinin-kodlanmasi" title="Bu başlık için kalıcı bağlantı">¶</a></h1>
@@ -380,8 +399,11 @@ aşağıdaki gibidir.</p>
 </tr>
 </tbody>
 </table>
+<div class="toctree-wrapper compound">
+</div>
+</section>
 <section id="akinon-a-yeni-komut-eklemek">
-<h2>Akinon’a Yeni Komut Eklemek<a class="headerlink" href="#akinon-a-yeni-komut-eklemek" title="Bu başlık için kalıcı bağlantı">¶</a></h2>
+<h1>Akinon’a Yeni Komut Eklemek<a class="headerlink" href="#akinon-a-yeni-komut-eklemek" title="Bu başlık için kalıcı bağlantı">¶</a></h1>
 <p>Uygulama içerisindeki akinon klasör içerisinde Akinon’nun omnitron ürününe ait ihtiyaç duyduğu
 servisler ile haberleşen süreçler kodlanmıştır. Geliştirmenin yapılacağı satış
 kanalı için omnitron servislerinde veya süreçlerinde bir eksiklik duyulması halinde
@@ -404,9 +426,8 @@ ekleyebilirsiniz.</p>
 </div></blockquote>
 <ol class="arabic simple" start="2">
 <li><p>Oluşturduğumuz komutu <em>OmnitronIntegration</em> içerisinde ki <em>new_actions</em> özelliğine atayacağımız bir key(isim) ile birlikte eklenmeli.</p></li>
-<li><p>Komutu çağırmak için <a class="reference internal" href="#channel_app.channel.integration.ChannelIntegration.do_action" title="channel_app.channel.integration.ChannelIntegration.do_action"><code class="xref py py-class docutils literal notranslate"><span class="pre">channel_app.channel.integration.ChannelIntegration.do_action</span></code></a> örneğinden faydalanılabilir.</p></li>
+<li><p>Komutu çağırmak için <code class="xref py py-class docutils literal notranslate"><span class="pre">channel_app.channel.integration.ChannelIntegration.do_action</span></code> örneğinden faydalanılabilir.</p></li>
 </ol>
-</section>
 </section>
 
 
@@ -416,7 +437,7 @@ ekleyebilirsiniz.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../architecture/index.html" class="btn btn-neutral float-right" title="Mimari" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="channel.setup.html" class="btn btn-neutral float-right" title="Setup" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="index.html" class="btn btn-neutral" title="Geliştirme Adımları" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>

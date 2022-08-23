@@ -39,6 +39,7 @@
               href="genindex.html"/>
         <link rel="search" title="Ara" href="search.html"/>
     <link rel="top" title="Channel App Template 0.1.0 belgelendirmesi" href="index.html"/>
+        <link rel="next" title="Sales Channel Logları" href="logs.html"/>
         <link rel="prev" title="Terminoloji" href="terminology.html"/> 
 
   
@@ -96,15 +97,16 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#senkron-akislar">Senkron Akışlar</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#adimlar">Adımlar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#senkron-akis-adimlari">Senkron Akış Adımları</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#asenkron-akislar">Asenkron Akışlar</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id1">Adımlar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#asenkron-akis-adimlari">Asenkron Akış Adımları</a></li>
 </ul>
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="logs.html">Sales Channel Logları</a></li>
 </ul>
 
             
@@ -261,8 +263,8 @@ eksik bir nokta varsa bu statü ile işlem sonlanabilir.</p>
 <img alt="_images/sync.png" src="_images/sync.png" />
 <p>Satış Kanalı servisleri senkron olarak çalışıyorsa, atılan isteğe referans id’si dönmek yerine doğrudan
 asıl beklediğimiz sonuçla alakalı bir çıktı üretiyorsa, ortaya daha basit bir süreç çıkıyor.</p>
-<section id="adimlar">
-<h3>Adımlar<a class="headerlink" href="#adimlar" title="Bu başlık için kalıcı bağlantı">¶</a></h3>
+<section id="senkron-akis-adimlari">
+<h3>Senkron Akış Adımları<a class="headerlink" href="#senkron-akis-adimlari" title="Bu başlık için kalıcı bağlantı">¶</a></h3>
 <ol class="arabic simple">
 <li><dl class="simple">
 <dt>BatchRequest kaydını oluştur.</dt><dd><p><cite>initialized</cite> statüsünde olarak oluşuyor.
@@ -306,8 +308,8 @@ Aynı zamanda onlarca yüzlerce farklı müşteri de ürün girişi yapıyor ola
 Bunların sıralı olarak işlenmesi gerekiyor.
 İşlenen veriler de birbirini etkileyebileceği için paralel olarak işlem yapmak mümkün de olmayabilir.</p>
 <p>İlk üç adım senkron yapı ile aynı olduğu için 4. adımdan başlanarak anlatılacaktır.</p>
-<section id="id1">
-<h3>Adımlar<a class="headerlink" href="#id1" title="Bu başlık için kalıcı bağlantı">¶</a></h3>
+<section id="asenkron-akis-adimlari">
+<h3>Asenkron Akış Adımları<a class="headerlink" href="#asenkron-akis-adimlari" title="Bu başlık için kalıcı bağlantı">¶</a></h3>
 <ol class="arabic simple" start="4">
 <li><dl class="simple">
 <dt>Satış kanalına attığımız istekte, isteğin asıl sonucunu değil, asıl sonucu kontrol etmek için</dt><dd><p>gönderilen id değerini alıyoruz.
@@ -359,6 +361,8 @@ statüyü <cite>fail</cite> olarak güncelliyoruz.</p>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="logs.html" class="btn btn-neutral float-right" title="Sales Channel Logları" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="terminology.html" class="btn btn-neutral" title="Terminoloji" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>

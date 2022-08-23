@@ -210,3 +210,55 @@ Sipariş entegrasyonu ile ilgili channel_app_template.app.tasks altında çalı�
 
           # örnek generator dönüş tipi
           yield response_data, report, None
+
+5. fetch_and_update_order_items
+
+  Satış kanalında güncellenmiş siparişleri almak ve Omnitron'a OrderItem bazında aktarmak için
+  :class:`.channel.commands.orders.orders.GetUpdatedOrderItems` yer alan
+  komut çalıştırılır ve Akinon'a istenilen formatta veri sağlar. (ChannelUpdateOrderItemDto).
+  Bu komut ile satış kanalına güncellenmiş siparişlerin okunup Omnitron'a aktarılması sağlanır.
+
+  OrderService içerisinde yer alan fetch_and_update_order_items fonksiyonu ile süreç işletilir.
+
+  Güncellenmiş siparişleri satış kanalından almak ve istenilen formata çevirmek için aşağıda listesi verilen
+  açıklamalara göre bu command hazırlanmalıdır.
+
+  .. autoclass:: channel.commands.orders.orders.GetUpdatedOrderItems
+
+    .. method:: get_data()
+
+      Bu fonksiyonda satış kanalı üzerinde güncellenmiş siparişlere ulaşmak için verilerin hazırladığı yerdir. Herhangi bir parametre almaz.
+
+    .. method:: validated_data(data)
+
+      Parametre olarak get_data fonksiyonunun döndüğü cevabı alır. Eğer satış kanalından siparişleri okumak için hazırlanan veri üzerinde bir doğrulama yapılması gerekiyor ise kullanılır. Doğrulama yapılmayacak ise parametre olarak verilen data'nın döndürülmesi gerekir.
+
+    .. method:: transform_data(data)
+
+      Parametre olarak validated_data fonksiyonunun döndürdüğü cevabı alır. Eğer satış kanalından sipariş okumadan önce veri üzerinde değişiklik yapılması gerekiyor ise kullanılır. Cevap olarak iletilmek istenen verinin son halini döndürür.
+
+    .. method:: send_request(transformed_data)
+
+      Parametre olarak transform_data fonksiyonunun döndürdüğü cevabı alır. Bu fonksiyon aldığı veriyi satış kanalının ilgili uç noktasına isteğin atılacağı yerdir. Cevap olarak response veya response ile gelen veriyi dönmesi gerekir.
+
+      .. attention::
+
+        Bu kısımda dönülecek cevap normalize_response fonksiyonuna iletileceği için veri döndürürken veri tipleri konusunda dikkat etmek gerekmektedir.
+
+    .. method:: normalize_response(data, validated_data, transformed_data, response)
+
+      Bu fonksiyon fetch_orders taskında satış kanalında oluşmuş siparişlerimizi okumak için hazırladığımız verileri ve satış kanalından gelen cevabı toplayıp Akinında siparişleri yaratmak için son haline getirdiğimiz yerdir.
+      Bu fonksiyonun döneceği cevap doğrudan fetch_and_update_order_items fonksiyonundaki süreç ile işlenir.
+
+      .. attention::
+
+        Bu kısımda dönülecek cevap 3 parçadan oluşmalıdır. BU METHOD GENERATOR tipinde donmelidir.
+
+        | **response_data**: Satış kanalından dönen verinin işlenmiş halidir. Dönen veri liste tipinde ve içerisindeki elemanların tipi ChannelUpdateOrderItemDto olmak zorundadır.
+        | **report**: Satış kanalından dönen cevabı işlerken oluşturduğumuz hata raporlarıdır.
+        | **data**: None
+
+        ..  code-block:: python
+
+          # örnek generator
+          yield response_data, report, None

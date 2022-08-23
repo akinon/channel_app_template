@@ -51,3 +51,10 @@ ChannelIntegration entegrasyolanrından yardım alır.
     Bu fonksiyon satış kanalından gelen sipariş iptallerini Akinon'a aktarmayı sağlar.
     Akinon'a *create_order_cancel* komutu aracılığıyla parametre olarak verilen
     sipariş iptallerini iletir.
+
+    .. method:: fetch_and_update_order_items(self, is_success_log=True)
+
+     Bu fonksiyon öncelikle Satış Kanalına bağlanır ve güncellenmiş siparişleri çeker.
+     Sonrasında Omnitron'a *update_order_items* komutu aracılığıyla güncellemeleri OrderItem bazında iletilir.
+     Bir hata ile karşılaşılır ise *error_report* oluşturulur :ref:`Sales Channel Logları`.
+

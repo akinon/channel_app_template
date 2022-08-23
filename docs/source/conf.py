@@ -76,7 +76,7 @@ autodoc_member_order = 'bysource'
 import os
 import sys
 
-sys.path.insert(0, os.getcwd())
+sys.path.insert(0, "..")
 
 os.environ.setdefault("OMNITRON_MODULE",
                       "channel_app_template.akinon.integration")
