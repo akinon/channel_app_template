@@ -12,8 +12,8 @@ CELERYBEAT_SCHEDULE = {
     #     'schedule': crontab(hour=12, minute=1),
     #     'args': (),
     # },
-    # 'insert-products-cron': {
-    #     'task': 'channel_app_template.app.tasks.insert_products',
+    # 'insert-and-update-products-cron': {
+    #     'task': 'channel_app_template.app.tasks.insert_and_update_products',
     #     'schedule': crontab(minute='*/15'),
     #     'args': (),
     # },
@@ -37,8 +37,8 @@ CELERYBEAT_SCHEDULE = {
     #     'schedule': crontab(minute='*/15'),
     #     'args': (),
     # },
-    # 'insert-stocks-cron': {
-    #     'task': 'channel_app_template.app.tasks.insert_stocks',
+    # 'insert-and-update-stocks-cron': {
+    #     'task': 'channel_app_template.app.tasks.insert_and_update_stocks',
     #     'schedule': crontab(minute='*/15'),
     #     'args': (),
     # },
@@ -52,8 +52,8 @@ CELERYBEAT_SCHEDULE = {
     #     'schedule': crontab(minute='*/15'),
     #     'args': (),
     # },
-    # 'insert-prices-cron': {
-    #     'task': 'channel_app_template.app.tasks.insert_prices',
+    # 'insert-and-update-prices-cron': {
+    #     'task': 'channel_app_template.app.tasks.insert_and_update_prices',
     #     'schedule': crontab(minute='*/15'),
     #     'args': (),
     # },

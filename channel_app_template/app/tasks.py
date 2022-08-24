@@ -33,9 +33,15 @@ def create_or_update_category_attributes():
 
 
 @app.task
-def insert_products():
+def insert_and_update_products():
     service = ProductService()
     service.insert_products(add_mapped=False,
+                            add_stock=False,
+                            add_price=False,
+                            add_categories=False,
+                            is_success_log=True,
+                            is_sync=True)
+    service.update_products(add_mapped=False,
                             add_stock=False,
                             add_price=False,
                             add_categories=False,
@@ -76,9 +82,11 @@ def check_products():
 
 
 @app.task
-def insert_stocks():
+def insert_and_update_stocks():
     service = StockService()
     service.insert_product_stocks(is_sync=True, is_success_log=True,
+                                  add_product_objects=False, add_price=False)
+    service.update_product_stocks(is_sync=True, is_success_log=True,
                                   add_product_objects=False, add_price=False)
 
 
@@ -97,17 +105,20 @@ def check_stocks():
 
 # PRICE TASKS
 
+
 @app.task
-def update_prices():
+def insert_and_update_prices():
     service = PriceService()
+    service.insert_product_prices(is_sync=True, is_success_log=True,
+                                  add_product_objects=False, add_stock=False)
     service.update_product_prices(is_sync=True, is_success_log=True,
                                   add_product_objects=False, add_stock=False)
 
 
 @app.task
-def insert_prices():
+def update_prices():
     service = PriceService()
-    service.insert_product_prices(is_sync=True, is_success_log=True,
+    service.update_product_prices(is_sync=True, is_success_log=True,
                                   add_product_objects=False, add_stock=False)
 
 
@@ -119,6 +130,12 @@ def check_prices():
 
 # IMAGE TASKS
 
+@app.task
+def insert_and_update_images():
+    service = ImageService()
+    service.insert_product_images(is_sync=True, is_success_log=True)
+    service.update_product_images(is_sync=True, is_success_log=True)
+
 
 @app.task
 def update_images():
@@ -127,13 +144,7 @@ def update_images():
 
 
 @app.task
-def insert_prices():
-    service = ImageService()
-    service.insert_product_images(is_sync=True, is_success_log=True)
-
-
-@app.task
-def check_prices():
+def check_images():
     service = ImageService()
     service.get_image_batch_requests(is_success_log=True)
 
