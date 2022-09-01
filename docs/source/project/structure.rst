@@ -28,6 +28,11 @@ ChannelTemplateApp projesini kullanan firmaların yeni satış kanalı geliştir
     |     └── celeryconfig.py
     |
 
+===============
+Başlangıç Adımı
+===============
+
+
 .. attention:: Geliştirmeye başlamadan önce aşağıdaki ayarları yapmak gerekiyor.
 
    1. **setup.py** dosyasına yer alan  proje adı, versiyon bilgisi, uygulamanın
