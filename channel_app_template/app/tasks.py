@@ -29,6 +29,12 @@ def create_or_update_category_attributes():
     service.create_or_update_category_attributes(is_success_log=False)
 
 
+@app.task()
+def create_or_update_attributes():
+    service = SetupService()
+    service.create_or_update_attributes(is_success_log=False)
+
+
 # PRODUCT TASKS
 
 

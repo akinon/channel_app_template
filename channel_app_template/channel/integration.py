@@ -14,7 +14,8 @@ from channel_app_template.channel.commands.products import (
     CheckProducts, CheckDeletedProducts
 )
 from channel_app_template.channel.commands.setup import (
-    GetCategoryTreeAndNodes, GetCategoryAttributes, GetChannelConfSchema
+    GetCategoryTreeAndNodes, GetCategoryAttributes, GetChannelConfSchema,
+    GetAttributes
 )
 
 
@@ -35,6 +36,7 @@ class ChannelIntegration(AppChannelIntegration):
         "get_category_tree_and_nodes": GetCategoryTreeAndNodes,
         "get_channel_conf_schema": GetChannelConfSchema,
         "get_category_attributes": GetCategoryAttributes,
+        "get_attributes": GetAttributes,
         "get_orders": GetOrders,
         "send_updated_orders": SendUpdatedOrders,
         "check_orders": CheckOrders,

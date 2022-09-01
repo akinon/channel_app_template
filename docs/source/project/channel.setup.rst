@@ -9,7 +9,7 @@ Sistem genelinde çalışan düzenli job'lara ait kodlar `channel_app_template.a
 dosyasında yer almaktadır.
 Setup adımları ile ilgili 3 adet düzenli çalışabilecek durumda olan job vardır.
 
-#.  **update_channel_conf_schema**:
+#.  **update_channel_conf_schema**
 
     **Düzenlenmesi gereken class** :ref:`GetChannelConfSchema`
 
@@ -23,7 +23,6 @@ Setup adımları ile ilgili 3 adet düzenli çalışabilecek durumda olan job va
     Satış kanalının içerisinde erişmek istediğiniz ayarlarınızı key, value
     ikilisi koyabilir ve buna göre geliştirmenizi yapabilirsiniz.
 
-
 #.  **create_or_update_category_tree_and_nodes**
 
     **Düzenlenmesi gereken class** :ref:`GetCategoryTreeAndNodes`
@@ -33,3 +32,13 @@ Setup adımları ile ilgili 3 adet düzenli çalışabilecek durumda olan job va
 #.  **create_or_update_category_attributes**
 
     **Düzenlenmesi gereken class** :ref:`GetCategoryAttributes`
+
+    Satış kanalının kategorilerine göre attribute, attribute value değerlerini omnitronda oluştururan servistir.
+
+#.  **create_or_update_attributes**
+
+    **Düzenlenmesi gereken class** :ref:`GetAttributes`
+
+    Satış kanalında bulunan attribute, attribute value değerlerini omnitronda oluştururan servistir.
+
+    Bu servis kategoriye bağlı attributeların olmadığı senaryolarda kullanılabilir.

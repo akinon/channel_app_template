@@ -11,6 +11,10 @@ GetCategoryAttributes
    kullanılan `DataClass <https://docs.python.org/3/library/dataclasses.html>`_
    *CategoryAttributeDto* 'dur.
 
+   Oluşturulan attributelar ürün gönderimi sırasında mapping gerektirir.
+
+   Mapping yapıldıktan sonra ürün datasına ek olarak mapped_attributes eklenir. Detaylı bilgi için :ref:`Üründe Mapping Verisi`
+
    `GetCategoryAttributes <channel.setup.GetCategoryAttributes>`
 
    .. code-block:: python
