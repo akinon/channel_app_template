@@ -25,7 +25,7 @@ class GetOrders(AppGetOrders):
     def transform_data(self, data) -> object:
         raise NotImplementedError
 
-    def send_request(self, validated_data) -> object:
+    def send_request(self, transformed_data) -> object:
         raise NotImplementedError
 
     def normalize_response(self, data, validated_data, transformed_data,
@@ -103,7 +103,7 @@ class GetUpdatedOrderItems(AppGetUpdatedOrderItems):
     def transform_data(self, data) -> object:
         raise NotImplementedError
 
-    def send_request(self, validated_data) -> object:
+    def send_request(self, transformed_data) -> object:
         raise NotImplementedError
 
     def normalize_response(self, data, validated_data, transformed_data,
