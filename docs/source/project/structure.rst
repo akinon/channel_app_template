@@ -284,3 +284,9 @@ Bu örnek, webhook'u dinlemek için `/webhook` yolunu kullanır. Webhook'un gön
     Gerçek projelerde, güvenlik önlemleri, hata işleme ve diğer durumlar dikkate alınmalıdır.
 
 Bu şekilde bir FastAPI uygulaması oluşturarak, webhook'ları dinleyebilir ve gelen verilere göre işlemler yapabilirsiniz.
+
+Ek olarak bu örnekteki gibi bir geliştirme sonrasında Procfile güncellenmeli ve geliştirme yapısı olarak FastAPI kullanıldığı belirtilmelidir.
+
+.. code-block:: bash
+
+   web: uvicorn channel_app_template.main:app --address=0.0.0.0 --port=8008
