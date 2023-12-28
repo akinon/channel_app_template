@@ -230,3 +230,63 @@ ekleyebilirsiniz.
 2. Oluşturduğumuz komutu *OmnitronIntegration* içerisinde ki *new_actions* özelliğine atayacağımız bir key(isim) ile birlikte eklenmeli.
 
 3. Komutu çağırmak için :class:`channel_app.channel.integration.ChannelIntegration.do_action` örneğinden faydalanılabilir.
+
+===========================
+Dış İsteklerin Dinlenmesi
+===========================
+
+Channel App Template üzerinden herhangi bir kaynaktan gelebilecek isteklerin ele alınması ve dinlenebilmesi için
+temel olarak bir http sunucusuna ihtiyaç duyulmaktadır. Bu sunucu üzerinden gelen isteklerin dinlenmesi için
+popüler geliştirme yapılarından herhangi birisi tercih edilebilir. Bu doküman içerisinde geliştirme yapısı olarak
+FastAPI kullanılmıştır.
+
+.. note:: Geliştirme yapısı olarak FastAPI kullanılmıştır. Ancak, geliştirme yapısı olarak FastAPI kullanılmak zorunda değildir.
+
+FastAPI kullanarak bir isteği dinlemek oldukça basittir. İlk olarak, `FastAPI <https://fastapi.tiangolo.com/>`_ kütüphanesini
+projenize ekleyin. Daha sonra, aşağıdaki örnekte olduğu gibi bir sunucu oluşturun.
+
+Örnek Kod
+---------
+
+.. code-block:: python
+   :linenos:
+
+   from fastapi import FastAPI
+
+   app = FastAPI()
+
+   @app.post("/webhook")
+   async def handle_webhook(payload: dict):
+       """
+       Webhook tarafından gönderilen veriyi işleyin.
+       """
+       # payload burada webhook'tan gelen veriyi temsil eder
+       # İşlemlerinizi gerçekleştirin
+       return {"message": "Webhook alındı!"}
+
+Yukarıdaki örnek, `/webhook` yoluna gelen POST isteklerini dinler ve gelen veriyi `payload` olarak alır. Burada `payload` adında bir sözlük beklediğimizi belirttik, ancak gelen veriye göre bunu uygun şekilde değiştirebilirsiniz.
+
+Notlar
+------
+
+Bu örnek, gelen webhook verisini ele alır ve işler, ancak gerçek projelerde güvenlik, hata işleme ve diğer durumlar da dikkate alınmalıdır.
+
+Bu kodu çalıştırmadan önce, FastAPI'yi yüklemeniz ve çalıştırmanız gerekir. Ayrıca, bu kodu çalıştırmak için Python 3.6 veya daha yeni bir sürüm gerektirir.
+
+.. code-block:: bash
+
+   $ pip install fastapi
+   $ uvicorn main:app --reload
+
+Bu örnek, webhook'u dinlemek için `/webhook` yolunu kullanır. Webhook'un gönderdiği verinin beklenen formata uygun olduğundan emin olunmalıdır.
+
+::: warning Uyarı
+    Gerçek projelerde, güvenlik önlemleri, hata işleme ve diğer durumlar dikkate alınmalıdır.
+
+Bu şekilde bir FastAPI uygulaması oluşturarak, webhook'ları dinleyebilir ve gelen verilere göre işlemler yapabilirsiniz.
+
+Ek olarak bu örnekteki gibi bir geliştirme sonrasında Procfile güncellenmeli ve geliştirme yapısı olarak FastAPI kullanıldığı belirtilmelidir.
+
+.. code-block:: bash
+
+   web: uvicorn channel_app_template.main:app --address=0.0.0.0 --port=8008
