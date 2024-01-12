@@ -4,4 +4,4 @@ celery[redis]==5.2.3
 sentry_sdk==1.5.6
 flower==1.0.0
 omnisdk==0.0.99
-channel_app==0.0.139
+channel_app==0.0.140
