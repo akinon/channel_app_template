@@ -3,7 +3,7 @@ celery==5.3.6
 sentry_sdk==1.14.0
 flower==2.0.0
 omnisdk==0.0.99
-channel_app==0.0.147
+channel_app==0.0.148
 redis==5.0.1
 certifi>=2023.7.22 # not directly required, pinned by Snyk to avoid a vulnerability
 setuptools>=65.5.1 # not directly required, pinned by Snyk to avoid a vulnerability
