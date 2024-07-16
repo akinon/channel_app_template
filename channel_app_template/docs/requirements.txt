@@ -1,3 +1,4 @@
 Sphinx==4.4.0
 sphinx-intl==2.0.1
 sphinx-theme
+setuptools>=70.0.0 # not directly required, pinned by Snyk to avoid a vulnerability
