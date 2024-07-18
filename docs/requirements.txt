@@ -3,7 +3,7 @@ sphinx-intl==2.0.1
 sphinx-theme
 requests==2.31.0
 celery[redis]==5.2.3
-sentry_sdk==1.5.6
+sentry_sdk==2.8.0
 flower==1.2.0
 omnisdk
 channel_app
