@@ -106,8 +106,10 @@ Flower üzerinden tetiklenebilir.
 Tasklar akışları oluşturan birimlerdir.
 Bu konu hakkında daha detaylı bilgi için Akışlar bölümünü inceleyebilirsiniz.
 
+
 Servisler(Flowlar)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----------------------
+
 Servisler, tasklar aracılığıyla Akinon ile Satış Kanalı Entegrasyonu arasındaki
 iletişimi sağlayan kısımdır. Akinondan verinin okunması/yazılması ve Satış Kanalı
 ile iletişime geçilmesi olmak üzere 2 temel adımdan oluşur.
@@ -120,5 +122,17 @@ Module                           Açıklama
 :doc:`arc.product.service`       Ürün ile ilgili komutlar
 :doc:`arc.product_p.service`     Fiyat ile ilgili komutlar
 :doc:`arc.product_s.service`     Stok ile ilgili komutlar
+:doc:`arc.product_i.service`     Resim ile ilgili komutlar
 :doc:`arc.order.service`         Sipariş ile ilgili komutlar
 ============================== ================================
+
+
+.. toctree::
+   :hidden:
+
+   arc.setup.service
+   arc.product.service
+   arc.product_p.service
+   arc.product_s.service
+   arc.product_i.service
+   arc.order.service

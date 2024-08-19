@@ -27,6 +27,9 @@ bilgi için (`Celery <https://docs.celeryq.dev/en/master/>`_)
     export BROKER_HOST=127.0.0.1
     export BROKER_PORT=6379
     export BROKER_DATABASE_INDEX=4
+    export CACHE_HOST=127.0.0.1
+    export CACHE_PORT=6379
+    export CACHE_DATABASE_INDEX=3
 
     celery -A channel_app.celery_app worker -l info
 

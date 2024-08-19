@@ -1,11 +1,11 @@
 from setuptools import setup, find_packages
 
-with open("README.md") as f:
+with open("README.rst") as f:
     long_description = f.read()
 
 setup(
     name="channel_app_template",
-    version="0.1.0",
+    version="0.0.98",
     packages=find_packages(),
     url="https://bitbucket.org/akinonteam/channel_app_template",
     description="Template app for Sales Channels",
