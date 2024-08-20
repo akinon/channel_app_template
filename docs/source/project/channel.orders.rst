@@ -262,3 +262,87 @@ Sipariş entegrasyonu ile ilgili channel_app_template.app.tasks altında çalı�
 
           # örnek generator
           yield response_data, report, None
+
+6. fetch_and_create_cancellation_requests
+
+  Satış kanalında iptal veya iade için açılmış talepleri almak ve Omnitron'a aktarmak için kullanılır.
+
+  Bu sürecin sağlıklı bir şekilde çalışabilmesi için update_channel_conf_schema içerisinde mutlaka "reason_mapping" ayarı json olarak eklenmesi gerekir. Bu değer doldurulurken key değeri satış kanalının iptal/iade nedeni, value değeri ise Akinon'daki iptal/iade nedenine ait pk değeri olmalıdır. Akinon'daki iptal iade nedenleri, omnitron -> ayarlar menüsünden ulaşılabilir. 
+
+  app.tasks içerisinde yer alan fetch_and_create_cancellation_requests fonksiyonu ile süreç işletilir.
+
+  :class:`.channel.commands.orders.orders.GetCancellationRequests` yer alan
+  komut çalıştırılır ve Akinon'a istenilen formatta veri sağlar. (CancellationRequestDto).
+
+  İptal veya iade taleplerini satış kanalından almak ve istenilen formata çevirmek için aşağıda listesi verilen
+  açıklamalara göre bu command hazırlanmalıdır.
+
+  .. autoclass:: channel.commands.orders.orders.GetCancellationRequests
+
+    .. method:: get_data()
+
+      Bu fonksiyonda satış kanalı üzerinde iptal veya iade taleplerine ulaşmak için verilerin hazırladığı yerdir. Herhangi bir parametre almaz.
+
+    .. method:: send_request(transformed_data)
+
+      Parametre olarak transform_data fonksiyonunun döndürdüğü cevabı alır. Bu fonksiyon aldığı veriyi satış kanalının ilgili uç noktasına isteğin atılacağı yerdir. Cevap olarak response veya response ile gelen veriyi dönmesi gerekir.
+
+      .. attention::
+
+        Bu fonksiyonun dönüş değeri normalize_response fonksiyonuna response parametresi ile aktarılır.
+
+    .. method:: normalize_response(data, validated_data, transformed_data, response)
+
+      Bu fonksiyon fetch_and_create_cancellation_requests taskında satış kanalında oluşmuş iptal veya iade taleplerini okumak için hazırladığımız verileri ve satış kanalından gelen cevabı toplayıp Akinında bu talepleri oluşturmak için son haline getirdiğimiz yerdir.
+
+      Bu fonksiyonun dönüş değeri bir tuple olmalıdır. 
+      Tuple'ın ilk elemanı dönen verinin işlenmiş hali olmalıdır ve tipi CancellationRequestDto'dur. 
+      CancellationRequestDto objesindeki cancellation_type alanında eğer iade taleplerini dönecekseniz refund, 
+      iptal talebi oluşturacaksanız cancel olması gerekir. 
+      İkinci eleman ise hata raporlarıdır ve tipi ErrorReportDto'dur.
+
+
+7. update_cancellation_requests
+
+  Daha önce fetch_and_create_cancellation_requests fonksiyonu ile oluşturulan iptal veya iade taleplerinin güncellenmesi durumunda omnitrondan bu veri alınır ve satış kanalına gönderilebilmesi sağlanır.
+
+  Bu sürecin sağlıklı bir şekilde çalışabilmesi için update_channel_conf_schema içerisinde mutlaka "reason_mapping" ayarı json olarak eklenmesi gerekir. Bu değer doldurulurken key değeri satış kanalının iptal/iade nedeni, value değeri ise Akinon'daki iptal/iade nedenine ait pk değeri olmalıdır. Akinon'daki iptal iade nedenleri, omnitron -> ayarlar menüsünden ulaşılabilir. 
+
+
+  app.tasks içerisinde yer alan update_cancellation_requests fonksiyonu ile süreç işletilir.
+
+  :class:`.channel.commands.orders.orders.UpdateCancellationRequest` yer alan
+  komut çalıştırılır ve satış kanalına istenilen formatta veri sağlanmış olur.
+
+  İptal veya iade talepleri firmalar tarafından güncellendiğinde bu bilgi omnitronda işlenir. 
+  Omnitronda sadece daha önce fetch_and_create_cancellation_requests task'ı ile oluşturulmuş olan taleplere ait
+  kayıtlar güncellendiğinde bu methoda bilgisi gelecektir.
+
+  Örneğin bir iade talebi açıldıktan sonra, firma bunu kabul etmiş veya reddetmiş olabilir.
+  bu aksiyonu ilgili satış kanalına iletmek için bu methoddan yararlanılır.
+
+  Kodlanması gereken :class:`.channel.commands.orders.orders.UpdateCancellationRequest` class'ı aşağıda belirtilmiştir.
+
+  .. autoclass:: channel.commands.orders.orders.UpdateCancellationRequest
+
+    .. method:: get_data()
+
+      Bu fonksiyonda satış kanalı üzerinde iptal veya iade taleplerine ulaşmak için verilerin hazırladığı yerdir. Herhangi bir parametre almaz.
+      self.objects ile ChannelCancellationRequestDto tipinde iade veya iptal talebine ulaşılabilir. 
+      Bunun için objects datası içindeki cancellation_type alanına bakılabilir. objects çoğul olarak isimlendirilse dahi tek bir ChannelCancellationRequestDto objesidir.
+
+      ChannelCancellationRequestDto içerisinde yer alan status bilgisi eğer "completed" ise iade veya iptal işlemi tamamlanmıştır.
+      statu eğer "rejected" ise iade veya iptal işlemi reddedilmiştir.
+      statu eğer başka bir değer ise iade veya iptal işlemi hala devam etmektedir.
+
+    .. method:: send_request(transformed_data)
+
+      Bu method ile ilgili iptal/iade talebinin durum bilgisi satış kanalına iletilebilir.
+
+
+    .. method:: normalize_response(data, validated_data, transformed_data, response)
+
+      Bu method bir tuple döner. Tuple[BatchRequestResponseDto, ErrorReportDto, Any]
+
+      Eğer ilk eleman dolu ise o zaman başarılı bir güncelleme yapıldığı eğer boş ise (None) hata olduğu anlamına gelir.
+      Burada dikkat edilmesi gereken en önemli nokta burasıdır.
