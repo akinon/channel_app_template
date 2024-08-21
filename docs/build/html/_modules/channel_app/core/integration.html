@@ -163,7 +163,7 @@
 
 
 <div class="viewcode-block" id="BaseIntegration"><a class="viewcode-back" href="../../../architecture/index.html#channel_app.core.integration.BaseIntegration">[belgeler]</a><span class="k">class</span> <span class="nc">BaseIntegration</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    To integrate with any system you must create a class which inherits from BaseIntegration.</span>
 <span class="sd">    This class was designed to work with `command design pattern` which basically defines</span>
 <span class="sd">    a task procedure interface. All defined commands override some of the default base</span>
@@ -175,7 +175,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">actions</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
 
 <div class="viewcode-block" id="BaseIntegration.do_action"><a class="viewcode-back" href="../../../architecture/index.html#channel_app.core.integration.BaseIntegration.do_action">[belgeler]</a>    <span class="k">def</span> <span class="nf">do_action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Runs the command given with the key and supplies the additional parameters to the command.</span>
 
 <span class="sd">        :param key: Command key</span>
@@ -190,7 +190,7 @@
         <span class="k">return</span> <span class="n">action_object</span><span class="o">.</span><span class="n">run</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="BaseIntegration.do_action_async_run"><a class="viewcode-back" href="../../../architecture/index.html#channel_app.core.integration.BaseIntegration.do_action_async_run">[belgeler]</a>    <span class="k">def</span> <span class="nf">do_action_async_run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Runs the command given with the key asynchronously and supplies the additional parameters</span>
 <span class="sd">        to the command.</span>
 
@@ -208,7 +208,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">catalog</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Catalog</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Retrieves the catalog object using the `catalog_id` stored in the `self`.</span>
 
 <span class="sd">        Side effect: It stores the result in the `self.catalog_object`, if catalog is updated</span>
@@ -220,7 +220,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">channel</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Channel</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Retrieves the channel object using the `channel_id` stored in the `self`.</span>
 
 <span class="sd">        Side effect: It stores the result in the `self.channel_object`, if channel is updated</span>

@@ -91,6 +91,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../setup/index.html">Kurulum ve Kullanım</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Geliştirme Adımları</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="structure.html">Klasör Yapısı</a></li>
+<li class="toctree-l2"><a class="reference internal" href="structure.html#baslangic-adimi">Başlangıç Adımı</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="structure.html#satis-kanalinin-kodlanmasi">Satış Kanalının Kodlanması</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="channel.setup.html">Setup</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Products</a></li>
@@ -101,6 +102,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="structure.html#akinon-a-yeni-komut-eklemek">Akinon’a Yeni Komut Eklemek</a></li>
+<li class="toctree-l2"><a class="reference internal" href="structure.html#dis-isteklerin-dinlenmesi">Dış İsteklerin Dinlenmesi</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../architecture/index.html">Mimari</a></li>
@@ -216,6 +218,22 @@ yoksa asenkron bir şekilde mi ediniliyor olduğudur.</div>
 <dt class="sig sig-object py" id="channel.commands.products.SendInsertedProducts.validated_data">
 <span class="sig-name descname"><span class="pre">validated_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/channel/commands/products.html#SendInsertedProducts.validated_data"><span class="viewcode-link"><span class="pre">[kaynak]</span></span></a><a class="headerlink" href="#channel.commands.products.SendInsertedProducts.validated_data" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
 <dd><p>Parametre olarak get_data fonksiyonunun döndüğü cevabı alır. Eğer satış kanalına gönderilecek productlar üzerinde bir değrulama yapılması gerekiyor ise kullanılır. Doğrulama yapılmayacak ise parametre olarak verilen data’nın döndürülmesi gerekir.</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">valid_data</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">product_id</span><span class="p">,</span> <span class="n">products</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">images</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_images</span><span class="p">(</span><span class="n">products</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">images</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">product</span> <span class="ow">in</span> <span class="n">products</span><span class="p">:</span>
+            <span class="n">product</span><span class="o">.</span><span class="n">failed_reason_type</span> <span class="o">=</span> <span class="n">FailedReasonType</span><span class="o">.</span><span class="n">remote</span><span class="o">.</span><span class="n">value</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">failed_object_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="p">(</span><span class="n">product</span><span class="p">,</span> <span class="n">ContentType</span><span class="o">.</span><span class="n">product</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+                 <span class="s2">&quot;Product images counts are less than three&quot;</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">valid_data</span><span class="p">[</span><span class="n">product_id</span><span class="p">]</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">products</span><span class="p">)</span>
+<span class="k">return</span> <span class="n">valid_data</span>
+</pre></div>
+</div>
+</div></blockquote>
 </dd></dl>
 
 <dl class="py method">

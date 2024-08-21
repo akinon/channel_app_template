@@ -173,40 +173,6 @@
             
   <section id="kurulum-servisi">
 <h1>Kurulum Servisi<a class="headerlink" href="#kurulum-servisi" title="Bu başlık için kalıcı bağlantı">¶</a></h1>
-<p>Kurulum servisi üzerinde satış kanalının barındırdığı konfigrasyonlar ve
-iletilmesi gereken kategori gibi ürünlerin satışa hazır hale gelmesini sağlayan
-fonksiyonları üzerinde barındırır. Bu aksiyonları gerçekleştirmek için
-OmnitronIntegration ve ChannelIntegration entegrasyolanrından yardım alır.</p>
-<dl class="py class">
-<dt class="sig sig-object py" id="SetupService">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SetupService</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">object</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SetupService" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
-<dd><dl class="py method">
-<dt class="sig sig-object py" id="SetupService.create_or_update_category_tree_and_nodes">
-<span class="sig-name descname"><span class="pre">create_or_update_category_tree_and_nodes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_success_log</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SetupService.create_or_update_category_tree_and_nodes" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
-<dd><p>Bu fonksiyon öncelikle Satış Kanalına bağlanır ve satış kanalında mevcut olan
-kategorileri çeker. Bu işlem sırasında bir hata ile karşılaşılır ise <em>error_report</em> oluşturulur <a class="reference internal" href="../logs.html#sales-channel-loglari"><span class="std std-ref">Sales Channel Logları</span></a>.
-Son olarak çektiği kategorileri <em>create_or_update_category_tree_and_nodes</em>
-komutu ile Akinon’a iletir.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="SetupService.create_or_update_category_attributes">
-<span class="sig-name descname"><span class="pre">create_or_update_category_attributes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_success_log</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SetupService.create_or_update_category_attributes" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
-<dd><p>Bu fonksiyon öncelikle Satış Kanalına bağlanır ve satış kanalında mevcut olan
-kategorileri ID’lerini çeker. Gelen kategori IDleri üzerinden döngü ile
-kategori özelliklerini çekip <em>create_or_update_category_attributes</em> komutu ile
-Akinon’a iletir. Bu işlem sırasında bir hata ile karşılaşılır ise <em>error_report</em> oluşturulur <a class="reference internal" href="../logs.html#sales-channel-loglari"><span class="std std-ref">Sales Channel Logları</span></a>.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="SetupService.update_channel_conf_schema">
-<span class="sig-name descname"><span class="pre">update_channel_conf_schema</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SetupService.update_channel_conf_schema" title="Bu tanım için kalıcı bağlantı">¶</a></dt>
-<dd><p>Bu fonksiyon öncelikle Satış Kanalına bağlanır ve şema bilgisini çeker.
-Sonrasında Akinon’a <em>update_channel_conf_schema</em>  komutu aracılığıyla iletilir.</p>
-</dd></dl>
-
-</dd></dl>
-
 </section>
 
 

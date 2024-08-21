@@ -155,15 +155,16 @@
            <div itemprop="articleBody">
             
   <h1>channel.commands.setup öğesinin kaynak kodu</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Any</span>
+<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">List</span>
 
 <span class="kn">from</span> <span class="nn">channel_app.channel.commands.setup</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">GetCategoryTreeAndNodes</span> <span class="k">as</span> <span class="n">AppGetCategoryTreeAndNodes</span><span class="p">,</span>
     <span class="n">GetCategoryAttributes</span> <span class="k">as</span> <span class="n">AppGetCategoryAttributes</span><span class="p">,</span>
+    <span class="n">GetAttributes</span> <span class="k">as</span> <span class="n">AppGetAttributes</span><span class="p">,</span>
     <span class="n">GetChannelConfSchema</span> <span class="k">as</span> <span class="n">AppGetChannelConfSchema</span>
 <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">channel_app.core.data</span> <span class="kn">import</span> <span class="p">(</span>
-    <span class="n">ErrorReportDto</span><span class="p">,</span> <span class="n">CategoryTreeDto</span><span class="p">,</span> <span class="n">CategoryDto</span>
+    <span class="n">ErrorReportDto</span><span class="p">,</span> <span class="n">CategoryTreeDto</span><span class="p">,</span> <span class="n">CategoryDto</span><span class="p">,</span> <span class="n">AttributeDto</span>
 <span class="p">)</span>
 
 
@@ -197,6 +198,26 @@
 <div class="viewcode-block" id="GetCategoryAttributes.normalize_response"><a class="viewcode-back" href="../../../project/channel.setup.GetCategoryAttributes.html#channel.commands.setup.GetCategoryAttributes.normalize_response">[belgeler]</a>    <span class="k">def</span> <span class="nf">normalize_response</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">validated_data</span><span class="p">,</span> <span class="n">transformed_data</span><span class="p">,</span>
                            <span class="n">response</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">CategoryDto</span><span class="p">,</span> <span class="n">ErrorReportDto</span><span class="p">,</span>
                                               <span class="n">Any</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div></div>
+
+
+<div class="viewcode-block" id="GetAttributes"><a class="viewcode-back" href="../../../project/channel.setup.GetAttributes.html#channel.commands.setup.GetAttributes">[belgeler]</a><span class="k">class</span> <span class="nc">GetAttributes</span><span class="p">(</span><span class="n">AppGetAttributes</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">object</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+    <span class="k">def</span> <span class="nf">validated_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">object</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+    <span class="k">def</span> <span class="nf">transform_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">object</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+<div class="viewcode-block" id="GetAttributes.send_request"><a class="viewcode-back" href="../../../project/channel.setup.GetAttributes.html#channel.commands.setup.GetAttributes.send_request">[belgeler]</a>    <span class="k">def</span> <span class="nf">send_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">transformed_data</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">object</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+<div class="viewcode-block" id="GetAttributes.normalize_response"><a class="viewcode-back" href="../../../project/channel.setup.GetAttributes.html#channel.commands.setup.GetAttributes.normalize_response">[belgeler]</a>    <span class="k">def</span> <span class="nf">normalize_response</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">validated_data</span><span class="p">,</span> <span class="n">transformed_data</span><span class="p">,</span>
+                           <span class="n">response</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span>
+        <span class="n">List</span><span class="p">[</span><span class="n">AttributeDto</span><span class="p">],</span> <span class="n">ErrorReportDto</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div></div>
 
 

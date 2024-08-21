@@ -194,6 +194,19 @@
 
 
 <span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">AttributeValueDto</span><span class="p">:</span>
+    <span class="n">remote_id</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">AttributeDto</span><span class="p">:</span>
+    <span class="n">remote_id</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">values</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">AttributeValueDto</span><span class="p">]</span>
+
+
+<span class="nd">@dataclass</span>
 <span class="k">class</span> <span class="nc">CategoryDto</span><span class="p">:</span>
     <span class="n">remote_id</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
@@ -397,6 +410,7 @@
     <span class="n">invoice_number</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">invoice_date</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">tracking_number</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">extra_field</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
 </pre></div>
 
            </div>
