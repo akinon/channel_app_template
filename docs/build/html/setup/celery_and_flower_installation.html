@@ -181,29 +181,29 @@ OMNITRON_CHANNEL_ID: Uygulamanın bağlanacağı satış kanalı id değeri.
 OMNITRON_CATALOG_ID: Bağlı satış kanalının katalog id değeri.</p></li>
 </ul>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Topluca export (öncesinde .env dosyasını oluşturmak gerekiyor)</span>
-<span class="nb">export</span> <span class="k">$(</span>grep -v <span class="s1">&#39;^#&#39;</span> .env <span class="p">|</span> xargs<span class="k">)</span>
+<span class="nb">export</span><span class="w"> </span><span class="k">$(</span>grep<span class="w"> </span>-v<span class="w"> </span><span class="s1">&#39;^#&#39;</span><span class="w"> </span>.env<span class="w"> </span><span class="p">|</span><span class="w"> </span>xargs<span class="k">)</span>
 
 <span class="c1"># Tek tek export</span>
-<span class="nb">export</span> <span class="nv">MAIN_APP_URL</span><span class="o">=</span>localhost:8000
-<span class="nb">export</span> <span class="nv">OMNITRON_USERNAME</span><span class="o">=</span>admin
-<span class="nb">export</span> <span class="nv">OMNITRON_PASSWORD</span><span class="o">=</span>password
-<span class="nb">export</span> <span class="nv">OMNITRON_CHANNEL_ID</span><span class="o">=</span><span class="m">1</span>
-<span class="nb">export</span> <span class="nv">OMNITRON_CATALOG_ID</span><span class="o">=</span><span class="m">1</span>
-<span class="nb">export</span> <span class="nv">BROKER_HOST</span><span class="o">=</span><span class="m">127</span>.0.0.1
-<span class="nb">export</span> <span class="nv">BROKER_PORT</span><span class="o">=</span><span class="m">6379</span>
-<span class="nb">export</span> <span class="nv">BROKER_DATABASE_INDEX</span><span class="o">=</span><span class="m">4</span>
-<span class="nb">export</span> <span class="nv">CACHE_HOST</span><span class="o">=</span><span class="m">127</span>.0.0.1
-<span class="nb">export</span> <span class="nv">CACHE_PORT</span><span class="o">=</span><span class="m">6379</span>
-<span class="nb">export</span> <span class="nv">CACHE_DATABASE_INDEX</span><span class="o">=</span><span class="m">3</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">MAIN_APP_URL</span><span class="o">=</span>localhost:8000
+<span class="nb">export</span><span class="w"> </span><span class="nv">OMNITRON_USERNAME</span><span class="o">=</span>admin
+<span class="nb">export</span><span class="w"> </span><span class="nv">OMNITRON_PASSWORD</span><span class="o">=</span>password
+<span class="nb">export</span><span class="w"> </span><span class="nv">OMNITRON_CHANNEL_ID</span><span class="o">=</span><span class="m">1</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">OMNITRON_CATALOG_ID</span><span class="o">=</span><span class="m">1</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">BROKER_HOST</span><span class="o">=</span><span class="m">127</span>.0.0.1
+<span class="nb">export</span><span class="w"> </span><span class="nv">BROKER_PORT</span><span class="o">=</span><span class="m">6379</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">BROKER_DATABASE_INDEX</span><span class="o">=</span><span class="m">4</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">CACHE_HOST</span><span class="o">=</span><span class="m">127</span>.0.0.1
+<span class="nb">export</span><span class="w"> </span><span class="nv">CACHE_PORT</span><span class="o">=</span><span class="m">6379</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">CACHE_DATABASE_INDEX</span><span class="o">=</span><span class="m">3</span>
 
-celery -A channel_app.celery_app worker -l info
+celery<span class="w"> </span>-A<span class="w"> </span>channel_app.celery_app<span class="w"> </span>worker<span class="w"> </span>-l<span class="w"> </span>info
 </pre></div>
 </div>
 <ul class="simple">
 <li><p>Redis sunucusu varsayılan olarak kurulum sonrası özellikle kapatılmadıkça ayakta oluyor.
 Ping komutuyla test edip <cite>redis-server</cite> ile kaldırabilirsiniz.</p></li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>redis-cli ping
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>redis-cli<span class="w"> </span>ping
 redis-server
 </pre></div>
 </div>
@@ -216,25 +216,25 @@ Her seferinde tek tek export yapmak yerine, bu değerleri <cite>.env</cite> dosy
 export edecek komutu da çağırabilirsiniz.</p></li>
 </ul>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Topluca export (öncesinde .env dosyasını oluşturmak gerekiyor)</span>
-<span class="nb">export</span> <span class="k">$(</span>grep -v <span class="s1">&#39;^#&#39;</span> .env <span class="p">|</span> xargs<span class="k">)</span>
+<span class="nb">export</span><span class="w"> </span><span class="k">$(</span>grep<span class="w"> </span>-v<span class="w"> </span><span class="s1">&#39;^#&#39;</span><span class="w"> </span>.env<span class="w"> </span><span class="p">|</span><span class="w"> </span>xargs<span class="k">)</span>
 
 <span class="c1"># Tek tek export</span>
-<span class="nb">export</span> <span class="nv">BROKER_HOST</span><span class="o">=</span><span class="m">127</span>.0.0.1
-<span class="nb">export</span> <span class="nv">BROKER_DATABASE_INDEX</span><span class="o">=</span><span class="m">4</span>
-<span class="nb">export</span> <span class="nv">BROKER_PORT</span><span class="o">=</span><span class="m">6379</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">BROKER_HOST</span><span class="o">=</span><span class="m">127</span>.0.0.1
+<span class="nb">export</span><span class="w"> </span><span class="nv">BROKER_DATABASE_INDEX</span><span class="o">=</span><span class="m">4</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">BROKER_PORT</span><span class="o">=</span><span class="m">6379</span>
 
-celery -A channel_app_template.celery_app flower --address<span class="o">=</span><span class="m">127</span>.0.0.1 --port<span class="o">=</span><span class="m">8008</span>
+celery<span class="w"> </span>-A<span class="w"> </span>channel_app_template.celery_app<span class="w"> </span>flower<span class="w"> </span>--address<span class="o">=</span><span class="m">127</span>.0.0.1<span class="w"> </span>--port<span class="o">=</span><span class="m">8008</span>
 </pre></div>
 </div>
 <section id="flower-uzerinden-task-tetiklemek">
 <h2>Flower Üzerinden Task Tetiklemek<a class="headerlink" href="#flower-uzerinden-task-tetiklemek" title="Bu başlık için kalıcı bağlantı">¶</a></h2>
 <p>Flower ayni zamanda ön tanımlı olan taskları tetiklemeyi sağlar.
 Taskları tetiklemek için aşağıdaki örnek <strong>curl</strong> isteği aşağıdaki gibidir.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl --request POST <span class="se">\</span>
-  --url https://&lt;omnitron-url&gt;.lb.akinoncloud.com/api/task/apply/channel_app_template.app.tasks.&lt;task_name&gt; <span class="se">\</span>
-  --header <span class="s1">&#39;authorization: Basic &lt;auth token&gt;&#39;</span> <span class="se">\</span>
-  --header <span class="s1">&#39;content-type: application/json&#39;</span> <span class="se">\</span>
-  --data <span class="s1">&#39;{\n&quot;args&quot;:[]\n}&#39;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>--request<span class="w"> </span>POST<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--url<span class="w"> </span>https://&lt;omnitron-url&gt;.lb.akinoncloud.com/api/task/apply/channel_app_template.app.tasks.&lt;task_name&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--header<span class="w"> </span><span class="s1">&#39;authorization: Basic &lt;auth token&gt;&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--header<span class="w"> </span><span class="s1">&#39;content-type: application/json&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--data<span class="w"> </span><span class="s1">&#39;{\n&quot;args&quot;:[]\n}&#39;</span>
 </pre></div>
 </div>
 <p>İstek başarılı olur ise 200 status kodu ile aşağıdaki cevabı döner.</p>

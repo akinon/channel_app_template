@@ -155,7 +155,7 @@
            <div itemprop="articleBody">
             
   <h1>channel_app.omnitron.integration öğesinin kaynak kodu</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">omnisdk.omnitron.client</span> <span class="kn">import</span> <span class="n">OmnitronApiClient</span>
+<span></span><span class="kn">from</span> <span class="nn">channel_app.core.clients</span> <span class="kn">import</span> <span class="n">OmnitronApiClient</span>
 
 <span class="kn">from</span> <span class="nn">channel_app.core.integration</span> <span class="kn">import</span> <span class="n">BaseIntegration</span>
 <span class="kn">from</span> <span class="nn">channel_app.omnitron.batch_request</span> <span class="kn">import</span> <span class="n">ClientBatchRequest</span>
@@ -220,7 +220,7 @@
 
 
 <div class="viewcode-block" id="OmnitronIntegration"><a class="viewcode-back" href="../../../architecture/index.html#channel_app.omnitron.integration.OmnitronIntegration">[belgeler]</a><span class="k">class</span> <span class="nc">OmnitronIntegration</span><span class="p">(</span><span class="n">BaseIntegration</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Communicates with the Omnitron Api services through the commands defined. It manages</span>
 <span class="sd">    OmnitronApiClient object on enter and exit methods.</span>
 
@@ -297,7 +297,7 @@
     <span class="p">}</span>
 
 <div class="viewcode-block" id="OmnitronIntegration.__init__"><a class="viewcode-back" href="../../../architecture/index.html#channel_app.omnitron.integration.OmnitronIntegration.__init__">[belgeler]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">create_batch</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">content_type</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Some environment parameters are stored in the integration object for convenience.</span>
 
 <span class="sd">        :param create_batch: Flag to decide whether a batch request to be created</span>
