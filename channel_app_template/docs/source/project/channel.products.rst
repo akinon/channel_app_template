@@ -1,3 +1,5 @@
+:orphan:
+
 ======================
 Products
 ======================
@@ -38,6 +40,21 @@ Products
     .. method:: validated_data(data)
 
       Parametre olarak get_data fonksiyonunun döndüğü cevabı alır. Eğer satış kanalına gönderilecek productlar üzerinde bir değrulama yapılması gerekiyor ise kullanılır. Doğrulama yapılmayacak ise parametre olarak verilen data'nın döndürülmesi gerekir.
+
+        ..  code-block:: python
+
+            valid_data = defaultdict(list)
+            for product_id, products in data.items():
+                images = self.get_images(products)
+                if len(images) < 3:
+                    for product in products:
+                        product.failed_reason_type = FailedReasonType.remote.value
+                        self.failed_object_list.append(
+                            (product, ContentType.product.value,
+                             "Product images counts are less than three"))
+                else:
+                    valid_data[product_id].extend(products)
+            return valid_data
 
     .. method:: transform_data(data)
 

@@ -117,6 +117,25 @@ Stok
 |
 
 
+Resim
+~~~~~~~~
+
+.. autoclass:: channel_app.omnitron.commands.product_images.GetUpdatedProductImages
+    :members:
+
+|
+
+.. autoclass:: channel_app.omnitron.commands.product_images.ProcessImageBatchRequests
+    :members:
+
+|
+
+.. autoclass:: channel_app.omnitron.commands.product_images.GetInsertedProductImages
+    :members:
+
+|
+
+
 Ürün
 ~~~~~~~~~~~~~
 

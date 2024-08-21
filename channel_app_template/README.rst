@@ -2,6 +2,10 @@
 Channel App Template Proje Dokümantasyonu
 ===========================================
 
+.. image:: https://readthedocs.org/projects/channel-app-template/badge/?version=latest
+:target: https://channel-app-template.readthedocs.io/tr/latest/?badge=latest
+:alt: Documentation Status
+
 Channel App Template projesi, Akinon Commerce Cloud (ACC) üzerinde farklı
 pazaralanlarına yapılacak entegrasyonlar için taslak oluşturmak amacıyla
 hazırlanmıştır.
@@ -30,18 +34,8 @@ Teknolojiler ve Kütüphaneler
 
 1. Python 3.8
 2. Celery 5
-3. Flower [Opsiyonel]
-4. Sentry [Opsiyonel]
+3. omnisdk
+4. channel_app
+5. Flower [Opsiyonel]
+6. Sentry [Opsiyonel]
 
-İçerik
-======
-
-.. toctree::
-   :maxdepth: 2
-
-   setup/index
-   project/index
-   architecture/index
-   terminology
-   flows
-   logs

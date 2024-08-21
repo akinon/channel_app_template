@@ -1,10 +1,12 @@
+:orphan:
+
 ===========
 Ürün Verisi
 ===========
 
 
 Product Simple Data
-=================
+===================
 
 ..  code-block:: python
 
@@ -44,13 +46,14 @@ yapılmış eşleşme(mapping) servisinden geçirilmiş sonucunun eklenmiş hali
 sonuçları yer almaktadır.
 
 |    `mapped_attribute_values` kısmında özelliğin omnitron id'si ile birlikte
-satış kanalındaki özel kodu(remote_id) ve diğer özellik bilgierine ulaşılabilir.
+     satış kanalındaki özel kodu(remote_id) ve diğer özellik bilgierine ulaşılabilir.
 
 |   `attribute_set_id` ve `attribute_set_name` kısmı omnitronda yer alan satış kanalındaki bu ürünün
-hangi özellik setine denk geldiğinin bilgisidir.
+     hangi özellik setine denk geldiğinin bilgisidir.
 
 |   `attribute_set_remote_id` kısmı özellik setinin satış kanalındaki temsil eden eşsiz kodudur.
-|
+
+
 ..  code-block:: python
 
     {

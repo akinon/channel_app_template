@@ -81,8 +81,8 @@ Senkron Akışlar
 Satış Kanalı servisleri senkron olarak çalışıyorsa, atılan isteğe referans id'si dönmek yerine doğrudan
 asıl beklediğimiz sonuçla alakalı bir çıktı üretiyorsa, ortaya daha basit bir süreç çıkıyor.
 
-Adımlar
-~~~~~~~~~~
+Senkron Akış Adımları
+~~~~~~~~~~~~~~~~~~~~~
 1. BatchRequest kaydını oluştur.
     `initialized` statüsünde olarak oluşuyor.
     Bu aşamada BatchRequest, herhangi bir model tipine atanmaz.
@@ -114,8 +114,9 @@ Bunların sıralı olarak işlenmesi gerekiyor.
 
 İlk üç adım senkron yapı ile aynı olduğu için 4. adımdan başlanarak anlatılacaktır.
 
-Adımlar
-~~~~~~~~~~
+Asenkron Akış Adımları
+~~~~~~~~~~~~~~~~~~~~~~
+
 4. Satış kanalına attığımız istekte, isteğin asıl sonucunu değil, asıl sonucu kontrol etmek için
     gönderilen id değerini alıyoruz.
     Herhangi bir değer gönderilmezse satış kanalına kontrol için attığımız sorguyu (7. adım)

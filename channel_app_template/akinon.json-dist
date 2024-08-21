@@ -27,6 +27,10 @@
       "as": "BROKER"
     },
     {
+      "plan": "redis",
+      "as": "cache"
+    },
+    {
       "plan": "sentry"
     }
   ]
