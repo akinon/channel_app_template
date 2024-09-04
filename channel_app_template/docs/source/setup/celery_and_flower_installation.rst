@@ -71,7 +71,7 @@ Taskları tetiklemek için aşağıdaki örnek **curl** isteği aşağıdaki gib
 .. code-block:: bash
 
   curl --request POST \
-    --url https://<omnitron-url>.lb.akinoncloud.com/api/task/apply/channel_app_template.app.tasks.<task_name> \
+    --url https://<flower-url>.lb.akinoncloud.com/api/task/apply/channel_app_template.app.tasks.<task_name> \
     --header 'authorization: Basic <auth token>' \
     --header 'content-type: application/json' \
     --data '{\n"args":[]\n}'
