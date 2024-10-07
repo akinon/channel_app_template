@@ -11,6 +11,38 @@ GetCategoryAttributes
    kullanılan `DataClass <https://docs.python.org/3/library/dataclasses.html>`_
    *CategoryAttributeDto* 'dur.
 
+   **Attribute isimlendirmeleri**
+   `normalize_response` fonksiyonu ile satış kanalından gelen veri Omnitron tarafına
+   işlenirken, attribute isimlendirmeleri kendilerine ait değerler olmalı veya kategori path'ine
+   göre isimlendirmeler breadcrumb şeklinde oluşturulmalıdır. 
+
+   Örneğin;
+   .. code-block:: python
+      def normalize_response(self, data, validated_data, transformed_data,
+                           response) -> Tuple[CategoryDto, ErrorReportDto, Any]:
+        report = self.create_report(response)
+        response = response.json()
+        category = CategoryDto(remote_id=response["id"],
+                               name=response["name"],
+                               attributes=[])
+
+        for channel_attribute in response["categoryAttributes"]:
+            attribute = CategoryAttributeDto(
+                remote_id=channel_attribute["attribute"]["id"],
+                name=channel_attribute["attribute"]["name"],
+                allow_custom_value=channel_attribute["allowCustom"],
+                required=channel_attribute["required"],
+                variant=channel_attribute["varianter"],
+                values=[]
+            )
+            for channel_attribute_value in channel_attribute["attributeValues"]:
+                attribute_value = CategoryAttributeValueDto(
+                    remote_id=channel_attribute_value["id"],
+                    name=channel_attribute_value["name"])
+                attribute.values.append(attribute_value)
+            category.attributes.append(attribute)
+        return category, report, data
+
    Oluşturulan attributelar ürün gönderimi sırasında mapping gerektirir.
 
    Mapping yapıldıktan sonra ürün datasına ek olarak mapped_attributes eklenir. Detaylı bilgi için :ref:`Üründe Mapping Verisi`
