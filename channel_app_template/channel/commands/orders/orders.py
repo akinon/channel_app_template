@@ -6,7 +6,7 @@ from channel_app.channel.commands.orders.orders import (
     CheckOrders as AppCheckOrders,
     GetCancelledOrders as AppGetCancelledOrders,
     GetUpdatedOrderItems as AppGetUpdatedOrderItems,
-    AppGetCancellationRequests as AppGetCancellationRequests,
+    GetCancellationRequests as AppGetCancellationRequests,
     UpdateCancellationRequest as AppUpdateCancellationRequest
 )
 from omnisdk.omnitron.models import Order, BatchRequest
