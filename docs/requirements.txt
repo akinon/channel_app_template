@@ -7,3 +7,4 @@ sentry_sdk==1.5.6
 flower==1.0.0
 omnisdk
 channel_app
+zipp>=3.19.1 # not directly required, pinned by Snyk to avoid a vulnerability
