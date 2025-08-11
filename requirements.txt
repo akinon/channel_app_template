@@ -4,6 +4,6 @@ celery==5.3.6
 sentry_sdk==1.14.0
 flower==2.0.0
 omnisdk==0.0.99
-channel_app==0.0.154
+channel_app==0.0.155
 redis==5.0.1
 urllib3>=2.2.2 # not directly required, pinned by Snyk to avoid a vulnerability
