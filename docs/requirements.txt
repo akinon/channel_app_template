@@ -7,3 +7,4 @@ sentry_sdk==1.5.6
 flower==1.0.0
 omnisdk
 channel_app
+setuptools>=70.0.0 # not directly required, pinned by Snyk to avoid a vulnerability
