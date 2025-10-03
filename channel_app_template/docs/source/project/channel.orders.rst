@@ -39,6 +39,90 @@ Sipariş entegrasyonu ile ilgili channel_app_template.app.tasks altında çalı�
 
         Bu kısımda dönülecek cevap normalize_response fonksiyonuna iletileceği için veri döndürürken veri tipleri konusunda dikkat etmek gerekmektedir.
 
+      **Örnek Sipariş Response:**
+
+      normalize_response fonksiyonundan döndürülmesi gereken ChannelCreateOrderDto örneği:
+
+      ..  code-block:: python
+
+        from channel_app.core.data import (
+            ChannelCreateOrderDto, ChannelOrderDto, OrderItemDto,
+            CustomerDto, AddressDto
+        )
+        from decimal import Decimal
+        import datetime
+
+        # Sipariş bilgisi
+        order = ChannelOrderDto(
+            remote_id="SC-2024-123456",
+            number="SC-2024-123456",
+            channel=1,
+            customer=CustomerDto(
+                email="ahmet.yilmaz@example.com",
+                first_name="Ahmet",
+                last_name="Yılmaz",
+                channel_code="CUST-12345",
+                phone_number="+905551234567"
+            ),
+            shipping_address=AddressDto(
+                email="ahmet.yilmaz@example.com",
+                phone_number="+905551234567",
+                first_name="Ahmet",
+                last_name="Yılmaz",
+                country="Türkiye",
+                city="İstanbul",
+                township="Kadıköy",
+                district="Caferağa",
+                line="Atatürk Caddesi No:123 Daire:4",
+                postcode="34710"
+            ),
+            billing_address=AddressDto(
+                email="ahmet.yilmaz@example.com",
+                phone_number="+905551234567",
+                first_name="Ahmet",
+                last_name="Yılmaz",
+                country="Türkiye",
+                city="İstanbul",
+                line="Atatürk Caddesi No:123 Daire:4"
+            ),
+            currency="TRY",
+            amount=Decimal("1250.00"),
+            shipping_amount=Decimal("30.00"),
+            shipping_tax_rate=Decimal("20.00"),
+            discount_amount=Decimal("50.00"),
+            extra_field={},
+            cargo_company="Aras Kargo",
+            created_at=datetime.datetime(2024, 10, 3, 10, 30, 0),
+            tracking_number="123456789012"
+        )
+
+        # Sipariş kalemleri
+        order_items = [
+            OrderItemDto(
+                remote_id="ITEM-001",
+                product="PROD-001-RED-L",
+                price_currency="TRY",
+                price=Decimal("500.00"),
+                tax_rate=Decimal("20.00"),
+                extra_field={},
+                discount_amount=Decimal("25.00")
+            ),
+            OrderItemDto(
+                remote_id="ITEM-002",
+                product="PROD-002-BLUE-M",
+                price_currency="TRY",
+                price=Decimal("750.00"),
+                tax_rate=Decimal("20.00"),
+                extra_field={}
+            )
+        ]
+
+        # ChannelCreateOrderDto oluşturma
+        response_data = [ChannelCreateOrderDto(order=order, order_item=order_items)]
+        
+        # Generator ile döndürme
+        yield response_data, None, None
+
     .. method:: normalize_response(data, validated_data, transformed_data, response)
 
       Bu fonksiyon fetch_orders taskında satış kanalında oluşmuş siparişlerimizi okumak için hazırladığımız verileri ve satış kanalından gelen cevabı toplayıp Akinında siparişleri yaratmak için son haline getirdiğimiz yerdir. Bu fonksiyonun döneceği cevap doğrudan fetch_and_create_order fonksiyonundaki süreç ile işlenir.
