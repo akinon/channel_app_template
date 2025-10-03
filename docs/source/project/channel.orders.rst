@@ -123,6 +123,29 @@ Sipariş entegrasyonu ile ilgili channel_app_template.app.tasks altında çalı�
         # Generator ile döndürme
         yield response_data, None, None
 
+      .. note::
+
+        **extra_field Kullanımı:**
+        
+        Satış kanalından gelen ve standart DTO yapısında yer almayan ek bilgileri saklamak için 
+        sipariş (order) seviyesinde **extra_field** 
+        parametresi kullanılabilir. Bu alan, dictionary (dict) formatında olup, satış kanalına 
+        özgü özel verilerin (örn: promosyon bilgileri, özel notlar, vb.) 
+        kaydedilmesini sağlar. Bu sayede gelecekte bu bilgilere ihtiyaç duyulduğunda kolaylıkla 
+        erişilebilir ve gerektiğinde satış kanalına geri gönderilebilir.
+
+        Örnek kullanım:
+
+        ..  code-block:: python
+
+          # Sipariş seviyesinde extra_field
+          order = ChannelOrderDto(
+              # ... diğer alanlar ...
+              extra_field={
+                  "custom_notes": "Bu sipariş için özel notlarımız"
+              }
+          )
+
     .. method:: normalize_response(data, validated_data, transformed_data, response)
 
       Bu fonksiyon fetch_orders taskında satış kanalında oluşmuş siparişlerimizi okumak için hazırladığımız verileri ve satış kanalından gelen cevabı toplayıp Akinında siparişleri yaratmak için son haline getirdiğimiz yerdir. Bu fonksiyonun döneceği cevap doğrudan fetch_and_create_order fonksiyonundaki süreç ile işlenir.
