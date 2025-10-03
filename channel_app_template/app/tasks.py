@@ -1,3 +1,5 @@
+from typing import Any, Dict, List
+from celery import shared_task
 from channel_app.app.order.service import OrderService
 from channel_app.app.product.service import ProductService
 from channel_app.app.product_image.service import ImageService
@@ -5,7 +7,8 @@ from channel_app.app.product_price.service import PriceService
 from channel_app.app.product_stock.service import StockService
 from channel_app.app.setup.service import SetupService
 from channel_app.core.utilities import LockTask
-
+from channel_app.logs.services import LogService
+from channel_app_template.api.enums import ExportType
 from channel_app_template.celery_app.celery import app
 
 
@@ -197,3 +200,35 @@ def fetch_and_create_cancellation_requests():
 def update_cancellation_requests():
     service = OrderService()
     service.update_cancellation_requests(is_success_log=True)
+
+@shared_task(name="export_differences_to_csv")
+def export_differences_to_csv(
+    products: List[Dict[str, Any]], export_type: ExportType
+) -> str:
+    """
+    Celery task to export stock or price differences to CSV.
+
+    Args:
+        products: List of products with price or stock differences
+
+    Returns:
+        str: Path to the generated CSV file
+    """
+    from channel_app_template.api.helpers import csv_exporter
+
+    log_service = LogService()
+    log_service.create_flow(name="Export Price Differences to CSV")
+
+    try:
+        with log_service.step("generate_csv"):
+            file_path = csv_exporter(
+                type=export_type,
+                products=products,
+            )
+
+        return file_path
+    except Exception as fatal:
+        log_service.add_exception(fatal)
+        raise
+    finally:
+        log_service.save()

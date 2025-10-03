@@ -4,6 +4,12 @@ celery==5.3.6
 sentry_sdk==1.14.0
 flower==2.0.0
 omnisdk==0.0.99
-channel_app==0.0.153
 redis==5.0.1
 urllib3>=2.2.2 # not directly required, pinned by Snyk to avoid a vulnerability
+channel_app==0.0.157a16
+python-dotenv==1.1.0
+psycopg2-binary==2.9.10
+sqlalchemy==2.0.40
+alembic==1.15.2
+boto3==1.38.5
+fastapi[all]==0.115.12
