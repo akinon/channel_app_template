@@ -2,7 +2,7 @@
   "name": "Sales Channel",
   "description": "Sales Channel",
   "scripts": {
-    "release": "sleep 3",
+    "release": "sleep 3 && python -m channel_app.migrate",
     "build": "./build.sh"
   },
   "env": {},
@@ -20,7 +20,7 @@
       "max": "auto"
     }
   },
-  "runtime": "python:3.8-alpine",
+  "runtime": "python:3.11.9-alpine",
   "addons": [
     {
       "plan": "redis",
@@ -32,6 +32,12 @@
     },
     {
       "plan": "sentry"
+    },
+    {
+      "plan": "postgresql"
+    },
+    {
+      "plan": "cdn"
     }
   ]
 }
