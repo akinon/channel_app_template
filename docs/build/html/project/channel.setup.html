@@ -91,6 +91,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../setup/index.html">Kurulum ve Kullanım</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Geliştirme Adımları</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="structure.html">Klasör Yapısı</a></li>
+<li class="toctree-l2"><a class="reference internal" href="structure.html#baslangic-adimi">Başlangıç Adımı</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="structure.html#satis-kanalinin-kodlanmasi">Satış Kanalının Kodlanması</a><ul class="current">
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Setup</a></li>
 <li class="toctree-l3"><a class="reference internal" href="channel.products.html">Products</a></li>
@@ -101,6 +102,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="structure.html#akinon-a-yeni-komut-eklemek">Akinon’a Yeni Komut Eklemek</a></li>
+<li class="toctree-l2"><a class="reference internal" href="structure.html#dis-isteklerin-dinlenmesi">Dış İsteklerin Dinlenmesi</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../architecture/index.html">Mimari</a></li>
@@ -181,7 +183,7 @@ Sistem genelinde çalışan düzenli job’lara ait kodlar <cite>channel_app_tem
 dosyasında yer almaktadır.
 Setup adımları ile ilgili 3 adet düzenli çalışabilecek durumda olan job vardır.</p>
 <ol class="arabic">
-<li><p><strong>update_channel_conf_schema</strong>:</p>
+<li><p><strong>update_channel_conf_schema</strong></p>
 <p><strong>Düzenlenmesi gereken class</strong> <a class="reference internal" href="channel.setup.GetChannelConfSchema.html#getchannelconfschema"><span class="std std-ref">GetChannelConfSchema</span></a></p>
 <p>İş sürecinde oluşturulacak olan satış kanalı için
 ihtiyaç duyulan ayarları oluşturur. İşlem sırası olarak öncelikle satış
@@ -197,6 +199,12 @@ ikilisi koyabilir ve buna göre geliştirmenizi yapabilirsiniz.</p>
 </li>
 <li><p><strong>create_or_update_category_attributes</strong></p>
 <p><strong>Düzenlenmesi gereken class</strong> <a class="reference internal" href="channel.setup.GetCategoryAttributes.html#getcategoryattributes"><span class="std std-ref">GetCategoryAttributes</span></a></p>
+<p>Satış kanalının kategorilerine göre attribute, attribute value değerlerini omnitronda oluştururan servistir.</p>
+</li>
+<li><p><strong>create_or_update_attributes</strong></p>
+<p><strong>Düzenlenmesi gereken class</strong> <a class="reference internal" href="channel.setup.GetAttributes.html#getattributes"><span class="std std-ref">GetAttributes</span></a></p>
+<p>Satış kanalında bulunan attribute, attribute value değerlerini omnitronda oluştururan servistir.</p>
+<p>Bu servis kategoriye bağlı attributeların olmadığı senaryolarda kullanılabilir.</p>
 </li>
 </ol>
 </section>

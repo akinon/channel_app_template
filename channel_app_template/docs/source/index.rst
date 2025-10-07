@@ -44,3 +44,4 @@ Teknolojiler ve Kütüphaneler
    architecture/index
    terminology
    flows
+   logs

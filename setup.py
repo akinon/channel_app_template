@@ -5,7 +5,7 @@ with open("README.rst") as f:
 
 setup(
     name="channel_app_template",
-    version="0.0.97",
+    version="0.0.99",
     packages=find_packages(),
     url="https://bitbucket.org/akinonteam/channel_app_template",
     description="Template app for Sales Channels",

@@ -186,3 +186,14 @@ def fetch_and_create_cancel():
 def fetch_and_update_order_items():
     service = OrderService()
     service.fetch_and_update_order_items(is_success_log=True)
+
+
+@app.task
+def fetch_and_create_cancellation_requests():
+    service = OrderService()
+    service.fetch_and_create_cancellation_requests(is_success_log=True)
+
+@app.task
+def update_cancellation_requests():
+    service = OrderService()
+    service.update_cancellation_requests(is_success_log=True)

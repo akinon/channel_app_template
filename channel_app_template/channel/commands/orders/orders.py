@@ -5,13 +5,16 @@ from channel_app.channel.commands.orders.orders import (
     SendUpdatedOrders as AppSendUpdatedOrders,
     CheckOrders as AppCheckOrders,
     GetCancelledOrders as AppGetCancelledOrders,
-    GetUpdatedOrderItems as AppGetUpdatedOrderItems
+    GetUpdatedOrderItems as AppGetUpdatedOrderItems,
+    GetCancellationRequests as AppGetCancellationRequests,
+    UpdateCancellationRequest as AppUpdateCancellationRequest
 )
 from omnisdk.omnitron.models import Order, BatchRequest
 
 from channel_app.core.data import (
     ErrorReportDto, ChannelCreateOrderDto, OrderBatchRequestResponseDto,
-    CancelOrderDto, ChannelUpdateOrderItemDto
+    CancelOrderDto, ChannelUpdateOrderItemDto, CancellationRequestDto,
+    ChannelCancellationRequestDto, BatchRequestResponseDto
 )
 
 
@@ -108,5 +111,45 @@ class GetUpdatedOrderItems(AppGetUpdatedOrderItems):
 
     def normalize_response(self, data, validated_data, transformed_data,
                            response) -> Tuple[ChannelUpdateOrderItemDto,
+                                              ErrorReportDto, Any]:
+        raise NotImplementedError
+
+
+class GetCancellationRequests(AppGetCancellationRequests):
+    def get_data(self):
+        raise NotImplementedError
+
+    def validated_data(self, data) -> object:
+        raise data
+
+    def transform_data(self, data) -> object:
+        raise data
+
+    def send_request(self, transformed_data) -> object:
+        raise NotImplementedError
+
+    def normalize_response(self, data, validated_data, transformed_data,
+                           response) -> Tuple[CancellationRequestDto,
+                                              ErrorReportDto, Any]:
+        raise NotImplementedError
+
+
+class UpdateCancellationRequest(AppUpdateCancellationRequest):
+    def get_data(self) -> ChannelCancellationRequestDto:
+        isinstance(self.objects, ChannelCancellationRequestDto)
+        data = self.objects
+        return data
+
+    def validated_data(self, data) -> object:
+        raise data
+
+    def transform_data(self, data) -> object:
+        raise data
+
+    def send_request(self, transformed_data) -> object:
+        raise NotImplementedError
+
+    def normalize_response(self, data, validated_data, transformed_data,
+                           response) -> Tuple[BatchRequestResponseDto,
                                               ErrorReportDto, Any]:
         raise NotImplementedError

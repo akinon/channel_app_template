@@ -1,7 +1,8 @@
 from channel_app.channel.integration import ChannelIntegration as AppChannelIntegration
 
 from channel_app_template.channel.commands.orders.orders import (
-    GetOrders, SendUpdatedOrders, CheckOrders, GetCancelledOrders
+    GetOrders, SendUpdatedOrders, CheckOrders, GetCancelledOrders,
+    GetCancellationRequests, UpdateCancellationRequest
 )
 from channel_app_template.channel.commands.product_prices import (
     SendUpdatedPrices, SendInsertedPrices, CheckPrices
@@ -40,7 +41,9 @@ class ChannelIntegration(AppChannelIntegration):
         "get_orders": GetOrders,
         "send_updated_orders": SendUpdatedOrders,
         "check_orders": CheckOrders,
-        "get_cancelled_orders": GetCancelledOrders
+        "get_cancelled_orders": GetCancelledOrders,
+        "get_cancellation_requests": GetCancellationRequests,
+        "update_cancellation_request": UpdateCancellationRequest,        
     }
 
     def __init__(self):

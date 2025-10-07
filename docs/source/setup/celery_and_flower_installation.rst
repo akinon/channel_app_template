@@ -13,6 +13,10 @@ bilgi için (`Celery <https://docs.celeryq.dev/en/master/>`_)
   OMNITRON_CHANNEL_ID: Uygulamanın bağlanacağı satış kanalı id değeri.
   OMNITRON_CATALOG_ID: Bağlı satış kanalının katalog id değeri.
 
+* `OMNITRON_MODULE` ve `CHANNEL_MODULE` değerlerini değiştirmeniz gerekebilir.
+  Bu değerler, uygulamanın hangi modülde çalışacağını belirler.
+  Örneğin, `channel_app_template.akinon.integration` ve `channel_app_template.channel.integration` gibi.
+
 .. code-block:: bash
 
     # Topluca export (öncesinde .env dosyasını oluşturmak gerekiyor)
@@ -30,8 +34,10 @@ bilgi için (`Celery <https://docs.celeryq.dev/en/master/>`_)
     export CACHE_HOST=127.0.0.1
     export CACHE_PORT=6379
     export CACHE_DATABASE_INDEX=3
+    export OMNITRON_MODULE='channel_app_template.akinon.integration'
+    export CHANNEL_MODULE='channel_app_template.channel.integration'
 
-    celery -A channel_app.celery_app worker -l info
+    celery -A channel_app_template.celery_app worker -l info
 
 * Redis sunucusu varsayılan olarak kurulum sonrası özellikle kapatılmadıkça ayakta oluyor.
   Ping komutuyla test edip `redis-server` ile kaldırabilirsiniz.
@@ -71,7 +77,7 @@ Taskları tetiklemek için aşağıdaki örnek **curl** isteği aşağıdaki gib
 .. code-block:: bash
 
   curl --request POST \
-    --url https://<omnitron-url>.lb.akinoncloud.com/api/task/apply/channel_app_template.app.tasks.<task_name> \
+    --url https://<flower-url>.lb.akinoncloud.com/api/task/apply/channel_app_template.app.tasks.<task_name> \
     --header 'authorization: Basic <auth token>' \
     --header 'content-type: application/json' \
     --data '{\n"args":[]\n}'
