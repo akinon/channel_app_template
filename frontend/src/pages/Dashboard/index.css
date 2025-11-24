@@ -1,0 +1,5 @@
+.akinon-card-meta-detail {
+  flex-direction: column-reverse;
+  display: flex;
+  gap: 20px;
+}

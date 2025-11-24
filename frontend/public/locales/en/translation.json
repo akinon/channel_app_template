@@ -1,0 +1,117 @@
+{
+  "page": {
+    "common": {
+      "name": "Name",
+      "pk": "PK",
+      "sku": "SKU",
+      "stock": "Stock",
+      "price": "Price",
+      "export_type": "Export Type",
+      "is_required": "{{field}} is required",
+      "enter_positive_number": "Positive number required",
+      "created_date": "Created Date",
+      "modified_date": "Modified Date",
+      "export": "Export",
+      "updated_at": "Updated At"
+    },
+    "home": {
+      "title": "Channel App - Integration Setup",
+      "description": "You can set up and customize marketplace integrations using this template."
+    },
+    "dashboard": {
+      "title": "Channel App - Dashboard",
+      "box_title": "Dashboard",
+      "description": "Get a quick overview of system performance, key KPIs, and recent activity all in one place.",
+      "request_time_prefix": "Request time",
+      "error_fetch": "Dashboard data could not be fetched.",
+      "error_title": "Error",
+      "no_data_yet": "There is no data yet",
+      "no_data_yet_description": "Data is not available yet. Please check back later.",
+      "stat": {
+        "total_sku": "Total SKU",
+        "total_sku_tooltip": "Total number of SKUs fetched from the catalog. Note: Backend may calculate this value depending on the limit parameter.",
+        "total_sku_on_sale": "On Sale SKU",
+        "total_sku_on_sale_tooltip": "Number of SKUs currently on sale. Note: Backend may calculate this value depending on the limit parameter.",
+        "total_product_stocks": "Product Stock Records",
+        "total_product_stocks_tooltip": "Row count of product-stock records returned from the stock table.",
+        "total_stocks": "Total Stock Quantity",
+        "total_stocks_tooltip": "Sum of stock quantities for all products."
+      }
+    },
+    "log": {
+      "title": "Channel App - Log",
+      "box_title": "Log",
+      "description": "Access detailed logs including events, errors, and user actions over time.",
+      "flow_detail": {
+        "detail_title": "Log Detail",
+        "process_status": "Process Based Status",
+        "loading": "Loading…",
+        "no_data": "No data",
+        "filter_title": "Filter",
+        "status_all_placeholder": "Status (All)",
+        "filter_all": "All",
+        "filter_success": "Success",
+        "filter_failure": "Failed",
+        "filter_in_progress": "In Progress",
+        "log_id": "LOG ID",
+        "step": "STEP",
+        "status": "STATUS",
+        "request_time": "REQUEST TIME",
+        "response_time": "RESPONSE TIME",
+        "payload_file": "PAYLOAD FILE",
+        "flow_name": "Flow Name",
+        "flow_id": "Run Id",
+        "flow_start_time": "Flow Start Time",
+        "flow_end_time": "Flow End Time",
+        "total_steps": "Total Step Count",
+        "total_success": "Total Success Count",
+        "total_failure": "Total Failure Count",
+        "step_list_title": "Step List",
+        "detail_not_loaded": "Detail could not be loaded"
+      },
+      "transaction_modal": {
+        "refresh": "Refresh",
+        "copy": "Copy",
+        "download": "Download",
+        "copy_success": "Content copied to clipboard.",
+        "copy_fail": "Copy failed.",
+        "data_load_error": "Transaction data could not be loaded",
+        "step_not_found": "Step not found.",
+        "no_content": "No displayable content for this step.",
+        "no_content_note": "Note: It first checks the fields exceptions, error_message, step_metadata; if not found it tries metadata, payload, response, request, output, input, error, exception_details in that order.",
+        "select_step_placeholder": "Select step",
+        "step_label": "Step",
+        "status_label": "Status",
+        "start_label": "Start",
+        "end_label": "End",
+        "duration_label": "Duration"
+      }
+    },
+    "report": {
+      "title": "Channel App - Report",
+      "box_title": "Report",
+      "description": "Generate, download, and share customizable reports of system data and insights.",
+      "list_products_not_reflected_in_sales": "List of Products Not Reflected in Sales",
+      "list_products_with_price_difference": "List of Products with Price Difference",
+      "list_stock_difference": "List of Stock Difference",
+      "export_fail": "Export Failed",
+      "price_difference": "Price Difference",
+      "stock_difference": "Stock Difference",
+      "products.fetch.fail": "Failed to fetch products"
+    },
+    "alarm": {
+      "title": "Channel App - Alarm",
+      "box_title": "Alarm",
+      "description": "Define thresholds and receive alerts when critical conditions are met."
+    },
+    "trigger": {
+      "title": "Channel App - Trigger",
+      "box_title": "Trigger",
+      "description": "Automate workflows by configuring triggers based on system events.",
+      "run": "RUN",
+      "trigger_modal_desc": "You can trigger with the following values.",
+      "trigger_success": "Successfully triggered",
+      "trigger_fail": "Failed to trigger"
+    }
+  }
+}

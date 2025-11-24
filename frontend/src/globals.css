@@ -1,0 +1,90 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+* {
+  margin: 0;
+}
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+#root,
+#__next {
+  isolation: isolate;
+}
+
+*,
+*::before,
+*::after {
+  font-family: 'Jost Variable', sans-serif;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  background-color: var(--color-ebonyClay-600);
+  color: var(--color-neutral-50);
+}
+
+::selection {
+  background-color: rgba(210, 40, 46, 0.3);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: var(--color-ebonyClay-400);
+  border: none;
+  padding: 1px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-ebonyClay-700);
+  border-radius: 3px;
+  border: none;
+}
+
+.akiform-box {
+  background-color: var(--color-ebonyClay-400);
+  padding: 1.5rem;
+  width: 50%;
+  min-width: 50%;
+  border-radius: 0.5rem;
+}
+
+/* Tanstack query devtools override */
+.tsqd-open-btn {
+  width: 24px !important;
+  height: 24px !important;
+}
