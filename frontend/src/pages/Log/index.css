@@ -1,0 +1,142 @@
+:is(.log-page-container, .log-detail-modal, .transaction-log-modal) {
+  --log-text: #fff;
+  --log-bg: #2b344c;
+  --log-border: #262e47;
+
+  /* ==== Filter Styles ==== */
+  .akinon-filter {
+    margin-bottom: 30px !important;
+
+    .applied_filters {
+      column-gap: 7px;
+      padding: 5px;
+    }
+  }
+
+  .akinon-filter__top h4,
+  .applied_filters__label {
+    color: var(--log-text) !important;
+  }
+
+  .applied_filters__label {
+    font-weight: 600 !important;
+  }
+
+  .applied_filters .applied_filters__reset-filters-icon {
+    width: 23px !important;
+    height: 23px !important;
+    padding: 0 !important;
+    margin: 0 3px 0 0 !important;
+  }
+
+  /* shown-filters form */
+  .shown-filters {
+    .ant-form {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+
+      .ant-picker {
+        width: 100% !important;
+      }
+    }
+
+    .ant-form-item {
+      margin-bottom: 0 !important;
+    }
+
+    /* Base controls (input, picker, select) */
+    .ant-form :is(input, .ant-picker, .ant-select-selector) {
+      color: var(--log-text) !important;
+      font-weight: 600 !important;
+      font-size: 14px !important;
+      border-radius: 5px !important;
+      background-color: var(--log-bg);
+    }
+
+    .ant-form input,
+    .ant-form :is(.ant-picker, .ant-select-selector) {
+      height: 40px !important;
+      border: 2px solid var(--log-border);
+      overflow: hidden !important;
+      align-items: center !important;
+    }
+
+    .ant-form :is(.ant-picker input, .ant-select-selector input) {
+      color: var(--log-text) !important;
+      font-weight: 600 !important;
+      font-size: 14px !important;
+      border-radius: 5px !important;
+      background-color: var(--log-bg);
+      border: none !important;
+      overflow: hidden !important;
+    }
+
+    .ant-form input::placeholder,
+    .ant-form .ant-picker .ant-picker-suffix,
+    .ant-form .ant-select-selection-placeholder,
+    .ant-form .ant-select-arrow {
+      color: var(--log-text) !important;
+      opacity: 0.5 !important;
+      font-weight: 500 !important;
+      font-size: 12px !important;
+    }
+
+    .ant-form .ant-select-arrow {
+      margin-top: 0 !important;
+    }
+  }
+
+  /* ==== Table & Pagination ==== */
+  .akinon-pagination-options-size-changer {
+    height: 100% !important;
+  }
+
+  .akinon-table-wrapper .akinon-table-tbody > tr > td {
+    color: #3f4b5c;
+    font-size: 14px;
+    text-align: left;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    overflow-wrap: break-word;
+    text-transform: unset;
+    font-weight: normal !important;
+  }
+
+  .akinon-modal-footer {
+    display: none !important;
+  }
+}
+
+/* ==== Modal-only styles ==== */
+:is(.log-detail-modal, .transaction-log-modal) {
+  &[role="dialog"] {
+    min-width: 80vw !important;
+    top: 5vh !important;
+  }
+
+  .akitable-container {
+    max-width: 100% !important;
+    overflow: auto !important;
+  }
+
+  .akinon-card {
+    background: none !important;
+    border-width: 1px !important;
+  }
+
+  input, select {
+    color: #fff !important;
+    font-weight: 600 !important;
+    overflow: hidden !important;
+    font-size: 14px !important;
+    border-radius: 5px !important;
+    align-items: center !important;
+    background-color: #2b344c;
+    border: none !important;
+    height: 36px !important;
+    padding: 0 10px !important;
+    background-color: #2b344c;
+  }
+}

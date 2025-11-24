@@ -1,0 +1,117 @@
+{
+  "page": {
+    "common": {
+      "name": "İsim",
+      "pk": "PK",
+      "sku": "SKU",
+      "stock": "Stok",
+      "price": "Fiyat",
+      "export_type": "Dışa Aktarma Türü",
+      "is_required": "{{field}} zorunludur.",
+      "enter_number": "Lütfen bir sayı girin.",
+      "created_date": "Oluşturulma Tarihi",
+      "modified_date": "Güncellenme Tarihi",
+      "export": "Dışa Aktar",
+      "updated_at": "Güncellenme Tarihi"
+    },
+    "home": {
+      "title": "Channel App - Entegrasyon Kurulumu",
+      "description": "Bu şablon ile pazar yeri entegrasyonlarını kurabilir ve özelleştirebilirsiniz."
+    },
+    "dashboard": {
+      "title": "Channel App - Gösterge Paneli",
+      "box_title": "Gösterge Paneli",
+      "description": "Sistem performansını, temel KPI'ları ve son aktiviteleri tek bir ekranda hızlıca görüntüleyin.",
+      "request_time_prefix": "İstek saati",
+      "error_fetch": "Dashboard verileri alınamadı.",
+      "error_title": "Hata",
+      "no_data_yet": "Henüz veri yok",
+      "no_data_yet_description": "Veriler henüz mevcut değil. Lütfen daha sonra tekrar kontrol edin.",
+      "stat": {
+        "total_sku": "Toplam SKU",
+        "total_sku_tooltip": "Katalogdan çekilen toplam SKU sayısı. Not: Backend bu değeri limit parametresine göre hesaplayabilir.",
+        "total_sku_on_sale": "Satışta Olan SKU",
+        "total_sku_on_sale_tooltip": "Şu anda satışta olan SKU sayısı. Not: Backend bu değeri limit parametresine göre hesaplayabilir.",
+        "total_product_stocks": "Ürün Stok Kayıtları",
+        "total_product_stocks_tooltip": "Stok tablosundan dönen ürün-stok kayıtlarının satır sayısı.",
+        "total_stocks": "Toplam Stok Miktarı",
+        "total_stocks_tooltip": "Tüm ürünlerin stok adetlerinin toplamı."
+      }
+    },
+    "log": {
+      "title": "Channel App - Günlük",
+      "box_title": "Günlük",
+      "description": "Zaman içinde gerçekleşen olay, hata ve kullanıcı hareketlerini içeren detaylı loglara eriş.",
+      "flow_detail": {
+        "detail_title": "Log Detayı",
+        "process_status": "Süreç Bazlı Durum",
+        "loading": "Yükleniyor…",
+        "no_data": "Veri yok",
+        "filter_title": "Filtre",
+        "status_all_placeholder": "Durum (Tümü)",
+        "filter_all": "Tümü",
+        "filter_success": "Başarılı",
+        "filter_failure": "Başarısız",
+        "filter_in_progress": "Devam Ediyor",
+        "log_id": "LOG ID",
+        "step": "ADIM",
+        "status": "DURUM",
+        "request_time": "İSTEK ZAMANI",
+        "response_time": "CEVAP ZAMANI",
+        "payload_file": "KAYIT DOSYASI",
+        "flow_name": "Akış Adı",
+        "flow_id": "Çalışma Id",
+        "flow_start_time": "Akış Başlama Zamanı",
+        "flow_end_time": "Akış Bitiş Zamanı",
+        "total_steps": "Toplam İşlem Sayısı",
+        "total_success": "Toplam Başarılı Sayısı",
+        "total_failure": "Toplam Hata Sayısı",
+        "step_list_title": "Adım Listesi",
+        "detail_not_loaded": "Detay yüklenemedi"
+      },
+      "transaction_modal": {
+        "refresh": "Yenile",
+        "copy": "Kopyala",
+        "download": "İndir",
+        "copy_success": "İçerik panoya kopyalandı.",
+        "copy_fail": "Kopyalama başarısız.",
+        "data_load_error": "Transaction verisi yüklenemedi",
+        "step_not_found": "Adım bulunamadı.",
+        "no_content": "Bu adım için gösterilebilir içerik bulunamadı.",
+        "no_content_note": "Not: Önce exceptions, error_message, step_metadata alanlarına bakar; yoksa metadata, payload, response, request, output, input, error, exception_details sırasını dener.",
+        "select_step_placeholder": "Adım seç",
+        "step_label": "Adım",
+        "status_label": "Durum",
+        "start_label": "Başlangıç",
+        "end_label": "Bitiş",
+        "duration_label": "Süre"
+      }
+    },
+    "report": {
+      "title": "Channel App - Rapor",
+      "box_title": "Rapor",
+      "description": "Sistem verileri ve analizleri için özelleştirilebilir raporlar oluşturun, indirin ve paylaşın.",
+      "list_products_not_reflected_in_sales": "Satışlarda Yansımayan Ürünler Listesi",
+      "list_products_with_price_difference": "Fiyat Farkı Olan Ürünler Listesi",
+      "list_stock_difference": "Stok Farkı Olan Ürünler Listesi",
+      "export_fail": "Dışa Aktarma Başarısız",
+      "price_difference": "Fiyat Farkı",
+      "stock_difference": "Stok Farkı",
+      "products.fetch.fail": "Ürünler alınamadı"
+    },
+    "alarm": {
+      "title": "Channel App - Alarm",
+      "box_title": "Alarm",
+      "description": "Eşik değerler belirleyin, kritik durumlar oluştuğunda bildirim alın."
+    },
+    "trigger": {
+      "title": "Channel App - Tetikleyici",
+      "box_title": "Tetikleyici",
+      "description": "Sistem olaylarına dayalı tetikleyiciler tanımlayarak iş akışlarını otomatikleştirin.",
+      "run": "ÇALIŞTIR",
+      "trigger_modal_desc": "Aşağıdaki değerler ile tetikleyebilirsiniz.",
+      "trigger_success": "Başarıyla tetiklendi",
+      "trigger_fail": "Tetikleme başarısız oldu"
+    }
+  }
+}
