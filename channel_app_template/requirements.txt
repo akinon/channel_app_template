@@ -8,3 +8,4 @@ channel_app==0.0.153
 redis==5.0.1
 certifi>=2023.7.22 # not directly required, pinned by Snyk to avoid a vulnerability
 setuptools>=70.0.0 # not directly required, pinned by Snyk to avoid a vulnerability
+tornado>=6.5.3 # not directly required, pinned by Snyk to avoid a vulnerability
