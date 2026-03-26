@@ -2,7 +2,7 @@
 requests==2.32.4
 celery==5.3.6
 sentry_sdk==1.14.0
-flower==2.0.0
+flower==1.2.0
 omnisdk==0.0.99
 channel_app==0.0.155
 redis==5.0.1
